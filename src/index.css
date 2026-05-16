@@ -1711,3 +1711,34 @@ body.light-theme .bottom-actions-row {
     transform: translateY(-2px) !important;
     box-shadow: 0 4px 12px rgba(0, 229, 255, 0.2) !important;
 }
+
+@media print {
+    /* 1. Force entire viewport and body background to be pure crisp white over all pages */
+    html, body, #root, .billing-page-container, .alive-print-area, main, div {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    /* 2. Remove mix-blend-mode and boost watermark contrast */
+    .print-watermark-wrapper {
+        display: flex !important;
+        mix-blend-mode: normal !important; /* Fix browser engine rendering drop */
+        opacity: 0.09 !important; /* Slightly increased for crisp printing visibility */
+        z-index: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* 3. Strongly destroy any dark theme remnants, side navs, or tabs leaking into print preview */
+    .no-print, 
+    button, 
+    .ant-tabs-nav, 
+    .ant-layout-sider, 
+    .ant-layout-header,
+    .sticker-layout-modal {
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+}
