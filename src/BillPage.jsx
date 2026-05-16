@@ -81,7 +81,7 @@ const PrintInvoice = ({ bill, payments, lang = 'en' }) => {
     return createPortal(
         <div className="alive-print-area">
             {/* Professional Luxury Vector Watermark Engine - Set exactly to 4% opacity as per premium design specifications */}
-            <LuxuryCarWatermarkSVG opacity={0.04} />
+            <LuxuryCarWatermarkSVG opacity={0.08} />
 
             {/* Spiritual Invocation */}
             <div style={{ textAlign: 'center', fontSize: '15px', fontWeight: 900, marginBottom: 4, color: '#0f172a', letterSpacing: '1px' }}>

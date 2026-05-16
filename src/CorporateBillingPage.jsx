@@ -8,6 +8,7 @@ import { syncToLocalStorage, getFromLocalStorage, formatCurrency } from './utils
 import dayjs from 'dayjs';
 import { createPortal } from 'react-dom';
 import BrandedDocumentHeader from './components/BrandedDocumentHeader';
+import LuxuryCarWatermarkSVG from './components/LuxuryCarWatermarkSVG';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -17,6 +18,7 @@ const PrintCorporateBill = ({ bill }) => {
     
     return createPortal(
         <div className="alive-print-area">
+            <LuxuryCarWatermarkSVG opacity={0.08} />
             {/* Spiritual Invocation */}
             <div style={{ textAlign: 'center', fontSize: '16px', fontWeight: 600, marginBottom: 5, color: '#000', letterSpacing: '0.5px' }}>
                 Bismillahir Rahmanir Rahim
