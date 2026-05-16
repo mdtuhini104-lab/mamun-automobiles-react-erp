@@ -196,7 +196,7 @@ const QuotationsPage = () => {
         inventory, customers, generateSafeId, navigateTo,
         loading: globalLoading, jobIntakes: globalJobIntakes,
         setJobIntakes: setGlobalJobIntakes,
-        lang
+        language: lang
     } = useGlobalState();
 
     const [quotations, setQuotations] = React.useState([]);
@@ -361,23 +361,47 @@ const QuotationsPage = () => {
     };
 
     const columns = [
-        { title: lang === 'bn' ? 'কোটেশন আইডি' : 'Quotation ID', dataIndex: 'id', key: 'id', render: (text) => <Text style={{ fontWeight: 600 }}>{text}</Text> },
-        { title: t('customer', lang), render: (_, r) => (<div><div>{r.clientName || 'N/A'}</div><Text type="secondary" size="small">{r.clientPhone || ''}</Text></div>) },
-        { title: lang === 'bn' ? 'গাড়ির নম্বর' : 'Vehicle No', dataIndex: 'vehicleNo', key: 'vehicleNo', render: (text) => <Tag color="blue">{text || 'N/A'}</Tag> },
+        { 
+            title: lang === 'bn' ? 'কোটেশন আইডি' : 'Quotation ID', 
+            dataIndex: 'id', 
+            key: 'id', 
+            render: (text) => <Text style={{ fontWeight: 600 }}>{text || 'N/A'}</Text> 
+        },
+        { 
+            title: t('customer', lang), 
+            render: (_, r) => (
+                <div>
+                    <div>{r?.clientName || r?.customerName || 'N/A'}</div>
+                    <Text type="secondary" style={{ fontSize: '12px' }}>{r?.clientPhone || r?.phone || ''}</Text>
+                </div>
+            ) 
+        },
+        { 
+            title: lang === 'bn' ? 'গাড়ির নম্বর' : 'Vehicle No', 
+            dataIndex: 'vehicleNo', 
+            key: 'vehicleNo', 
+            render: (text) => <Tag color="blue">{text || 'N/A'}</Tag> 
+        },
         {
-            title: t('total', lang), render: (_, r) => {
-                const items = Array.isArray(r?.items) ? r.items : [];
-                const grandTotal = items.reduce((a, b) => a + ((Number(b?.price) || 0) * (Number(b?.quantity) || 0)), 0) * 1.05;
-                return <b style={{ color: 'inherit', fontWeight: 600 }}>৳ {Math.round(grandTotal).toLocaleString()}</b>;
+            title: t('total', lang), 
+            render: (_, r) => {
+                const items = Array.isArray(r?.items) ? r.items : (Array.isArray(r?.lineItems) ? r.lineItems : []);
+                const subtotal = items.reduce((a, b) => a + ((Number(b?.price || b?.unitPrice) || 0) * (Number(b?.quantity) || 0)), 0);
+                const grandTotal = Math.round(subtotal * 1.05);
+                return <b style={{ color: 'inherit', fontWeight: 600 }}>৳ {grandTotal.toLocaleString()}</b>;
             }
         },
-        { title: t('status', lang), dataIndex: 'status', render: s => <Tag color={s === 'Passed' ? 'green' : s === 'Rejected' ? 'red' : 'blue'}>{s}</Tag> },
+        { 
+            title: t('status', lang), 
+            dataIndex: 'status', 
+            render: s => <Tag color={s === 'Passed' ? 'green' : s === 'Rejected' ? 'red' : 'blue'}>{s || 'Pending'}</Tag> 
+        },
         {
             title: t('actions', lang),
             render: (_, record) => (
                 <Space>
-                    <Button style={{ fontWeight: 600 }} onClick={() => { setSelectedQuotation(record); editForm.setFieldsValue(record); setIsEditModalOpen(true); }}>{t('edit', lang)}</Button>
-                    {record.status !== 'Passed' && <Button type="primary" size="small" style={{ fontWeight: 600 }} onClick={() => handlePass(record)}>Pass</Button>}
+                    <Button style={{ fontWeight: 600 }} onClick={() => { if(!record) return; setSelectedQuotation(record); editForm.setFieldsValue(record); setIsEditModalOpen(true); }}>{t('edit', lang)}</Button>
+                    {record?.status !== 'Passed' && <Button type="primary" size="small" style={{ fontWeight: 600 }} onClick={() => handlePass(record)}>Pass</Button>}
                     <Button style={{ fontWeight: 600 }} onClick={() => handlePrintQt(record)}>Print</Button>
                     <Button style={{ fontWeight: 600 }} onClick={() => handleSendWhatsApp(record)}>WhatsApp</Button>
                 </Space>
