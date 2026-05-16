@@ -200,7 +200,7 @@ const PrintInvoice = ({ bill, payments, lang = 'en' }) => {
                             <span style={{ fontWeight: 600 }}>৳ {totalPaid.toLocaleString()}</span>
                         </div>
                         {dueAmount > 0 && (
-                            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', fontSize: 15.5, color: '#dc2626', background: '#fef2f2', margin: '4px -8px', padding: '4px 8px', borderRadius: 4 }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 15.5, color: '#dc2626', background: '#fef2f2', margin: '4px -8px', padding: '4px 8px', borderRadius: 4 }}>
                                 <span style={{ fontWeight: 600 }}>Due Amount:</span>
                                 <span style={{ fontWeight: 600 }}>৳ {dueAmount.toLocaleString()}</span>
                             </div>
@@ -211,7 +211,6 @@ const PrintInvoice = ({ bill, payments, lang = 'en' }) => {
                         </div>
                     </div>
                 </div>
-
                 <div style={{ textAlign: 'left', fontSize: 14, fontStyle: 'italic', fontWeight: 700, color: '#1e293b', border: '3px double #a1a1a1', background: '#f8fafc', padding: '10px 14px', WebkitPrintColorAdjust: 'exact', borderRadius: 4 }}>
                     In Words: {toWords(netPayable)}
                 </div>
