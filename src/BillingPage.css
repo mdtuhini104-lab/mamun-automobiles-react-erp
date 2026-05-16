@@ -318,3 +318,18 @@
     border-color: #4b5563 !important;
     color: #ffffff !important;
 }
+
+@media print {
+    body, .alive-print-area {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    .no-print, button, .ant-tabs-nav, .glass-card:not(.alive-print-area) {
+        display: none !important;
+    }
+}
