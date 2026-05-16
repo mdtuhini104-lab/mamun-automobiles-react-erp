@@ -2,7 +2,7 @@
 import React from 'react';
 import { bufferedPrint } from './utils/printAssistant';
 import { createPortal } from 'react-dom';
-import { Card, Table, Button, Input, Select, DatePicker, Row, Col, Typography, InputNumber, Modal, Form, Space, message, Radio, Divider, Tabs, AutoComplete, Tag, Checkbox, Avatar, Alert, Tooltip, List } from 'antd';
+import { Card, Table, Button, Input, Select, DatePicker, Row, Col, Typography, InputNumber, Modal, Form, Space, message, Radio, Divider, Tabs, AutoComplete, Tag, Checkbox, Avatar, Alert, Tooltip, List } from 'antd'; } from 'antd';
 import { useGlobalState } from './contexts/GlobalStateContext';
 import { useAuth } from './contexts/AuthContext';
 import { Mic, MicOff, Sparkles } from 'lucide-react';
