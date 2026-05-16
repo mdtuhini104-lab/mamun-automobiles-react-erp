@@ -348,20 +348,20 @@ html.theme-midnight-purple {
 
   /* Luxury Car Background Watermark Engine - True Zero-Box Inline SVG Underlay Architecture */
   .print-watermark-wrapper {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 80% !important; /* Per-Page Centering: Optimal width scaling per request */
-    max-width: 190mm !important;
-    height: auto !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    pointer-events: none !important;
-    z-index: 0 !important; /* Adjusted to 0 to sit under z-index 1 content */
-    opacity: 0.08 !important; 
-    mix-blend-mode: multiply !important;
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    max-width: 190mm;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.04;
+    mix-blend-mode: multiply;
     background-color: transparent !important;
     background: transparent !important;
   }
