@@ -1,0 +1,320 @@
+/* Screen Mode Styling */
+@media screen {
+    .print-only-invoice {
+        display: none !important;
+    }
+
+    .custom-tabs .ant-tabs-nav {
+        margin-bottom: 24px;
+    }
+}
+
+/* Sticker layout helpers */
+.sticker-layout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.sticker-layout-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.sticker-print-page {
+    min-height: 280px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px dashed #d1d5db;
+    padding: 20px;
+    box-shadow: inset 0 1px 8px rgba(15, 23, 42, 0.06);
+    overflow: hidden;
+}
+
+.sticker-preview-note {
+    display: block;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+.sticker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    justify-items: center;
+    align-items: stretch;
+}
+
+.sticker-card {
+    width: min(2.25in, 34vw);
+    min-height: 2.25in;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid #000000 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.sticker-card:hover {
+    transform: translateY(-2px);
+}
+
+.sticker-card__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.sticker-card__brand-logo {
+    max-height: 28px;
+    width: auto;
+    object-fit: contain;
+}
+
+.sticker-card__brand-name {
+    font-size: 11px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+}
+
+.sticker-card__qr {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sticker-card__vehicle {
+    font-size: 15px;
+    letter-spacing: 0.08em;
+}
+
+.sticker-card__hint {
+    font-size: 12px;
+}
+
+.sticker-empty-state {
+    border: 1px dashed #cbd5f5;
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    background: #f8fafc;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.sticker-print-helper {
+    display: none;
+}
+/* Print Styles for BillingPage */
+/* 
+   LEGACY PRINT OVERRIDES REMOVED 
+   Standardized on .alive-print-area in index.css 
+*/
+
+
+@media print {
+    body.sticker-printing * {
+        visibility: hidden !important;
+    }
+
+    body.sticker-printing .sticker-print-helper,
+    body.sticker-printing .sticker-print-helper * {
+        visibility: visible !important;
+    }
+
+    body.sticker-printing .sticker-print-helper {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0.15in;
+        padding: 0.35in;
+        width: 100%;
+        margin: 0;
+        background: #ffffff;
+        position: relative;
+    }
+
+    body.sticker-printing .sticker-grid {
+        grid-template-columns: repeat(auto-fill, 2in);
+        gap: 0.15in;
+    }
+
+    body.sticker-printing .sticker-card {
+        width: 2in !important;
+        min-height: 2in !important;
+        height: auto !important;
+        padding: 0.08in !important;
+        border-width: 0.01in !important;
+        border-radius: 0.1in;
+        box-shadow: none !important;
+        background: #fff !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    body.sticker-printing .no-print,
+    body.sticker-printing button {
+        display: none !important;
+    }
+}
+
+/* Force Premium Dark Modal Wrapper with White Header Text */
+.sticker-layout-modal .ant-modal-content,
+.sticker-layout-modal .ant-modal-body,
+.sticker-layout-modal .ant-modal-header {
+    background-color: #0f172a !important;
+    background: #0f172a !important;
+    border-color: #334155 !important;
+}
+
+.sticker-layout-modal .ant-typography,
+.sticker-layout-modal .ant-modal-title,
+.sticker-layout-modal .ant-modal-close-x,
+.sticker-layout-modal .ant-modal-header .ant-modal-title {
+    color: #ffffff !important;
+}
+
+/* Retain pure black rendering inside printed sticker cards */
+.sticker-layout-modal .sticker-card,
+.sticker-layout-modal .sticker-card * {
+    color: #000000 !important;
+}
+
+.sticker-empty-state {
+    background-color: #ffffff !important;
+    border: 3px dashed #000000 !important;
+    color: #000000 !important;
+}
+
+.sticker-empty-state * {
+    color: #000000 !important;
+}
+
+/* --- PREMIUM BILLING PAGE ACCESSIBILITY & CONTRAST OVERRIDES --- */
+
+/* Universal pure white form labels for maximized visibility over dark themes */
+.billing-card-wrapper .ant-form-item-label > label,
+.valuation-panel .ant-form-item-label > label {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    font-size: 13.5px !important;
+    letter-spacing: 0.3px;
+}
+
+/* Explicit input styles: bright internal text, gray baseline borders (#4B5563), Royal Blue focus glow */
+.billing-card-wrapper .ant-input,
+.billing-card-wrapper .ant-input-number-input,
+.valuation-panel .ant-input-number-input,
+.billing-card-wrapper .ant-select-selection-search-input,
+.billing-card-wrapper .ant-select-selection-item,
+.billing-card-wrapper .premium-glow-input {
+    color: #ffffff !important;
+    background-color: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid #4b5563 !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+}
+
+.search-parts-input.ant-input,
+.search-parts-input.ant-input[readonly] {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+    border: 1px solid #4b5563 !important; /* Subtle gray border initially */
+    border-radius: 6px !important;
+    width: 140px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+.search-parts-input.ant-input:focus,
+.search-parts-input.ant-input[readonly]:focus,
+.search-parts-input.ant-input-affix-wrapper:focus-within {
+    border-color: #003399 !important;
+    box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.4) !important;
+}
+.search-parts-input.ant-input::placeholder {
+    color: #ffffff !important;
+    opacity: 0.8 !important;
+}
+
+/* Radio button readability in dark mode */
+.billing-card-wrapper .ant-radio-button-wrapper,
+.valuation-panel .ant-radio-button-wrapper {
+    color: #e5e7eb !important;
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: #4b5563 !important;
+    font-weight: 700 !important;
+}
+
+.billing-card-wrapper .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
+.valuation-panel .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    color: #ffffff !important;
+    background: #003399 !important;
+    border-color: #003399 !important;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* Highly optimized input focus highlighting with signature Royal Blue glow */
+.billing-card-wrapper .ant-input:focus,
+.billing-card-wrapper .ant-input-focused,
+.billing-card-wrapper .premium-glow-input:focus,
+.billing-card-wrapper .premium-glow-input:focus-within,
+.valuation-panel .premium-glow-input:focus,
+.valuation-panel .premium-glow-input:focus-within,
+.valuation-panel .ant-input-number-focused,
+.billing-card-wrapper .ant-input-number-focused {
+    border-color: #003399 !important;
+    box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.6) !important;
+    outline: none !important;
+}
+
+/* Boost placeholder text opacity inside billing inputs */
+.billing-card-wrapper input::placeholder,
+.valuation-panel input::placeholder,
+.billing-card-wrapper .ant-input::placeholder {
+    color: #9ca3af !important;
+    opacity: 1 !important;
+    font-weight: 500 !important;
+}
+
+/* Premium Table header visibility styling */
+.billing-card-wrapper .ant-table-thead > tr > th {
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%) !important;
+    color: #3B82F6 !important;
+    font-weight: 900 !important;
+    font-size: 13px !important;
+    letter-spacing: 0.5px !important;
+    border-bottom: 2px solid #3B82F6 !important;
+    text-transform: uppercase;
+}
+
+/* Premium Table rows content visibility */
+.billing-card-wrapper .ant-table-tbody > tr > td {
+    color: #f9fafb !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    background: transparent !important;
+}
+
+/* Internal Table Input elements overrides for clarity */
+.billing-card-wrapper .ant-table .ant-input,
+.billing-card-wrapper .ant-table .ant-input-number-input {
+    background-color: rgba(0,0,0,0.25) !important;
+    border-color: #4b5563 !important;
+    color: #ffffff !important;
+}

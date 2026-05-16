@@ -1,0 +1,1714 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+/* ERP Visibility Hotfix - Specialist Dropdown, Operations Queue, and Global Inputs */
+.ant-card-extra, .ant-btn-primary, .ant-input-affix-wrapper { background-color: #1890ff !important; color: #ffffff !important; }
+input, select, textarea, .ant-input, .ant-select-selection-item, .ant-select-item-option-content, .ant-select-selector {
+    color: #000000 !important;
+}
+
+input::placeholder, select::placeholder, textarea::placeholder, .ant-select-selection-placeholder {
+    color: rgba(0, 0, 0, 0.6) !important;
+}
+
+select option:checked, select option, .ant-select-selection-item {
+    color: #000000 !important;
+    background-color: transparent !important;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    background-color: #e6f7ff !important;
+    color: #000000 !important;
+}
+
+/* Operations Queue Visibility Action buttons & Tags */
+.operations-queue-card .ant-btn, .ant-card button.ant-btn {
+    color: #FFFFFF !important;
+    background-color: #1890ff !important;
+    border-color: #1890ff !important;
+}
+
+.operations-queue-card .ant-btn:hover, .ant-card button.ant-btn:hover {
+    background-color: #40a9ff !important;
+    border-color: #40a9ff !important;
+    color: #FFFFFF !important;
+}
+
+.ant-card .ant-tag, .operations-status-tag {
+    color: #FFFFFF !important;
+    background-color: #1890ff !important;
+}
+
+
+:root {
+  /* Deep Slate Premium Dark */
+  --bg-main: #0F172A;
+  --card-bg: #1E293B;
+  --bg-card: #1E293B;
+  --text-main: #FFFFFF;
+  --text-muted: #94A3B8;
+  --accent: #3B82F6;
+  --border-default: #334155;
+  --brand-secondary: #06B6D4;
+  --luxury-gold: #3B82F6;
+  --luxury-gold-glow: rgba(59, 130, 246, 0.4);
+  --slate-grey: #708090;
+  --glass-bg: rgba(30, 41, 59, 0.65);
+  --glass-border: #334155;
+  --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.5);
+  --card-radius: 12px;
+}
+
+/* Luxury UI Utilities */
+.glass-panel {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+}
+
+.luxury-card-hover {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.luxury-card-hover:hover {
+    transform: scale(1.03) translateY(-5px) !important;
+    box-shadow: 0 15px 45px var(--luxury-gold-glow) !important;
+    border-color: var(--luxury-gold) !important;
+}
+
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.text-gold {
+    color: var(--luxury-gold) !important;
+}
+
+/* Speedometer Progress Style */
+.speedometer-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.speedometer-svg {
+    transform: rotate(-90deg);
+}
+
+.speedometer-track {
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 8;
+    fill: none;
+}
+
+.speedometer-progress {
+    stroke: var(--luxury-gold);
+    stroke-width: 8;
+    stroke-linecap: round;
+    fill: none;
+    filter: drop-shadow(0 0 8px var(--luxury-gold-glow));
+    transition: stroke-dashoffset 1s ease-in-out;
+}
+
+/* Luxury Timeline */
+.luxury-timeline {
+    margin-top: 20px;
+}
+
+.luxury-timeline-item {
+    position: relative;
+    padding-left: 45px;
+    padding-bottom: 40px;
+}
+
+.luxury-timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.luxury-timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 24px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--luxury-gold), transparent);
+    z-index: 1;
+}
+
+.luxury-timeline-item:last-child::before {
+    display: none;
+}
+
+.luxury-timeline-dot {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--bg-main);
+    border: 2px solid var(--luxury-gold);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 10px var(--luxury-gold-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.luxury-timeline-content {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.luxury-timeline-item:hover .luxury-timeline-content {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateX(5px);
+}
+
+/* Global Root Styles */
+html, body {
+    background-color: var(--bg-main) !important;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+body .premium-blue-btn {
+  background-color: #3B82F6 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+body .premium-blue-btn:hover {
+  background-color: #2563EB !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Deep Slate Premium Dark Override */
+html.theme-premium-dark {
+  --bg-main: #0F172A;
+  --card-bg: #1E293B;
+  --bg-card: #1E293B;
+  --text-main: #FFFFFF;
+  --text-muted: #94A3B8;
+  --accent: #3B82F6;
+  --brand-secondary: #06B6D4;
+  --border-default: #334155;
+  --glass-bg: rgba(30, 41, 59, 0.85);
+  --glass-border: rgba(59, 130, 246, 0.3);
+  --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Light Minimal Theme Override */
+html.theme-light-minimal {
+  --bg-main: #F9FAFB;
+  --card-bg: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --text-main: #000000 !important;
+  --text-muted: #1F2937 !important;
+  --accent: #2563EB;
+  --brand-secondary: #2563EB;
+  --border-default: #E5E7EB;
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(59, 130, 246, 0.2);
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  /* Tooltip overrides for Light Mode */
+  --tooltip-bg: rgba(243, 244, 246, 0.98);
+  --tooltip-color: #000000;
+  --tooltip-border: #d1d5db;
+}
+
+/* Midnight Purple Theme Override */
+html.theme-midnight-purple {
+  --bg-main: #1A1033;
+  --card-bg: #2D1B4E;
+  --bg-card: #1A183C;
+  --text-main: #FFFFFF;
+  --text-muted: #A78BFA;
+  --accent: #A855F7;
+  --brand-secondary: #A855F7;
+  --border-default: rgba(168, 85, 247, 0.2);
+  --glass-bg: rgba(26, 24, 60, 0.85);
+  --glass-border: rgba(168, 85, 247, 0.4);
+  --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.dynamic-text-main { color: var(--text-main) !important; }
+.dynamic-text-muted { color: var(--text-muted) !important; }
+
+
+
+
+
+
+/* --- Universal Self-Healing Anti-Gravity Print System --- */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0mm !important;
+  }
+
+  /* Nuclear Isolation Guard v5.1 - A4 Alignment Hard-Lock */
+  body > *:not(.alive-print-area) {
+    display: none !important;
+    visibility: hidden !important;
+    position: fixed !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    z-index: -1 !important;
+    top: -9999px !important;
+    left: -9999px !important;
+  }
+
+  .alive-print-area {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+    isolation: isolate !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 auto !important;
+    width: 190mm !important; 
+    height: 100% !important; /* Force single page if possible */
+    min-height: 100% !important;
+    background: white !important;
+    color: black !important;
+    visibility: visible !important;
+    z-index: 9999999 !important;
+    overflow: visible !important;
+    padding: 10mm 0 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-before: auto !important;
+    page-break-after: auto !important;
+  }
+
+  .alive-footer-lock {
+    margin-top: auto !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    width: 100% !important;
+  }
+
+  .alive-print-area > div {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .alive-print-area > :not(.print-watermark-wrapper) {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* Ensure base print readiness while allowing tailored text colors and custom borders */
+  .alive-print-area {
+    color: black;
+    background-color: transparent !important;
+    background: transparent !important;
+    visibility: visible !important;
+    font-family: 'Inter', 'Roboto', sans-serif !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .alive-print-area *,
+  .alive-print-area .ant-typography,
+  .alive-print-area .ant-table {
+    visibility: visible !important;
+    font-family: 'Inter', 'Roboto', sans-serif !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Completely unlock container background wipes to allow pure transparent layouts */
+  .alive-print-area div:not(.alive-footer-lock),
+  .alive-print-area table,
+  .alive-print-area tr,
+  .alive-print-area td {
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+
+  /* Luxury Car Background Watermark Engine - True Zero-Box Inline SVG Underlay Architecture */
+  .print-watermark-wrapper {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 85% !important; /* Per-Page Centering: Optimal width scaling per request */
+    max-width: 190mm !important;
+    height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    pointer-events: none !important;
+    z-index: -1 !important; /* Z-Index Correction: Strictly behind tables/text */
+    opacity: 0.08 !important; /* Visibility Correction: Exactly 8% opacity per final layout requirement */
+    mix-blend-mode: multiply !important; /* CSS Blend Mode requirement */
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+
+  .print-watermark-wrapper svg,
+  .print-watermark-wrapper img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+    opacity: 1 !important;
+    filter: none !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .alive-print-area .ant-table {
+    page-break-inside: auto !important;
+  }
+  
+  .alive-print-area .ant-table-row {
+    page-break-inside: avoid !important;
+  }
+}
+
+/* Hide print area in regular view unless triggered */
+.alive-print-area:not(.print-preview-active) {
+    position: fixed;
+    left: -9999px;
+    top: -9999px;
+    visibility: hidden;
+}
+
+/* 
+  Mamun Automobiles ERP - Print Engine Styles 
+  (Consolidated to the end of the file for maximum specificity)
+*/
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+/* Card system */
+.ant-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-default) !important;
+    border-radius: var(--card-radius) !important;
+    box-shadow: var(--shadow-premium) !important;
+    transition: all var(--transition-premium) !important;
+}
+
+.ant-card:hover, .lift-glow:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: var(--shadow-lift) !important;
+    border-color: var(--brand-secondary) !important;
+}
+
+.glass-card {
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    border: 1px solid var(--glass-border) !important;
+}
+
+.glass-sidebar {
+    background: var(--menu-bg) !important; /* Theme-aware background */
+    border-right: 1px solid var(--border-default) !important;
+    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+
+.sidebar-menu-item,
+.ant-menu-item,
+.ant-menu-submenu-title {
+   opacity: 1 !important;
+   font-weight: 500;
+}
+
+html.theme-premium-dark .ant-menu-item,
+html.theme-premium-dark .ant-menu-submenu-title,
+html.theme-midnight-purple .ant-menu-item,
+html.theme-midnight-purple .ant-menu-submenu-title {
+    color: #FFFFFF !important;
+}
+
+html.theme-premium-dark .glass-sidebar .ant-menu-title-content,
+html.theme-premium-dark .glass-sidebar .ant-menu-item .dynamic-text-main,
+html.theme-premium-dark .glass-sidebar .ant-menu-submenu-title .dynamic-text-main {
+    color: var(--text-main) !important;
+}
+
+html.theme-light-minimal .ant-menu-item,
+html.theme-light-minimal .ant-menu-submenu-title {
+    color: #111827 !important;
+}
+
+html.theme-premium-dark .glass-sidebar .ant-menu-item .anticon,
+html.theme-premium-dark .glass-sidebar .ant-menu-submenu-title .anticon,
+html.theme-midnight-purple .glass-sidebar .ant-menu-item .anticon,
+html.theme-midnight-purple .glass-sidebar .ant-menu-submenu-title .anticon {
+    color: #FFFFFF !important;
+}
+
+html.theme-light-minimal .glass-sidebar .ant-menu-item .anticon,
+html.theme-light-minimal .glass-sidebar .ant-menu-submenu-title .anticon {
+    color: #111827 !important;
+}
+
+html.theme-premium-dark .glass-sidebar .ant-menu-sub .ant-menu-item,
+html.theme-midnight-purple .glass-sidebar .ant-menu-sub .ant-menu-item {
+    color: #FFFFFF !important;
+}
+
+html.theme-light-minimal .glass-sidebar .ant-menu-sub .ant-menu-item {
+    color: #374151 !important;
+}
+
+.glass-sidebar .ant-menu-item-selected {
+    background: #1e293b !important; /* Deeper background for active state */
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4) !important;
+    border-left: 4px solid var(--brand-secondary) !important;
+}
+
+html.theme-premium-dark .glass-sidebar .ant-menu-item-selected,
+html.theme-premium-dark .glass-sidebar .ant-menu-item-selected .ant-menu-title-content,
+html.theme-premium-dark .glass-sidebar .ant-menu-item-selected .dynamic-text-main,
+html.theme-premium-dark .glass-sidebar .ant-menu-submenu-selected > .ant-menu-submenu-title,
+html.theme-premium-dark .glass-sidebar .ant-menu-submenu-selected > .ant-menu-submenu-title .dynamic-text-main {
+    color: var(--accent) !important;
+}
+
+html.theme-premium-dark .glass-sidebar .ant-menu-item:hover,
+html.theme-premium-dark .glass-sidebar .ant-menu-submenu-title:hover,
+html.theme-premium-dark .glass-sidebar .ant-menu-item:hover .ant-menu-title-content,
+html.theme-premium-dark .glass-sidebar .ant-menu-submenu-title:hover .ant-menu-title-content,
+html.theme-premium-dark .glass-sidebar .ant-menu-item:hover .dynamic-text-main,
+html.theme-premium-dark .glass-sidebar .ant-menu-submenu-title:hover .dynamic-text-main {
+    color: var(--accent) !important;
+}
+
+
+/* Typography */
+.ant-typography {
+    color: var(--text-primary) !important;
+}
+
+.ant-typography.ant-typography-secondary,
+.ant-typography-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.ant-typography h1,
+.ant-typography h2,
+.ant-typography h3,
+.ant-typography h4,
+.ant-typography h5 {
+    color: var(--text-primary) !important;
+    font-weight: 600 !important; /* Semi-bold for professional headings */
+}
+
+/* Global High Contrast Rule */
+body.light-theme .ant-typography:not(.login-brand-float *),
+body.light-theme *:not(.ant-btn-primary *):not(.ant-tag *),
+body.light-theme .ant-typography,
+body.light-theme .ant-table,
+body.light-theme .ant-form-item-label > label,
+body.light-theme .ant-list-item,
+body.light-theme .ant-descriptions-item-label,
+body.light-theme .ant-descriptions-item-content,
+body.light-theme .ant-statistic-title,
+body.light-theme .ant-card-head-title,
+body.light-theme .ant-select-selection-item,
+body.light-theme .ant-picker-input > input,
+body.light-theme .ant-checkbox-wrapper,
+body.light-theme .ant-radio-wrapper,
+body.light-theme .ant-menu-item-only-child,
+body.light-theme .ant-input::placeholder,
+body.light-theme .ant-statistic-content-value,
+body.light-theme .ant-statistic-content-prefix,
+body.light-theme .ant-statistic-content-suffix {
+    color: #000000 !important; /* Forced Ultra-Sharp Pure Black */
+    text-shadow: none !important;
+    opacity: 1 !important;
+    font-weight: 500; /* Medium for readability */
+}
+
+/* Ensure Theme Settings buttons and interactive elements remain sharp but visible */
+body.light-theme .ant-btn-primary:not(.modern-login-btn) {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+    border: 1px solid #000000 !important;
+}
+
+body.light-theme .ant-btn:not(.ant-btn-primary):not(.password-toggle-btn):not(.luxury-btn-gold):not(.luxury-btn-blue) {
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
+
+body.light-theme .ant-btn:hover {
+    border-color: #000000 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+body.dark-theme:not(.light-theme) .ant-typography:not(.login-brand-float *),
+body.dark-theme:not(.light-theme) .ant-table,
+body.dark-theme:not(.light-theme) .ant-form-item-label > label,
+body.dark-theme:not(.light-theme) .ant-list-item,
+body.dark-theme:not(.light-theme) .ant-descriptions-item-label,
+body.dark-theme:not(.light-theme) .ant-descriptions-item-content,
+body.dark-theme:not(.light-theme) .ant-statistic-title,
+body.dark-theme:not(.light-theme) .ant-card-head-title,
+body.dark-theme:not(.light-theme) .ant-select-selection-item,
+body.dark-theme:not(.light-theme) .ant-picker-input > input,
+body.dark-theme:not(.light-theme) .ant-checkbox-wrapper,
+body.dark-theme:not(.light-theme) .ant-radio-wrapper,
+body.dark-theme:not(.light-theme) .ant-menu-item-only-child {
+    color: #FFFFFF !important; /* Forced Pure White ONLY when NOT in specific light-theme mode */
+    text-shadow: none !important;
+}
+
+/* GLOBAL FIX: Ensure all white inputs/dropdowns have black text in all themes */
+.forced-white-input .ant-select-selector,
+.forced-white-input .ant-select-selector *,
+.forced-white-input .ant-input,
+.forced-white-input .ant-input-affix-wrapper,
+.forced-white-input .ant-input-affix-wrapper * {
+    color: #000000 !important;
+}
+
+
+body.light-theme .ant-typography-secondary,
+body.light-theme .ant-statistic-content,
+body.light-theme .ant-statistic-content-value,
+body.light-theme .ant-statistic-content-prefix,
+body.light-theme .ant-statistic-content-suffix {
+    color: #000000 !important;
+}
+
+/* --- Professional Tooltip Styling --- */
+body.light-theme .ant-tooltip-inner {
+    background-color: var(--tooltip-bg, rgba(243, 244, 246, 0.98)) !important;
+    color: var(--tooltip-color, #000000) !important;
+    border: 1px solid var(--tooltip-border, #d1d5db) !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    padding: 8px 12px !important;
+}
+
+body.light-theme .ant-tooltip-arrow-content::before {
+    background-color: var(--tooltip-bg, rgba(243, 244, 246, 0.98)) !important;
+}
+
+body.dark-theme .ant-tooltip-inner,
+body.theme-midnight-purple-active .ant-tooltip-inner {
+    background-color: rgba(31, 41, 55, 0.95) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* --- Standardized Text Visibility --- */
+.force-dark-bg {
+    color: var(--text-primary) !important;
+}
+
+.force-dark-bg *,
+body.dark-theme .ant-typography,
+body.dark-theme .ant-table,
+body.dark-theme .ant-form-item-label > label {
+    color: var(--text-primary) !important;
+    text-shadow: none !important;
+}
+
+/* Specific class for white text override */
+.force-white-text {
+    color: #FFFFFF !important;
+}
+
+/* Sharp Button Borders on Dark Backgrounds (Fintech Styling) */
+.ant-btn {
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.ant-btn-primary {
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4) !important;
+}
+
+.ant-btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6) !important;
+    transform: translateY(-2px) !important;
+}
+
+.ant-btn-default {
+    background: transparent !important;
+    color: #94A3B8 !important;
+    border: 1px solid #334155 !important;
+}
+
+.ant-btn-default:hover {
+    color: #FFFFFF !important;
+    border-color: #3B82F6 !important;
+    background: rgba(59, 130, 246, 0.1) !important;
+}
+
+.maintenance-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(2, 6, 23, 0.8);
+    z-index: 1200;
+    pointer-events: auto;
+}
+
+.maintenance-card {
+    max-width: 520px;
+    margin: 0 16px;
+    padding: 32px;
+    background: rgba(5, 9, 30, 0.9);
+    border-radius: 24px;
+    border: 1px solid rgba(59, 130, 246, 0.6);
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+}
+
+
+/* --- Dynamic Text Logic --- */
+.dynamic-text {
+    color: var(--text-primary) !important;
+    transition: color var(--transition-luxury);
+}
+
+body.light-theme .dynamic-text {
+    color: #000000 !important;
+}
+
+
+body.dark-theme .dynamic-text {
+    color: #ffffff !important;
+}
+
+/* Force Login Branding to always be black if needed, or White for contrast */
+.login-brand-float *,
+.login-brand-lockup *,
+.login-brand-float h1,
+.login-brand-lockup h1,
+.login-brand-lockup .ant-typography,
+.login-brand-float .ant-typography,
+.login-card-premium,
+.login-card-premium *,
+.login-card-premium .ant-typography {
+    text-shadow: none !important;
+}
+.ant-table,
+.ant-table-tbody > tr > td,
+.ant-table-thead > tr > th {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Theme-Aware Table Headers */
+body.dark-theme .ant-table-thead > tr > th {
+    background: #1A1A1A !important;
+    color: #3B82F6 !important; /* Royal Blue Accent */
+    border-bottom: 2px solid #334155 !important;
+    font-weight: 600 !important;
+    padding: 20px 24px !important; /* Premium Padding */
+    letter-spacing: 0.5px !important;
+    vertical-align: middle !important;
+    height: 64px !important;
+}
+
+body.light-theme .ant-table-thead > tr > th {
+    background: #F3F4F6 !important; /* Professional Light Grey requested by user */
+    color: #000000 !important;
+    border-bottom: 2px solid #E5E7EB !important;
+    font-weight: 600 !important;
+    padding: 16px 12px !important;
+    letter-spacing: 0.5px !important;
+    vertical-align: middle !important;
+    height: 56px !important;
+}
+
+/* Theme-Aware Table Body Cells (Alternating Fintech Rows) */
+body.dark-theme .ant-table-tbody > tr > td,
+.ant-table-tbody > tr > td {
+    color: #FFFFFF !important;
+    background: #1E293B !important;
+    font-weight: 600 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+    padding: 18px 24px !important; /* Premium Padding */
+    vertical-align: middle !important;
+}
+
+body.dark-theme .ant-table-tbody > tr:nth-child(even) > td,
+.ant-table-tbody > tr:nth-child(even) > td {
+    background: #0F172A !important;
+}
+
+/* Hover Effects */
+body.dark-theme .ant-table-tbody > tr:hover > td,
+.ant-table-tbody > tr:hover > td {
+    background: #334155 !important;
+    color: #3B82F6 !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Status Chips/Badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    letter-spacing: 0.2px;
+}
+.status-pending { background: rgba(234, 179, 8, 0.2); color: #EAB308; border: 1px solid rgba(234, 179, 8, 0.5); }
+.status-finished { background: rgba(34, 197, 94, 0.2); color: #22C55E; border: 1px solid rgba(34, 197, 94, 0.5); }
+.status-active { background: rgba(59, 130, 246, 0.2); color: #3B82F6; border: 1px solid rgba(59, 130, 246, 0.5); }
+
+.ant-table-tbody > tr:hover > td {
+    background: var(--bg-card-hover) !important;
+}
+
+.ant-table-tbody > tr.ant-table-row-selected > td {
+    background: rgba(29, 78, 216, 0.12) !important;
+}
+
+.ant-table-wrapper {
+    background: transparent !important;
+}
+
+/* Inputs & Forms (Fintech Bright White) */
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-number,
+.ant-select-selector,
+.ant-picker {
+    background: var(--bg-card) !important;
+    border-color: var(--border-default) !important;
+    color: #FFFFFF !important;
+    border-radius: 8px !important;
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper:focus-within,
+.ant-input-number-focused,
+.ant-select-focused .ant-select-selector,
+.ant-picker-focused {
+    border-color: #3B82F6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4) !important;
+}
+
+.ant-form-item-label > label {
+    color: #FFFFFF !important;
+    font-weight: 500 !important;
+}
+
+.ant-input::placeholder,
+.ant-input-number-input::placeholder,
+.ant-select-selection-placeholder {
+    color: var(--text-muted) !important;
+}
+
+.ant-form-item-label > label {
+    color: var(--text-primary) !important;
+    font-weight: 500 !important;
+}
+
+body.light-theme .ant-input,
+body.light-theme .ant-input-affix-wrapper,
+body.light-theme .ant-input-number,
+body.light-theme .ant-select-selector,
+body.light-theme .ant-picker,
+body.light-theme .ant-input-search {
+    border: 2px solid #000000 !important; /* Absolute Black Borders for Light Mode */
+    border-radius: 8px !important;
+}
+
+
+/* Modals */
+body.dark-theme .ant-modal-content {
+    background: #1A1A1A !important;
+    border: 2px solid #FAB308 !important;
+    border-radius: 8px !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8) !important;
+}
+
+body.light-theme .ant-modal-content {
+    background: #FFFFFF !important;
+    border: 2px solid #1e293b !important;
+    border-radius: 8px !important;
+    color: #1e293b !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+body.dark-theme .ant-modal-header {
+    background: #1A1A1A !important;
+    border-bottom: 2px solid #FAB308 !important;
+    margin-bottom: 20px !important;
+    padding-bottom: 12px !important;
+}
+
+body.light-theme .ant-modal-header {
+    background: #FFFFFF !important;
+    border-bottom: 2px solid #1e293b !important;
+    margin-bottom: 20px !important;
+    padding-bottom: 12px !important;
+}
+
+body.dark-theme .ant-modal-close-icon {
+    color: #FAB308 !important;
+}
+
+body.light-theme .ant-modal-close-icon {
+    color: #1e293b !important;
+}
+
+body.dark-theme .ant-modal-title {
+    color: #FAB308 !important;
+    font-weight: 600 !important;
+    font-size: 18px !important;
+}
+
+body.light-theme .ant-modal-title {
+    color: #1e293b !important;
+    font-weight: 600 !important;
+    font-size: 18px !important;
+}
+
+/* Tabs */
+.ant-tabs-nav {
+    border-bottom: 1px solid var(--border-default) !important;
+}
+
+.ant-tabs-tab {
+    color: var(--text-secondary) !important;
+    font-weight: 500 !important;
+    transition: color var(--transition-soft);
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: var(--brand-blue) !important;
+    font-weight: 700 !important;
+}
+
+.ant-tabs-ink-bar {
+    background: var(--brand-blue) !important;
+}
+
+/* Statistics */
+.ant-statistic-title {
+    color: var(--text-muted) !important;
+    font-size: 12px !important;
+    letter-spacing: 0.1px;
+}
+
+.ant-statistic-content {
+    color: var(--text-primary) !important;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+}
+
+/* Sidebar menu */
+.ant-layout-sider {
+    background: var(--bg-card) !important;
+    border-right: 1px solid var(--border-default) !important;
+}
+
+.ant-menu,
+.ant-menu.ant-menu-dark {
+    background: var(--menu-bg) !important;
+    color: var(--text-secondary) !important;
+    border: none !important;
+    padding: 12px 0;
+}
+
+.ant-menu-item,
+.ant-menu-submenu-title {
+    border-radius: 12px;
+    transition: background var(--transition-soft), color var(--transition-soft), transform var(--transition-soft);
+    margin: 4px 6px;
+}
+
+.ant-menu-item:hover,
+.ant-menu-submenu-title:hover {
+    background: var(--menu-hover) !important;
+    color: var(--brand-blue) !important;
+    transform: translateX(4px);
+}
+
+.ant-menu-submenu-arrow svg {
+    transition: transform var(--transition-soft);
+}
+
+.ant-menu-submenu-open > .ant-menu-submenu-title .ant-menu-submenu-arrow svg {
+    transform: rotate(90deg);
+}
+
+.ant-menu-item-selected,
+.ant-menu-item-active {
+    background: var(--brand-blue-soft) !important;
+    color: var(--brand-blue) !important;
+    box-shadow: inset 4px 0 0 var(--brand-blue);
+}
+
+.ant-menu-submenu-title-selected {
+    color: var(--brand-blue) !important;
+}
+
+/* --- Standardized Buttons & Controls --- */
+.ant-btn {
+    border-radius: 12px;
+    transition: transform var(--transition-soft), box-shadow var(--transition-soft), background var(--transition-soft);
+}
+
+.ant-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.15);
+}
+
+.ant-btn-primary {
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
+    border: none !important;
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4) !important;
+    letter-spacing: 0.5px !important;
+}
+
+body.light-theme .ant-btn-primary:not(.modern-login-btn) {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
+.ant-btn-primary:hover {
+    box-shadow: 0 16px 30px rgba(29, 78, 216, 0.3);
+}
+
+/* Ensure Button Text Colors */
+.ant-btn:not(.ant-btn-primary):not(.ant-btn-danger):not(.ant-btn-link) {
+    color: var(--text-primary) !important;
+}
+
+body.light-theme .ant-btn:not(.ant-btn-primary):not(.ant-btn-danger):not(.ant-btn-link) {
+    color: #000000 !important;
+    border-color: #94a3b8 !important;
+}
+
+body.dark-theme .ant-btn:not(.ant-btn-primary):not(.ant-btn-danger):not(.ant-btn-link) {
+    color: #FFFFFF !important;
+    background: transparent !important;
+    border: 1.5px solid #334155 !important;
+    font-weight: 700 !important;
+}
+
+body.dark-theme .ant-btn:not(.ant-btn-primary):not(.ant-btn-danger):not(.ant-btn-link):hover {
+    border-color: #3B82F6 !important;
+    color: #3B82F6 !important;
+    background: rgba(59, 130, 246, 0.05) !important;
+}
+
+/* Glassmorphism */
+.glass-card {
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--card-radius) !important;
+    box-shadow: 0 20px 40px rgba(2, 6, 23, 0.35) !important;
+    backdrop-filter: none !important;
+    transition: transform var(--transition-soft), box-shadow var(--transition-soft) !important;
+}
+
+.glass-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--brand-blue);
+}
+
+.glass-card .ant-card-body {
+    color: var(--text-primary) !important;
+}
+
+.dashboard-card {
+    border-radius: var(--card-radius) !important;
+    padding: 18px !important;
+    background: var(--bg-card) !important;
+    box-shadow: var(--shadow-soft) !important;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+}
+
+.dashboard-metric-card {
+    border-radius: var(--card-radius) !important;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 160px;
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-default);
+    box-shadow: 0 20px 35px rgba(15, 23, 42, 0.15);
+}
+
+.dashboard-metric-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.dashboard-metric-title {
+    font-size: 13px;
+    letter-spacing: 0.1px;
+    color: var(--text-secondary);
+}
+
+.dashboard-metric-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(29, 78, 216, 0.18);
+    color: var(--brand-blue);
+    box-shadow: 0 8px 18px rgba(29, 78, 216, 0.25);
+}
+
+.dashboard-metric-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 2px 10px;
+    border: 1px solid transparent;
+}
+
+.status-badge.status-active {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(34, 197, 94, 0.34);
+    color: #86efac;
+}
+
+.status-badge.status-inactive {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.34);
+    color: #fca5a5;
+}
+
+.text-due {
+    color: var(--color-due) !important;
+    font-weight: 700 !important;
+}
+
+.text-paid {
+    color: var(--color-paid) !important;
+    font-weight: 700 !important;
+}
+
+/* ─── Zero-Icon Policy ─── */
+.anticon, 
+.lucide, 
+[class^="lucide-"],
+.ant-btn .anticon {
+    display: none !important;
+}
+
+/* Speedometer Style Metrics */
+.speedometer-metric {
+    border: 4px solid var(--brand-secondary) !important;
+    border-radius: 50% !important;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    background: rgba(0,0,0,0.4);
+    position: relative;
+}
+
+.speedometer-value {
+    font-size: 32px !important;
+    font-weight: 900 !important;
+    color: var(--brand-secondary) !important;
+    line-height: 1;
+}
+
+.speedometer-label {
+    font-size: 11px !important;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+/* Check-in Desk Grid */
+.checkin-desk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    padding: 0;
+    margin-top: 24px;
+}
+
+.white-icon, .white-icon svg, .white-icon .lucide {
+    display: none !important;
+}
+
+.search-bar-enhanced {
+    border: 2px solid var(--border-light) !important;
+    border-radius: 14px !important;
+    overflow: hidden;
+}
+
+body.light-theme .search-bar-enhanced {
+    border-color: #94a3b8 !important; /* Darker border for light mode */
+}
+/* ─── Standardized Sharp Modal Style ─────────────────────────────────── */
+.ant-modal-content {
+    border-radius: 0 !important;
+    border: 3px solid #000000 !important;
+    padding: 24px !important;
+    box-shadow: none !important;
+}
+
+.ant-modal-header {
+    margin-bottom: 24px !important;
+    padding-bottom: 12px !important;
+    border-bottom: 2px solid #000000 !important;
+    background: transparent !important;
+}
+
+.ant-modal-title {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.5px !important;
+}
+
+.ant-modal-close {
+    top: 16px !important;
+    right: 16px !important;
+    color: #000000 !important;
+}
+
+.ant-modal-close:hover {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+.ant-modal-mask {
+    background: rgba(0, 0, 0, 0.85) !important; /* Strong dark focus */
+    backdrop-filter: blur(2px) !important;
+}
+
+/* Dark Mode Overrides for Modal */
+[data-theme='dark'] .ant-modal-content {
+    border-color: #ffffff !important;
+    background-color: #0f172a !important;
+}
+
+/* Typography, Inputs, etc. */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 14px 12px 8px;
+    padding: 14px 12px;
+    border: 1px solid var(--border-default) !important;
+    border-radius: 18px;
+    background: var(--bg-main) !important;
+}
+
+.sidebar-brand-logo {
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    transform: scale(1.1);
+}
+
+.sidebar-brand-title {
+    color: var(--text-main) !important;
+    font-weight: 950 !important;
+    font-size: 18px !important;
+    letter-spacing: 2px;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+    .ant-layout-sider { display: none !important; }
+}
+
+/* --- Login Page Readability Master Override (Ultra Specific) --- */
+/* This forces black text even if body has .dark-theme or .theme-premium-dark */
+/* By adding .login-brand-float, we bypass the global :not(.login-brand-float *) rule */
+body.dark-theme .modern-login-container.login-brand-float *,
+body.theme-premium-dark .modern-login-container.login-brand-float *,
+html.theme-premium-dark .modern-login-container.login-brand-float *,
+.modern-login-container.login-brand-float .ant-typography,
+.modern-login-container.login-brand-float .ant-form-item-label > label {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+}
+
+/* Ensure the Login Title and Labels are extremely bold and clear */
+.modern-login-container.login-brand-float h1,
+.modern-login-container.login-brand-float h1.ant-typography {
+    color: #000000 !important;
+    font-weight: 950 !important;
+    font-size: 42px !important;
+}
+
+.modern-login-container.login-brand-float .signin-btn-red,
+.modern-login-container.login-brand-float .signin-btn-red span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+.modern-login-container.login-brand-float .ant-input {
+    color: #000000 !important;
+    background: #ffffff !important;
+    border: 2px solid #000000 !important;
+}
+
+
+/* End of standardized styles. Component-specific print logic is now handled surgically. */
+
+
+/* --- Inventory & Financial Dashboard Enhancement Styles --- */
+.high-alert {
+    color: #ff4d4d !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.5px;
+}
+
+.no-print {
+    display: block;
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+}
+
+@keyframes pulse-border-red {
+    0% { border-color: #ff4d4f; box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.4); }
+    70% { border-color: #ff4d4f; box-shadow: 0 0 0 6px rgba(255, 77, 79, 0); }
+    100% { border-color: #ff4d4f; box-shadow: 0 0 0 0 rgba(255, 77, 79, 0); }
+}
+
+.pulse-border {
+    animation: pulse-border-red 2s infinite;
+    border: 1px solid #ff4d4f;
+}
+
+/* Luxury Table & Pagination */
+.luxury-table .ant-table {
+    background: transparent !important;
+}
+
+.luxury-table .ant-table-thead > tr > th {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: var(--luxury-gold) !important;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2) !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    font-size: 12px !important;
+}
+
+.luxury-table .ant-table-tbody > tr > td {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 16px !important;
+    color: #fff !important;
+}
+
+.luxury-table .ant-table-tbody > tr:hover > td {
+    background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.luxury-pagination .ant-pagination-item {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.luxury-pagination .ant-pagination-item a {
+    color: #fff !important;
+}
+
+.luxury-pagination .ant-pagination-item-active {
+    border-color: #3B82F6 !important;
+    background: #3B82F6 !important;
+}
+
+.luxury-pagination .ant-pagination-item-active a {
+    color: #000 !important;
+}
+
+.luxury-pagination .ant-pagination-prev .ant-pagination-item-link,
+.luxury-pagination .ant-pagination-next .ant-pagination-item-link {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Premium Mechanic Dashboard Design Architecture v2 (Ultra High-End)
+   ────────────────────────────────────────────────────────── */
+
+/* Container & Typography */
+.mechanic-dashboard-premium {
+    font-family: 'Inter', 'Poppins', sans-serif !important;
+}
+
+/* Icon Visibility Override - Protect Beautiful Lucide Icons from Global Zero-Icon Rules */
+.mechanic-dashboard-premium .lucide,
+.mechanic-dashboard-premium [class^="lucide-"],
+.mechanic-dashboard-premium .anticon {
+    display: inline-block !important;
+    vertical-align: middle;
+}
+
+/* Superior Top Status Metric Cards - Advanced True Glass-morphism */
+.mechanic-stat-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px !important;
+    padding: 26px 28px !important;
+    background: rgba(10, 15, 29, 0.65) !important;
+    backdrop-filter: blur(24px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-top: 1px solid rgba(6, 182, 212, 0.4) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+body.light-theme .mechanic-stat-card {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(6, 182, 212, 0.3) !important;
+    box-shadow: 0 12px 30px rgba(6, 182, 212, 0.08) !important;
+}
+
+.mechanic-stat-card:hover {
+    transform: translateY(-6px) scale(1.02) !important;
+    border-color: rgba(0, 229, 255, 0.7) !important;
+    box-shadow: 0 25px 50px rgba(0, 229, 255, 0.2) !important;
+}
+
+.stat-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.mechanic-stat-card:hover .stat-icon-wrapper {
+    transform: rotate(12deg) scale(1.15);
+}
+
+/* Progress Tracker / Mechanic Overview Row */
+.mechanic-tracker-card {
+    border-radius: 20px !important;
+    background: rgba(13, 20, 38, 0.55) !important;
+    backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-left: 5px solid #00e5ff !important;
+    padding: 16px 20px !important;
+    margin-bottom: 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+body.light-theme .mechanic-tracker-card {
+    background: #ffffff !important;
+    border-left: 5px solid #0284c7 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+}
+
+.mechanic-tracker-card:hover {
+    background: rgba(20, 30, 55, 0.75) !important;
+    box-shadow: 0 12px 30px rgba(0, 229, 255, 0.12) !important;
+    border-left-color: #3b82f6 !important;
+}
+
+/* Distinct Colored Chips for Specialists Tracker */
+.mechanic-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.mechanic-chip:hover {
+    transform: translateY(-3px) scale(1.03);
+    filter: brightness(1.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.chip-cyan { background: rgba(0, 229, 255, 0.12); color: #00e5ff; border: 1px solid rgba(0, 229, 255, 0.4); }
+.chip-blue { background: rgba(59, 130, 246, 0.12); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+.chip-amber { background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+.chip-emerald { background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+.chip-purple { background: rgba(168, 85, 247, 0.12); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
+.chip-rose { background: rgba(244, 63, 94, 0.12); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.4); }
+
+/* Horizontal Tracker Stream */
+.tracker-stream {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 2px 8px 2px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(6, 182, 212, 0.4) transparent;
+}
+.tracker-stream::-webkit-scrollbar { height: 4px; }
+.tracker-stream::-webkit-scrollbar-thumb { background: rgba(6, 182, 212, 0.4); border-radius: 4px; }
+
+/* Modern Active Job Cards Grid */
+.job-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.job-card-modern {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 24px !important;
+    background: rgba(13, 19, 33, 0.85) !important;
+    backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(6, 182, 212, 0.25) !important;
+    padding: 24px !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45) !important;
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+    height: 100%;
+}
+
+body.light-theme .job-card-modern {
+    background: #ffffff !important;
+    border: 1px solid rgba(6, 182, 212, 0.35) !important;
+    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.08) !important;
+}
+
+.job-card-modern:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(0, 229, 255, 0.8) !important;
+    box-shadow: 0 22px 45px rgba(0, 229, 255, 0.18) !important;
+}
+
+/* Top Section Format */
+.veh-number-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(0, 229, 255, 0.03));
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.1);
+}
+
+body.light-theme .veh-number-box {
+    background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+    border-color: #38bdf8;
+}
+
+.veh-number-text {
+    font-size: 20px;
+    font-weight: 950;
+    color: #00e5ff;
+    letter-spacing: 1px;
+}
+
+body.light-theme .veh-number-text {
+    color: #0284c7;
+}
+
+/* Middle Section Unified highlighted container */
+.middle-section-unified {
+    margin: 16px 0;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.light-theme .middle-section-unified {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+}
+
+/* Distinct Highlight Box for Customer Complaint */
+.complaint-box-premium {
+    margin-top: 10px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(245, 158, 11, 0.02));
+    border-left: 4px solid #f59e0b;
+    border-top: 1px solid rgba(245, 158, 11, 0.15);
+    border-right: 1px solid rgba(245, 158, 11, 0.15);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.15);
+}
+
+body.light-theme .complaint-box-premium {
+    background: linear-gradient(135deg, #fef3c7, #fffbeb);
+    border-color: #f59e0b;
+}
+
+.complaint-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: #f59e0b;
+    margin-bottom: 6px;
+}
+
+body.light-theme .complaint-label {
+    color: #b45309;
+}
+
+.complaint-text {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+body.light-theme .complaint-text {
+    color: #1e293b;
+}
+
+/* Bottom Section Actions Row inline */
+.bottom-actions-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 16px;
+    margin-top: auto;
+}
+
+body.light-theme .bottom-actions-row {
+    border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Vibrant Action Buttons */
+.btn-vibrant-cyan {
+    background: linear-gradient(135deg, #00e5ff, #0284c7) !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px !important;
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3) !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+    padding: 0 12px !important;
+}
+
+.btn-vibrant-cyan:hover {
+    background: linear-gradient(135deg, #00f7ff, #0369a1) !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 8px 20px rgba(0, 229, 255, 0.5) !important;
+}
+
+.btn-vibrant-blue {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px !important;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3) !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+    padding: 0 12px !important;
+}
+
+.btn-vibrant-blue:hover {
+    background: linear-gradient(135deg, #60a5fa, #1e40af) !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5) !important;
+}
+
+.btn-luxury-outline {
+    background: transparent !important;
+    border: 1px solid rgba(0, 229, 255, 0.5) !important;
+    color: #00e5ff !important;
+    font-weight: 600 !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+    padding: 0 10px !important;
+}
+
+.btn-luxury-outline:hover {
+    background: rgba(0, 229, 255, 0.1) !important;
+    border-color: #00e5ff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0, 229, 255, 0.2) !important;
+}
