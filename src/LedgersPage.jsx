@@ -544,7 +544,7 @@ const LedgersPage = ({ defaultTab = 'customer' }) => {
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div className="alive-footer-lock">
+                                                {createPortal(<div className="alive-footer-lock">
                                                         <div style={{ fontSize: 12 }}>Total Billed: ৳ {customerLedgerData.totalBilled.toLocaleString()}</div>
                                                         <div style={{ fontSize: 14, fontWeight: 600 }}>Total Due: ৳ {customerLedgerData.outstanding.toLocaleString()}</div>
                                                     </div>
