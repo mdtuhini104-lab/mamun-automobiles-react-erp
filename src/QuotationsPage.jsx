@@ -10,7 +10,7 @@ import databaseBridge from './services/databaseBridge';
 import { useAuth } from './contexts/AuthContext';
 import { useGlobalState } from './contexts/GlobalStateContext';
 import { t } from './utils/translations';
-import { syncToLocalStorage, getFromLocalStorage } from './utils/helpers';
+import { syncToLocalStorage, getFromLocalStorage, formatCurrency } from './utils/helpers';
 import dayjs from 'dayjs';
 import BrandedDocumentHeader from './components/BrandedDocumentHeader';
 import downloadElementAsPdf from './utils/domPdf';
@@ -354,7 +354,7 @@ const QuotationsPage = () => {
         const netPayable = Math.round(subtotal * 1.05);
 
         const shareLink = buildShareableDocumentLink('quotation', q.id || 'New');
-        const msg = `Hello ${q.clientName || 'Customer'},\n\nYour *Quotation #${q.id || 'New'}* from *Mamun Automobiles* has been generated.\n\n*Total Amount:* ৳${netPayable.toLocaleString()}\n*Vehicle No:* ${q.vehicleNo || 'N/A'}\n\nView and Download here: ${shareLink}\n\nThank you!`;
+        const msg = `Hello ${q.clientName || 'Customer'},\n\nYour *Quotation #${q.id || 'New'}* from *Mamun Automobiles* has been generated.\n\n*Total Amount:* ৳${formatCurrency(netPayable)}\n*Vehicle No:* ${q.vehicleNo || 'N/A'}\n\nView and Download here: ${shareLink}\n\nThank you!`;
 
         openWhatsAppShare({ phone: q.clientPhone.replace(/\s+/g, ''), message: msg });
         message.success('WhatsApp link opened!');
@@ -388,7 +388,7 @@ const QuotationsPage = () => {
                 const items = Array.isArray(r?.items) ? r.items : (Array.isArray(r?.lineItems) ? r.lineItems : []);
                 const subtotal = items.reduce((a, b) => a + ((Number(b?.price || b?.unitPrice) || 0) * (Number(b?.quantity) || 0)), 0);
                 const grandTotal = Math.round(subtotal * 1.05);
-                return <b style={{ color: 'inherit', fontWeight: 600 }}>৳ {grandTotal.toLocaleString()}</b>;
+                return <b style={{ color: 'inherit', fontWeight: 600 }}>৳ {formatCurrency(grandTotal)}</b>;
             }
         },
         { 

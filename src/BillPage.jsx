@@ -166,8 +166,8 @@ const PrintInvoice = ({ bill, payments, lang = 'en' }) => {
                                     <td style={{ ...cellStyle, textAlign: 'center', fontWeight: 500 }}>{idx + 1}</td>
                                     <td style={{ ...cellStyle, fontWeight: 600 }}>{professionalPrintTranslate(item.description || item.name)}</td>
                                     <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 500 }}>{item.quantity}</td>
-                                    <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 500 }}>৳ {unitPrice.toLocaleString()}</td>
-                                    <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 700 }}>৳ {rowTotal.toLocaleString()}</td>
+                                    <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 500 }}>৳ {formatCurrency(unitPrice)}</td>
+                                    <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 700 }}>৳ {formatCurrency(rowTotal)}</td>
                                 </tr>
                             );
                         })}
@@ -179,30 +179,30 @@ const PrintInvoice = ({ bill, payments, lang = 'en' }) => {
                     <div style={{ width: '340px', fontSize: 14.5, border: '3px double #a1a1a1', padding: '12px 16px', background: '#ffffff' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 6, borderBottom: '1px solid #e2e8f0' }}>
                             <span style={{ fontWeight: 700, color: '#64748b' }}>Subtotal:</span>
-                            <span style={{ fontWeight: 600 }}>৳ {(bill.subtotal || 0).toLocaleString()}</span>
+                            <span style={{ fontWeight: 600 }}>৳ {formatCurrency(bill.subtotal || 0)}</span>
                         </div>
                         {bill.discount > 0 && (
                             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: '1px solid #e2e8f0', color: '#c2165e' }}>
                                 <span style={{ fontWeight: 700 }}>Discount:</span>
-                                <span style={{ fontWeight: 700 }}>- ৳ {bill.discount.toLocaleString()}</span>
+                                <span style={{ fontWeight: 700 }}>- ৳ {formatCurrency(bill.discount)}</span>
                             </div>
                         )}
                         <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: '1px solid #e2e8f0' }}>
                             <span style={{ fontWeight: 700, color: '#64748b' }}>{t('vat', lang).toUpperCase()} (5%):</span>
-                            <span style={{ fontWeight: 600 }}>+ ৳ {vatAmount.toLocaleString()}</span>
+                            <span style={{ fontWeight: 600 }}>+ ৳ {formatCurrency(vatAmount)}</span>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', fontSize: 20, fontWeight: 950, color: '#0f172a', borderBottom: '2px solid #cbd5e1' }}>
                             <span>Total Amount:</span>
-                            <span>৳ {netPayable.toLocaleString()}</span>
+                            <span>৳ {formatCurrency(netPayable)}</span>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', fontSize: 15, color: '#003399' }}>
                             <span style={{ fontWeight: 800 }}>Paid Amount:</span>
-                            <span style={{ fontWeight: 800 }}>৳ {totalPaid.toLocaleString()}</span>
+                            <span style={{ fontWeight: 800 }}>৳ {formatCurrency(totalPaid)}</span>
                         </div>
                         {dueAmount > 0 && (
                             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 15.5, color: '#dc2626', background: '#fef2f2', margin: '4px -8px', padding: '4px 8px', borderRadius: 4 }}>
                                 <span style={{ fontWeight: 900 }}>Due Amount:</span>
-                                <span style={{ fontWeight: 900 }}>৳ {dueAmount.toLocaleString()}</span>
+                                <span style={{ fontWeight: 900 }}>৳ {formatCurrency(dueAmount)}</span>
                             </div>
                         )}
                         <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: 6, fontSize: 13, color: '#475569', borderTop: '1px solid #e2e8f0', marginTop: 4 }}>
@@ -598,7 +598,7 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
         },
         {
             title: t('total', language), width: 100,
-            render: (_, record) => <Text strong>৳ {( (record.quantity || 0) * (record.unitPrice || 0) ).toLocaleString()}</Text>
+            render: (_, record) => <Text strong>৳ {formatCurrency((record.quantity || 0) * (record.unitPrice || 0))}</Text>
         },
         {
             title: '', width: 40,
@@ -895,7 +895,7 @@ const BillPage = () => {
                                             { title: 'ID', dataIndex: 'id' },
                                             { title: 'Customer', dataIndex: 'customerName' },
                                             { title: 'Date', dataIndex: 'date', render: d => dayjs(d).format('DD MMM YYYY') },
-                                            { title: 'Amount', dataIndex: 'netPayable', render: v => `৳${v.toLocaleString()}` },
+                                            { title: 'Amount', dataIndex: 'netPayable', render: v => `৳${formatCurrency(v)}` },
                                             { title: 'Action', render: (_, r) => <Button size="small" onClick={() => handlePrintBill(r)}>PRINT</Button> }
                                         ]}
                                     />

@@ -7,6 +7,7 @@ import { QRCodeCanvas } from 'qrcode.react';
 // logo import removed
 
 import { useGlobalState } from './contexts/GlobalStateContext';
+import { formatCurrency } from './utils/helpers';
 import databaseBridge from './services/databaseBridge';
 import dayjs from 'dayjs';
 import { getPortalLoginUrl } from './utils/appConfig';
@@ -257,7 +258,7 @@ const CustomersPage = () => {
                 const balance = calculateLiveBalance(record);
                 return (
                     <Text type={balance < 0 ? 'danger' : balance > 0 ? 'success' : 'secondary'} strong>
-                        ৳ {Math.abs(balance || 0).toLocaleString()} {balance < 0 ? '(Due)' : balance > 0 ? '(Advance)' : ''}
+                        ৳ {formatCurrency(Math.abs(balance || 0))} {balance < 0 ? '(Due)' : balance > 0 ? '(Advance)' : ''}
                     </Text>
                 );
             },
@@ -764,8 +765,8 @@ const CustomersPage = () => {
                                             <td style={{ ...cellStyle, textAlign: 'center', fontWeight: 500 }}>{idx + 1}</td>
                                             <td style={{ ...cellStyle, fontWeight: 600 }}>{professionalPrintTranslate(item.description || item.name)}</td>
                                             <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 500 }}>{item.quantity}</td>
-                                            <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 500 }}>৳ {unitPrice.toLocaleString()}</td>
-                                            <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 700 }}>৳ {rowTotal.toLocaleString()}</td>
+                                            <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 500 }}>৳ {formatCurrency(unitPrice)}</td>
+                                            <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 700 }}>৳ {formatCurrency(rowTotal)}</td>
                                         </tr>
                                     );
                                 })}
@@ -777,30 +778,30 @@ const CustomersPage = () => {
                             <div style={{ width: '340px', fontSize: 14.5, border: '3px double #a1a1a1', padding: '12px 16px', background: '#ffffff' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 6, borderBottom: '1px solid #e2e8f0' }}>
                                     <span style={{ fontWeight: 700, color: '#64748b' }}>Subtotal:</span>
-                                    <span style={{ fontWeight: 600 }}>৳ {(printingBill.subtotal || 0).toLocaleString()}</span>
+                                    <span style={{ fontWeight: 600 }}>৳ {formatCurrency(printingBill.subtotal || 0)}</span>
                                 </div>
                                 {printingBill.discount > 0 && (
                                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: '1px solid #e2e8f0', color: '#c2165e' }}>
                                         <span style={{ fontWeight: 700 }}>Discount:</span>
-                                        <span style={{ fontWeight: 700 }}>- ৳ {printingBill.discount.toLocaleString()}</span>
+                                        <span style={{ fontWeight: 700 }}>- ৳ {formatCurrency(printingBill.discount)}</span>
                                     </div>
                                 )}
                                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: '1px solid #e2e8f0' }}>
                                     <span style={{ fontWeight: 700, color: '#64748b' }}>VAT (5%):</span>
-                                    <span style={{ fontWeight: 600 }}>+ ৳ {(printingBill.vat || Math.round((printingBill.amount || 0) * 0.05)).toLocaleString()}</span>
+                                    <span style={{ fontWeight: 600 }}>+ ৳ {formatCurrency(printingBill.vat || Math.round((printingBill.amount || 0) * 0.05))}</span>
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', fontSize: 20, fontWeight: 600, color: '#0f172a', borderBottom: '2px solid #cbd5e1' }}>
                                     <span>Total Amount:</span>
-                                    <span>৳ {(printingBill.netPayable || printingBill.amount || 0).toLocaleString()}</span>
+                                    <span>৳ {formatCurrency(printingBill.netPayable || printingBill.amount || 0)}</span>
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', fontSize: 15, color: '#003399' }}>
                                     <span style={{ fontWeight: 600 }}>Paid Amount:</span>
-                                    <span style={{ fontWeight: 600 }}>৳ {(printingBill.paid || 0).toLocaleString()}</span>
+                                    <span style={{ fontWeight: 600 }}>৳ {formatCurrency(printingBill.paid || 0)}</span>
                                 </div>
                                 {(printingBill.due > 0) && (
                                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 15.5, color: '#dc2626', background: '#fef2f2', margin: '4px -8px', padding: '4px 8px', borderRadius: 4 }}>
                                         <span style={{ fontWeight: 600 }}>Due Amount:</span>
-                                        <span style={{ fontWeight: 600 }}>৳ {printingBill.due.toLocaleString()}</span>
+                                        <span style={{ fontWeight: 600 }}>৳ {formatCurrency(printingBill.due)}</span>
                                     </div>
                                 )}
                             </div>

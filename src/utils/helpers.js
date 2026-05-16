@@ -63,7 +63,7 @@ export const getFromLocalStorage = (key, fallback = []) => {
  * @returns {string} The formatted string
  */
 export const formatCurrency = (amount) => {
-    if (isNaN(amount)) return "0";
+    if (amount === undefined || amount === null || isNaN(Number(amount))) return "0";
     return Number(amount).toLocaleString('en-IN');
 };
 

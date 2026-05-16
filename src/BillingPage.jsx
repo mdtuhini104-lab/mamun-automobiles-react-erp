@@ -166,8 +166,8 @@ const PrintInvoice = ({ bill, payments, lang = 'en' }) => {
                                     <td style={{ ...cellStyle, textAlign: 'center', fontWeight: 500 }}>{idx + 1}</td>
                                     <td style={{ ...cellStyle, fontWeight: 600 }}>{professionalPrintTranslate(item.description || item.name)}</td>
                                     <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 500 }}>{item.quantity}</td>
-                                    <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 500 }}>৳ {unitPrice.toLocaleString()}</td>
-                                    <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 700 }}>৳ {rowTotal.toLocaleString()}</td>
+                                    <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 500 }}>৳ {formatCurrency(unitPrice)}</td>
+                                    <td style={{ ...cellStyle, textAlign: 'right', fontWeight: 700 }}>৳ {formatCurrency(rowTotal)}</td>
                                 </tr>
                             );
                         })}
@@ -179,30 +179,30 @@ const PrintInvoice = ({ bill, payments, lang = 'en' }) => {
                     <div style={{ width: '340px', fontSize: 14.5, border: '3px double #a1a1a1', padding: '12px 16px', background: '#ffffff' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 6, borderBottom: '1px solid #e2e8f0' }}>
                             <span style={{ fontWeight: 700, color: '#64748b' }}>Subtotal:</span>
-                            <span style={{ fontWeight: 600 }}>৳ {(bill.subtotal || 0).toLocaleString()}</span>
+                            <span style={{ fontWeight: 600 }}>৳ {formatCurrency(bill.subtotal || 0)}</span>
                         </div>
                         {bill.discount > 0 && (
                             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: '1px solid #e2e8f0', color: '#c2165e' }}>
                                 <span style={{ fontWeight: 700 }}>Discount:</span>
-                                <span style={{ fontWeight: 700 }}>- ৳ {bill.discount.toLocaleString()}</span>
+                                <span style={{ fontWeight: 700 }}>- ৳ {formatCurrency(bill.discount)}</span>
                             </div>
                         )}
                         <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: '1px solid #e2e8f0' }}>
                             <span style={{ fontWeight: 600, color: '#64748b' }}>{t('vat', lang)} (5%):</span>
-                            <span style={{ fontWeight: 600 }}>+ ৳ {vatAmount.toLocaleString()}</span>
+                            <span style={{ fontWeight: 600 }}>+ ৳ {formatCurrency(vatAmount)}</span>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', fontSize: 20, fontWeight: 600, color: '#0f172a', borderBottom: '2px solid #cbd5e1' }}>
                             <span>Total Amount:</span>
-                            <span>৳ {netPayable.toLocaleString()}</span>
+                            <span>৳ {formatCurrency(netPayable)}</span>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', fontSize: 15, color: '#003399' }}>
                             <span style={{ fontWeight: 600 }}>Paid Amount:</span>
-                            <span style={{ fontWeight: 600 }}>৳ {totalPaid.toLocaleString()}</span>
+                            <span style={{ fontWeight: 600 }}>৳ {formatCurrency(totalPaid)}</span>
                         </div>
                         {dueAmount > 0 && (
                             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 15.5, color: '#dc2626', background: '#fef2f2', margin: '4px -8px', padding: '4px 8px', borderRadius: 4 }}>
                                 <span style={{ fontWeight: 600 }}>Due Amount:</span>
-                                <span style={{ fontWeight: 600 }}>৳ {dueAmount.toLocaleString()}</span>
+                                <span style={{ fontWeight: 600 }}>৳ {formatCurrency(dueAmount)}</span>
                             </div>
                         )}
                         <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: 6, fontSize: 13, color: '#475569', borderTop: '1px solid #e2e8f0', marginTop: 4 }}>
@@ -543,12 +543,12 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
 
     const serviceOptions = (services || []).map(s => {
         const resolvedPrice = (clientType === 'Company' && s.companyRate) ? s.companyRate : (s.basePrice || 0);
-        return { value: s.name, label: `${s.name} (৳${resolvedPrice.toLocaleString()})`, resolvedPrice, type: 'Service' };
+        return { value: s.name, label: `${s.name} (৳${formatCurrency(resolvedPrice)})`, resolvedPrice, type: 'Service' };
     });
 
     const inventoryOptions = (inventory || []).map(p => {
         const resolvedPrice = (clientType === 'Company' && p.companyRate) ? p.companyRate : (p.sellingPrice || 0);
-        return { value: p.name, label: `${p.name} (৳${resolvedPrice.toLocaleString()})`, resolvedPrice, type: 'Part', partId: p.id, purchasePrice: p.purchasePrice };
+        return { value: p.name, label: `${p.name} (৳${formatCurrency(resolvedPrice)})`, resolvedPrice, type: 'Part', partId: p.id, purchasePrice: p.purchasePrice };
     });
 
     const unifiedOptions = [...serviceOptions, ...inventoryOptions];
@@ -602,7 +602,7 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
         },
         {
             title: t('total', language), width: 100,
-            render: (_, record) => <Text strong>৳ {( (record.quantity || 0) * (record.unitPrice || 0) ).toLocaleString()}</Text>
+            render: (_, record) => <Text strong>৳ {formatCurrency((record.quantity || 0) * (record.unitPrice || 0))}</Text>
         },
         {
             title: '', width: 40,
@@ -742,7 +742,7 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
                         <div style={{ lineHeight: 2.5 }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Text strong style={{ color: '#FFFFFF', fontWeight: 600, fontSize: '13px' }}>Subtotal</Text>
-                                <Text style={{ color: '#FFFFFF', fontWeight: 600, fontSize: '14px' }}>৳{subtotal.toLocaleString()}</Text>
+                                <Text style={{ color: '#FFFFFF', fontWeight: 600, fontSize: '14px' }}>৳{formatCurrency(subtotal)}</Text>
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <Text strong style={{ color: '#FFFFFF', fontWeight: 600, fontSize: '13px' }}>Discount</Text>
@@ -750,13 +750,13 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Text strong style={{ color: '#FFFFFF', fontWeight: 600, fontSize: '13px' }}>VAT (5%)</Text>
-                                <Text style={{ color: '#FFFFFF', fontWeight: 600, fontSize: '14px' }}>+ ৳{vatAmount.toLocaleString()}</Text>
+                                <Text style={{ color: '#FFFFFF', fontWeight: 600, fontSize: '14px' }}>+ ৳{formatCurrency(vatAmount)}</Text>
                             </div>
                             <Divider style={{ borderColor: 'rgba(255,255,255,0.1)' }} />
                             {/* Immense High-Visibility Total Highlight Banner */}
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(34, 197, 94, 0.15)', padding: '16px 20px', borderRadius: '12px', border: '2.5px solid #22c55e', marginTop: '12px', boxShadow: '0 4px 20px rgba(34, 197, 94, 0.25)' }}>
                                 <span style={{ color: '#22c55e', fontWeight: 600, fontSize: '20px', letterSpacing: '0.5px' }}>Total</span>
-                                <span style={{ color: '#22c55e', fontWeight: 600, fontSize: '32px', textShadow: '0 2px 12px rgba(34, 197, 94, 0.5)' }}>৳{netPayable.toLocaleString()}</span>
+                                <span style={{ color: '#22c55e', fontWeight: 600, fontSize: '32px', textShadow: '0 2px 12px rgba(34, 197, 94, 0.5)' }}>৳{formatCurrency(netPayable)}</span>
                             </div>
                         </div>
                         <Divider style={{ borderColor: 'rgba(255,255,255,0.1)' }} />
