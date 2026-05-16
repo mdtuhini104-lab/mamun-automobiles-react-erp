@@ -22,6 +22,7 @@ import { professionalPrintTranslate } from './utils/translationMiddleware';
 import useVehicleAutoFill from './hooks/useVehicleAutoFill';
 import toWords from './utils/numberToWords';
 import SignatureField from './components/SignatureField';
+import LuxuryCarWatermarkSVG from './components/LuxuryCarWatermarkSVG';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
