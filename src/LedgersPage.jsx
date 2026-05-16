@@ -1,10 +1,8 @@
 import React from 'react';
 import { bufferedPrint } from './utils/printAssistant';
 import { createPortal } from 'react-dom';
-import {547
-{createPortal(554
-              )}
-    Card, Table, Button, Modal, Form, InputNumber, Select, Typography,
+import {            
+  Card, Table, Button, Modal, Form, InputNumber, Select, Typography,
     Space, Tag, Row, Col, Statistic, Alert, Tabs, Divider, message, Input, DatePicker
 } from 'antd';
 import { 
