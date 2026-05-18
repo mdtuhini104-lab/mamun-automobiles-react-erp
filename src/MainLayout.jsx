@@ -38,7 +38,6 @@ const UserManagementPage = lazyWithRetry(() => import('./UserManagementPage'));
 const RoleManagementPage = lazyWithRetry(() => import('./RoleManagementPage'));
 const CustomerPortalPage = lazyWithRetry(() => import('./CustomerPortalPage'));
 const ServicesPage = lazyWithRetry(() => import('./ServicesPage'));
-const RentACarPage = lazyWithRetry(() => import('./RentACarPage'));
 const QuotationsPage = lazyWithRetry(() => import('./QuotationsPage'));
 const SuppliersPage = lazyWithRetry(() => import('./SuppliersPage'));
 const LoanManagementPage = lazyWithRetry(() => import('./LoanManagementPage'));
@@ -292,7 +291,6 @@ const MainLayout = () => {
             case 'ledger-supplier': return <SuppliersPage />;
             case 'loans': return <LoanManagementPage />;
             case '22': return <MasterAccountsPage />;
-            case 'rent-a-car': return <RentACarPage />;
             case 'corporate-billing': return <CorporateBillingPage />;
             case '8': return <UsedBuySell />;
             case '10': return <SettingsPage />;
