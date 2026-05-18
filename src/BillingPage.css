@@ -213,14 +213,19 @@
 .valuation-panel .ant-form-item-label > label {
     color: #ffffff !important;
     font-weight: 800 !important;
-    font-size: 13.5px !important;
+    font-size: 14px !important;
     letter-spacing: 0.3px;
 }
 
 /* Explicit input styles: bright internal text, gray baseline borders (#4B5563), Royal Blue focus glow */
 .billing-card-wrapper .ant-input,
+.billing-card-wrapper .ant-input-number,
 .billing-card-wrapper .ant-input-number-input,
+.valuation-panel .ant-input,
+.valuation-panel .ant-input-number,
 .valuation-panel .ant-input-number-input,
+.billing-card-wrapper .ant-select,
+.billing-card-wrapper .ant-select-selector,
 .billing-card-wrapper .ant-select-selection-search-input,
 .billing-card-wrapper .ant-select-selection-item,
 .billing-card-wrapper .premium-glow-input {
@@ -229,6 +234,7 @@
     border: 1px solid #4b5563 !important;
     border-radius: 8px !important;
     font-weight: 700 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .search-parts-input.ant-input,
@@ -278,7 +284,8 @@
 .valuation-panel .premium-glow-input:focus,
 .valuation-panel .premium-glow-input:focus-within,
 .valuation-panel .ant-input-number-focused,
-.billing-card-wrapper .ant-input-number-focused {
+.billing-card-wrapper .ant-input-number-focused,
+.billing-card-wrapper .ant-select-focused .ant-select-selector {
     border-color: #003399 !important;
     box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.6) !important;
     outline: none !important;
@@ -292,6 +299,30 @@
     color: #9ca3af !important;
     opacity: 1 !important;
     font-weight: 500 !important;
+}
+
+/* Spaced dropdown options for high readability */
+.ant-select-dropdown {
+    background-color: #1e293b !important;
+    border: 1px solid #4b5563 !important;
+    border-radius: 8px !important;
+    padding: 6px !important;
+}
+.ant-select-dropdown .ant-select-item {
+    color: #f9fafb !important;
+    font-weight: 600 !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+}
+.ant-select-dropdown .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+    background-color: #003399 !important;
+    color: #ffffff !important;
+}
+.ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    background-color: #1e3a8a !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
 }
 
 /* Premium Table header visibility styling */
