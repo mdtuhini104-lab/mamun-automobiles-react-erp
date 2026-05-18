@@ -43,14 +43,10 @@ const QuotationsPage = lazyWithRetry(() => import('./QuotationsPage'));
 const SuppliersPage = lazyWithRetry(() => import('./SuppliersPage'));
 const LoanManagementPage = lazyWithRetry(() => import('./LoanManagementPage'));
 const FinanceDashboard = lazyWithRetry(() => import('./FinanceDashboard'));
-const DailyExpenseSubModule = lazyWithRetry(() => import('./DailyExpenseSubModule'));
-const CarBuyingPage = lazyWithRetry(() => import('./CarBuyingPage'));
-const CarSellingPage = lazyWithRetry(() => import('./CarSellingPage'));
 const InventoryPage = lazyWithRetry(() => import('./InventoryPage'));
 const JobIntakePage = lazyWithRetry(() => import('./JobIntakePage'));
 const MechanicDashboardPage = lazyWithRetry(() => import('./MechanicDashboardPage'));
 const ManagerDashboardPage = lazyWithRetry(() => import('./ManagerDashboardPage'));
-const BankingModule = lazyWithRetry(() => import('./BankingModule'));
 const CorporateBillingPage = lazyWithRetry(() => import('./CorporateBillingPage'));
 const ProfilePage = lazyWithRetry(() => import('./ProfilePage'));
 const PremiumProfilePage = lazyWithRetry(() => import('./PremiumProfilePage'));
@@ -200,40 +196,9 @@ const MainLayout = () => {
                 { key: 'ledger-supplier', label: t('supplier_ledger', language) },
             ]
         },
-        {
-            key: 'grp-accounts',
-            label: t('accounts', language),
-            icon: <SolutionOutlined />,
-            roles: ['Admin', 'Manager', 'SuperAdmin'],
-            children: [
-                { key: '22', label: t('master_ledger', language) },
-                { key: '9', label: t('daily_expenses', language) },
-                { key: 'banking', label: t('bank_management', language) },
-            ]
-        },
-        {
-            key: 'grp-rent-sales',
-            label: t('rent_sales', language),
-            icon: <ShopOutlined />,
-            roles: ['Admin', 'Manager', 'SuperAdmin'],
-            children: [
-                { key: 'rent-a-car', label: t('rent_a_car', language) },
-                { key: 'car-selling', label: t('car_sales', language) },
-            ]
-        },
-        {
-            key: 'grp-admin',
-            label: 'Admin',
-            icon: <SettingOutlined />,
-            roles: ['Admin', 'Manager', 'SuperAdmin'],
-            children: [
-                { key: 'staff-portal', label: t('staff_portal', language) },
-                { key: '10', label: t('system_config', language) },
-            ]
-        },
     ];
 
-    const rootSubmenuKeys = ['grp-dashboard', 'grp-front-desk', 'grp-workshop', 'grp-sales', 'grp-inventory', 'grp-accounts', 'grp-rent-sales', 'grp-admin'];
+    const rootSubmenuKeys = ['grp-dashboard', 'grp-front-desk', 'grp-workshop', 'grp-sales', 'grp-inventory'];
 
     const customerMenuItems = [
         { key: 'customer-portal', label: t('my_dashboard', language) },
@@ -328,12 +293,8 @@ const MainLayout = () => {
             case 'loans': return <LoanManagementPage />;
             case '22': return <MasterAccountsPage />;
             case 'rent-a-car': return <RentACarPage />;
-            case 'car-buying': return <CarBuyingPage />;
-            case 'car-selling': return <CarSellingPage />;
-            case 'banking': return <BankingModule />;
             case 'corporate-billing': return <CorporateBillingPage />;
             case '8': return <UsedBuySell />;
-            case '9': return <DailyExpenseSubModule />;
             case '10': return <SettingsPage />;
             case 'profile': return <PremiumProfilePage />;
             case 'themes': return <ThemePage />;
