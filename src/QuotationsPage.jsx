@@ -43,7 +43,6 @@ const PrintQuotation = ({ quotation, lang }) => {
 
     return createPortal(
         <div className="alive-print-area">
-            {/* Professional Luxury Vector Watermark Engine - Native SVG Implementation */}
             <LuxuryCarWatermarkSVG opacity={0.08} />
 
 

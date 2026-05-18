@@ -1,35 +1,26 @@
 import React from 'react';
 import { bufferedPrint } from './utils/printAssistant';
 import { createPortal } from 'react-dom';
-import { Card, Table, Button, Input, Select, DatePicker, Row, Col, Typography, InputNumber, Modal, Form, Space, message, Radio, Divider, Tabs, AutoComplete, Tag, Checkbox, Avatar, Alert, Tooltip, List } from 'antd';
+import { Table, Button, Input, Select, Row, Col, Typography, InputNumber, Modal, Form, Space, message, Radio, Divider, Tabs, AutoComplete, Tag, List } from 'antd';
 import { useGlobalState } from './contexts/GlobalStateContext';
 import { useAuth } from './contexts/AuthContext';
-import { Mic, MicOff, Sparkles } from 'lucide-react';
-import { useTheme } from './contexts/ThemeContext';
-import { getFromLocalStorage, formatCurrency } from './utils/helpers';
+import { formatCurrency } from './utils/helpers';
 import dayjs from 'dayjs';
 import ErrorBoundary from './ErrorBoundary';
 import './BillingPage.css';
 import BrandedDocumentHeader from './components/BrandedDocumentHeader';
-import downloadElementAsPdf from './utils/domPdf';
-import { buildShareableDocumentLink, createBillingWhatsAppMessage, openWhatsAppShare } from './utils/whatsAppShare';
 import { getAppOrigin } from './utils/appConfig';
 import { t } from './utils/translations';
-import { processUserInput } from './services/aiServiceV2';
 import SmartVoiceInput from './components/SmartVoiceInput';
 import { professionalPrintTranslate } from './utils/translationMiddleware';
-import useVehicleAutoFill from './hooks/useVehicleAutoFill';
 import toWords from './utils/numberToWords';
 import SignatureField from './components/SignatureField';
 import LuxuryCarWatermarkSVG from './components/LuxuryCarWatermarkSVG';
 
-const { Title, Text } = Typography;
-const { Option } = Select;
+const { Text } = Typography;
 
 const VAT_RATE = 0.05; // 5%
 const QR_HISTORY_BASE_URL = `${getAppOrigin()}/#/history?v=`;
-
-const generateId = () => Date.now().toString().slice(-6) + Math.floor(Math.random() * 100);
 
 const computeNextInvoiceId = (savedBills) => {
     const year = dayjs().year();
@@ -74,14 +65,12 @@ const PrintInvoice = ({ bill, payments, lang = 'en' }) => {
     const calculatedPaidFromLogs = billPayments.reduce((acc, p) => acc + (p?.amount || 0), 0);
     const totalPaid = calculatedPaidFromLogs > 0 ? calculatedPaidFromLogs : (bill.paid || 0);
     const dueAmount = Math.max(0, netPayable - totalPaid);
-    const paymentStatus = (totalPaid >= netPayable ? t('paid', lang) : (totalPaid > 0 ? t('partially_paid', lang) : t('unpaid', lang)));
 
     const items = bill.items || bill.lineItems || [];
     const resolvedMethod = bill.paymentMethod || (billPayments.length > 0 ? billPayments[0].method : 'Cash');
 
     return createPortal(
         <div className="alive-print-area">
-            {/* Professional Luxury Vector Watermark Engine - Set exactly to 4% opacity as per premium design specifications */}
             <LuxuryCarWatermarkSVG opacity={0.08} />
 
             {/* Spiritual Invocation */}
@@ -263,16 +252,13 @@ const PrintInvoice = ({ bill, payments, lang = 'en' }) => {
 };
 
 // ─── Bill Draft Form (one per tab) ──────────────────────────────
-const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setServices, customers, payments, setSavedBills, setInventory, setPayments, updateCustomerLedger, logActivity, isAdmin, jobCards, setJobCards, onPrintReady, companies, generateSafeId, returnToInventory, isDark, jobIntakes }) => {
+const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setServices, customers, payments, setSavedBills, setInventory, setPayments, updateCustomerLedger, logActivity, jobCards, setJobCards, onPrintReady, companies, generateSafeId, returnToInventory, jobIntakes }) => {
     const { language } = useGlobalState();
     const { user: currentUser } = useAuth();
-    const { lookupVehicle, notifyResult } = useVehicleAutoFill();
     const { lineItems, discount, paidAmount, customerName, phone, vehicleNo, billingEntity, saleType, companyName, contactPerson, jobId, jobIntakeId, clientType } = draft;
 
     const [isServiceModalVisible, setIsServiceModalVisible] = React.useState(false);
     const [isPartModalVisible, setIsPartModalVisible] = React.useState(false);
-    const [serviceModalPrice, setServiceModalPrice] = React.useState(0);
-    const [useAdvanceWallet, setUseAdvanceWallet] = React.useState(false);
     const [isRequestPickerOpen, setIsRequestPickerOpen] = React.useState(false);
 
     const [serviceForm] = Form.useForm();
@@ -405,7 +391,6 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
         }]);
         setIsServiceModalVisible(false);
         serviceForm.resetFields();
-        setServiceModalPrice(0);
     };
 
     const handleServicePresetSelect = (value, option) => {
@@ -413,7 +398,6 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
             const svc = option.service;
             const resolvedPrice = (clientType === 'Company' && svc.companyRate) ? svc.companyRate : (svc.basePrice || 0);
             serviceForm.setFieldsValue({ price: resolvedPrice, description: svc.name });
-            setServiceModalPrice(resolvedPrice);
         }
     };
 
@@ -460,18 +444,6 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
             setServices([...(services || []), ...newSvcs]);
         }
     }, [services, setServices, generateSafeId]);
-
-    const handleSendBillToWhatsApp = (bill) => {
-        if (!bill?.phone) return;
-        const shareLink = buildShareableDocumentLink('invoice', bill.id || 'draft');
-        const whatsAppMessage = createBillingWhatsAppMessage({
-            customerName: bill.customerName,
-            id: bill.id || 'Draft',
-            amount: bill.netPayable || bill.amount,
-            link: shareLink
-        });
-        openWhatsAppShare({ phone: bill.phone, message: whatsAppMessage });
-    };
 
     const handleFinalizeBill = () => {
         if (!customerName || !phone) { message.error('Customer Name and Phone are required.'); return; }
@@ -536,7 +508,6 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
         }
 
         message.success(`✅ Invoice ${newInvoiceId} generated!`);
-        handleSendBillToWhatsApp(finalBill);
         if (onPrintReady) onPrintReady(finalBill, true);
         onUpdate(createDraft(draft.draftId));
     };
@@ -718,19 +689,6 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
                                 />
                             </Col>
                         </Row>
-                        <Divider style={{ borderColor: 'rgba(59,130,246,0.1)' }} />
-                        <div style={{ textAlign: 'center' }}>
-                            <Button 
-                                type="primary" 
-                                size="large"
-                                icon={<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style={{ width: 20, marginRight: 8 }} />}
-                                onClick={() => handleSendBillToWhatsApp(draft)}
-                                style={{ background: '#25D366', border: 'none', fontWeight: 600, height: 50, borderRadius: 8, padding: '0 30px' }}
-                                disabled={!draft.phone}
-                            >
-                                Share Preview to WhatsApp
-                            </Button>
-                        </div>
                     </div>
                 </Col>
 
@@ -828,30 +786,12 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
 
 // ─── Main BillingPage Component ──────────────────────────────────
 const BillingPage = () => {
-    const { inventory, setInventory, savedBills, setSavedBills, payments, setPayments, customers, updateCustomerLedger, logActivity, services, setServices, jobCards, setJobCards, jobIntakes, companies, generateSafeId, returnToInventory, fetchBillsPaged } = useGlobalState();
-    const { user } = useAuth();
-    const isAdmin = user?.role === 'Admin' || user?.role === 'SuperAdmin';
+    const { inventory, setInventory, savedBills, setSavedBills, payments, setPayments, customers, updateCustomerLedger, logActivity, services, setServices, jobCards, setJobCards, jobIntakes, companies, generateSafeId, returnToInventory } = useGlobalState();
 
     const [drafts, setDrafts] = React.useState([createDraft('1')]);
     const [activeDraftKey, setActiveDraftKey] = React.useState('1');
     const [printingBill, setPrintingBill] = React.useState(null);
     const [shouldPrint, setShouldPrint] = React.useState(false);
-
-    const [pastInvoicesData, setPastInvoicesData] = React.useState([]);
-    const [loadingInvoices, setLoadingInvoices] = React.useState(false);
-    const [invoicePagination, setInvoicePagination] = React.useState({ current: 1, pageSize: 15, total: 0 });
-
-    const fetchInvoices = async (page = 1) => {
-        setLoadingInvoices(true);
-        const res = await fetchBillsPaged(page, 15);
-        if (res) {
-            setPastInvoicesData(res.data || []);
-            setInvoicePagination({ ...invoicePagination, current: page, total: res.pagination?.total || 0 });
-        }
-        setLoadingInvoices(false);
-    };
-
-    React.useEffect(() => { fetchInvoices(); }, []);
 
     React.useEffect(() => {
         if (printingBill && shouldPrint) {
@@ -881,33 +821,11 @@ const BillingPage = () => {
                     onChange={setActiveDraftKey}
                     onEdit={(k, a) => a === 'add' ? addNewTab() : removeTab(k)}
                     className="luxury-tabs no-print"
-                    items={[
-                        ...drafts.map((d, i) => ({
-                            key: d.draftId,
-                            label: `Bill #${i + 1}`,
-                            children: <BillDraftForm draft={d} onUpdate={updateDraft} savedBills={savedBills} inventory={inventory} services={services} setServices={setServices} customers={customers} payments={payments} setSavedBills={setSavedBills} setInventory={setInventory} setPayments={setPayments} updateCustomerLedger={updateCustomerLedger} logActivity={logActivity} isAdmin={isAdmin} jobCards={jobCards} setJobCards={setJobCards} generateSafeId={generateSafeId} returnToInventory={returnToInventory} onPrintReady={handlePrintBill} companies={companies} jobIntakes={jobIntakes} />
-                        })),
-                        {
-                            key: 'archive',
-                            label: 'Archive',
-                            children: (
-                                <div className="glass-card" style={{ padding: 20 }}>
-                                    <Table
-                                        dataSource={pastInvoicesData}
-                                        loading={loadingInvoices}
-                                        pagination={{ ...invoicePagination, onChange: fetchInvoices }}
-                                        columns={[
-                                            { title: 'ID', dataIndex: 'id' },
-                                            { title: 'Customer', dataIndex: 'customerName' },
-                                            { title: 'Date', dataIndex: 'date', render: d => dayjs(d).format('DD MMM YYYY') },
-                                            { title: 'Amount', dataIndex: 'netPayable', render: v => `৳${v.toLocaleString()}` },
-                                            { title: 'Action', render: (_, r) => <Button size="small" onClick={() => handlePrintBill(r)}>Print</Button> }
-                                        ]}
-                                    />
-                                </div>
-                            )
-                        }
-                    ]}
+                    items={drafts.map((d, i) => ({
+                        key: d.draftId,
+                        label: `Bill #${i + 1}`,
+                        children: <BillDraftForm draft={d} onUpdate={updateDraft} savedBills={savedBills} inventory={inventory} services={services} setServices={setServices} customers={customers} payments={payments} setSavedBills={setSavedBills} setInventory={setInventory} setPayments={setPayments} updateCustomerLedger={updateCustomerLedger} logActivity={logActivity} jobCards={jobCards} setJobCards={setJobCards} generateSafeId={generateSafeId} returnToInventory={returnToInventory} onPrintReady={handlePrintBill} companies={companies} jobIntakes={jobIntakes} />
+                    }))}
                 />
             </div>
         </ErrorBoundary>
