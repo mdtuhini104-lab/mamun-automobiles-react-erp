@@ -399,91 +399,89 @@ const JobIntakePage = () => {
     return (
         <ConfigProvider
             theme={{
-                algorithm: theme.darkAlgorithm,
+                algorithm: theme.defaultAlgorithm,
                 token: {
-                    colorText: '#FFFFFF',
-                    colorBgContainer: '#111827',
-                    colorBorder: 'rgba(255, 255, 255, 0.15)',
+                    colorText: '#1e293b',
+                    colorBgContainer: '#ffffff',
+                    colorBorder: '#cbd5e1',
+                    borderRadius: 8,
                 },
                 components: {
                     Select: {
-                        colorBgContainer: '#ffffff',
+                        colorBgContainer: '#f8fafc',
                         colorText: '#000000',
-                        colorTextPlaceholder: 'rgba(0, 0, 0, 0.6)',
-                        selectorBg: '#ffffff',
+                        colorTextPlaceholder: 'rgba(0, 0, 0, 0.45)',
+                        selectorBg: '#f8fafc',
                     },
                     Input: {
-                        colorBgContainer: '#ffffff',
+                        colorBgContainer: '#f8fafc',
                         colorText: '#000000',
                     }
                 }
             }}
         >
-        {/* COMPREHENSIVE STYLE INJECTION FOR THEME VISIBILITY */}
+        {/* COMPREHENSIVE STYLE INJECTION FOR PREMIUM MINIMALIST THEME */}
         <style dangerouslySetInnerHTML={{ __html: `
-            .ant-select-single .ant-select-selector .ant-select-selection-item {
-               color: #000000 !important;
-               font-weight: 600 !important;
-               opacity: 1 !important;
+            .dashboard-page {
+                background: #ffffff !important;
+                color: #1e293b !important;
             }
-            .ant-select-selection-placeholder { 
-               color: rgba(0, 0, 0, 0.6) !important; 
+            .dashboard-page .ant-typography,
+            .dashboard-page .ant-card-head-title,
+            .dashboard-page .ant-descriptions-item-label,
+            .dashboard-page h1,
+            .dashboard-page h4,
+            .dashboard-page span,
+            .dashboard-page label,
+            .dashboard-page .ant-form-item-label label {
+                color: #000000 !important;
+                font-weight: 700 !important;
             }
             
+            /* Rigidly standardizing input, textarea, and selectors to eliminate duplicate/double/thick borders */
+            .dashboard-page input,
+            .dashboard-page textarea,
+            .dashboard-page .ant-input,
             .dashboard-page .ant-select-selector,
-            .dashboard-page .ant-select-selector *,
-            .dashboard-page input.ant-input,
-            .dashboard-page .ant-input-affix-wrapper,
-            .dashboard-page .ant-input-affix-wrapper * {
-                background-color: #FFFFFF !important;
+            .dashboard-page .ant-picker,
+            .dashboard-page .ant-input-affix-wrapper {
+                border: 1px solid #cbd5e1 !important;
+                border-radius: 8px !important;
+                background-color: #f8fafc !important;
                 color: #000000 !important;
-            }
-            .dashboard-page .ant-select-selector {
-                border: 1px solid rgba(0,0,0,0.5) !important;
-            }
-            .ant-select-selection-item { 
-               color: #000000 !important; 
-               font-weight: 600 !important; 
-               display: flex !important; 
-               align-items: center !important; 
-            }
-            .ant-card-head-title, .ant-descriptions-item-label {
-               color: #ffffff !important;
-            }
-            input, .ant-input {
-               color: #000000 !important;
-            }
-            .ant-card-extra button, .ant-card button { 
-                background-color: #1890ff !important; 
-                color: #ffffff !important; 
-                visibility: visible !important; 
+                font-weight: 600 !important;
+                box-shadow: none !important;
+                outline: none !important;
+                transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
             }
 
-            /* DARK MODE & THEME TOGGLE OVERRIDES */
-            @media (prefers-color-scheme: dark) {
-               .dashboard-page .ant-select-selection-item, 
-               .dashboard-page .ant-input, 
-               .dashboard-page input {
-                  color: #000000 !important; 
-                  background-color: #ffffff !important;
-               }
-            }
-            
-            body.dark-theme .dashboard-page .ant-select-selection-item,
-            body.dark-theme .dashboard-page .ant-select-selector,
-            body.dark-theme .dashboard-page .ant-select-selector *,
-            body.dark-theme .dashboard-page .ant-input,
-            body.dark-theme .dashboard-page input,
-            [data-theme='dark'] .ant-select-selection-item, 
-            [data-theme='dark'] .ant-input, 
-            .dark-mode .ant-select-selection-item {
-                color: #000000 !important;
+            .dashboard-page input:focus,
+            .dashboard-page textarea:focus,
+            .dashboard-page .ant-input-focused,
+            .dashboard-page .ant-select-focused .ant-select-selector,
+            .dashboard-page .ant-picker-focused {
+                border-color: #003399 !important;
+                box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.1) !important;
                 background-color: #ffffff !important;
             }
+
+            .dashboard-page .glass-card {
+                background: #ffffff !important;
+                border: 1px solid #cbd5e1 !important;
+                border-radius: 12px !important;
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+                margin-bottom: 24px !important;
+            }
             
-            body.dark-theme .ant-card-extra button {
-                color: #ffffff !important;
-                background-color: #1890ff !important;
+            .dashboard-page .ant-tag {
+                background-color: #eff6ff !important;
+                color: #1e40af !important;
+                border: 1px solid #bfdbfe !important;
+                font-weight: 700 !important;
+            }
+            .force-black-text .ant-select-selection-item {
+                color: #000000 !important;
+                font-weight: 600 !important;
             }
         `}} />
         <div className="dashboard-page" style={{ maxWidth: 1400, margin: '0 auto', padding: '0 8px' }}>
@@ -760,15 +758,16 @@ const JobIntakePage = () => {
             </Modal>
             <style dangerouslySetInnerHTML={{ __html: `
                 .luxury-modal .ant-modal-content {
-                    background: #1a1a1a !important;
-                    border: 1px solid #3B82F6 !important;
+                    background: #ffffff !important;
+                    border: 1px solid #cbd5e1 !important;
                 }
                 .luxury-modal .ant-modal-header {
                     background: transparent !important;
-                    border-bottom: 1px solid rgba(59, 130, 246, 0.2) !important;
+                    border-bottom: 1px solid #cbd5e1 !important;
                 }
                 .luxury-modal .ant-modal-title {
-                    color: #3B82F6 !important;
+                    color: #000000 !important;
+                    font-weight: 800 !important;
                 }
             `}} />
         </div>
