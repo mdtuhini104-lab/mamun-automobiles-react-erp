@@ -744,26 +744,42 @@ body.light-theme .ant-table-thead > tr > th {
 }
 
 /* Theme-Aware Table Body Cells (Alternating Fintech Rows) */
-body.dark-theme .ant-table-tbody > tr > td,
-.ant-table-tbody > tr > td {
+body.dark-theme .ant-table-tbody > tr > td {
     color: #FFFFFF !important;
     background: #1E293B !important;
     font-weight: 600 !important;
     border-bottom: 1px solid rgba(255,255,255,0.05) !important;
-    padding: 18px 24px !important; /* Premium Padding */
+    padding: 18px 24px !important;
     vertical-align: middle !important;
 }
 
-body.dark-theme .ant-table-tbody > tr:nth-child(even) > td,
-.ant-table-tbody > tr:nth-child(even) > td {
+.ant-table-tbody > tr > td {
+    color: #1e293b !important;
+    background: #ffffff !important;
+    font-weight: 600 !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 12px 16px !important;
+    vertical-align: middle !important;
+}
+
+body.dark-theme .ant-table-tbody > tr:nth-child(even) > td {
     background: #0F172A !important;
 }
 
+.ant-table-tbody > tr:nth-child(even) > td {
+    background: #f8fafc !important;
+}
+
 /* Hover Effects */
-body.dark-theme .ant-table-tbody > tr:hover > td,
-.ant-table-tbody > tr:hover > td {
+body.dark-theme .ant-table-tbody > tr:hover > td {
     background: #334155 !important;
     color: #3B82F6 !important;
+    transition: all 0.2s ease !important;
+}
+
+.ant-table-tbody > tr:hover > td {
+    background: #f1f5f9 !important;
+    color: #003399 !important;
     transition: all 0.2s ease !important;
 }
 

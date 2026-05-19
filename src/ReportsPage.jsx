@@ -823,13 +823,19 @@ return (
                     padding: 10px 8px !important;
                 }
                 .clean-table-compact .ant-table-tbody > tr > td {
+                    background: #ffffff !important;
+                    background-color: #ffffff !important;
                     border-bottom: 1px solid #f1f5f9 !important;
                     padding: 12px 8px !important;
                     font-size: 12px !important;
                     color: #0f172a !important;
                 }
-                .clean-table-compact .ant-table-tbody > tr:hover > td {
+                .clean-table-compact .ant-table-tbody > tr:nth-child(even) > td {
                     background: #f8fafc !important;
+                    background-color: #f8fafc !important;
+                }
+                .clean-table-compact .ant-table-tbody > tr:hover > td {
+                    background: #f1f5f9 !important;
                 }
                 .luxury-modal .ant-modal-content {
                     border-radius: 20px !important;
