@@ -426,25 +426,35 @@ const JobIntakePage = () => {
                 background: #ffffff !important;
                 color: #1e293b !important;
             }
+            .dashboard-page h1,
+            .dashboard-page h2,
+            .dashboard-page h3,
+            .dashboard-page h4,
+            .dashboard-page h5,
             .dashboard-page .ant-typography,
             .dashboard-page .ant-card-head-title,
             .dashboard-page .ant-descriptions-item-label,
-            .dashboard-page h1,
-            .dashboard-page h4,
-            .dashboard-page span,
             .dashboard-page label,
             .dashboard-page .ant-form-item-label label {
-                color: #000000 !important;
+                color: #0f172a !important;
                 font-weight: 700 !important;
             }
             
-            /* Rigidly standardizing input, textarea, and selectors to eliminate duplicate/double/thick borders */
+            /* Text styling for standard labels, info texts, description details to make sure they are NOT white */
+            .dashboard-page .ant-form-item-label label,
+            .dashboard-page .ant-empty-description,
+            .dashboard-page .ant-descriptions-item-content {
+                color: #1e293b !important;
+            }
+
+            /* Single 1px slate-tinted borders and clean backgrounds for all inputs, textareas, selectors, pickers */
             .dashboard-page input,
             .dashboard-page textarea,
             .dashboard-page .ant-input,
             .dashboard-page .ant-select-selector,
             .dashboard-page .ant-picker,
-            .dashboard-page .ant-input-affix-wrapper {
+            .dashboard-page .ant-input-affix-wrapper,
+            .dashboard-page .glass-input {
                 border: 1px solid #cbd5e1 !important;
                 border-radius: 8px !important;
                 background-color: #f8fafc !important;
@@ -455,6 +465,7 @@ const JobIntakePage = () => {
                 transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
             }
 
+            /* Active focus border coloring */
             .dashboard-page input:focus,
             .dashboard-page textarea:focus,
             .dashboard-page .ant-input-focused,
@@ -471,6 +482,7 @@ const JobIntakePage = () => {
                 border-radius: 12px !important;
                 box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
                 margin-bottom: 24px !important;
+                padding: 24px !important;
             }
             
             .dashboard-page .ant-tag {
@@ -479,26 +491,64 @@ const JobIntakePage = () => {
                 border: 1px solid #bfdbfe !important;
                 font-weight: 700 !important;
             }
-            .force-black-text .ant-select-selection-item {
-                color: #000000 !important;
-                font-weight: 600 !important;
+
+            /* Clear & visible premium button styling with Royal Blue and white text */
+            .dashboard-page button.ant-btn,
+            .dashboard-page .ant-btn,
+            .dashboard-page button {
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                font-weight: 700 !important;
+                border-radius: 8px !important;
+                transition: all 0.2s ease-in-out !important;
+            }
+
+            /* Specifically styling the primary / royal blue buttons to override any default black colors */
+            .dashboard-page button.ant-btn-primary,
+            .dashboard-page .ant-btn-primary,
+            .dashboard-page button[type="submit"] {
+                background-color: #003399 !important;
+                background: #003399 !important;
+                border: none !important;
+                color: #ffffff !important;
+                box-shadow: 0 4px 12px rgba(0, 51, 153, 0.15) !important;
+            }
+
+            .dashboard-page button.ant-btn-primary:hover,
+            .dashboard-page .ant-btn-primary:hover,
+            .dashboard-page button[type="submit"]:hover {
+                background-color: #002266 !important;
+                background: #002266 !important;
+                color: #ffffff !important;
+            }
+
+            /* Force all text inside our buttons to render as bold white */
+            .dashboard-page button.ant-btn-primary span,
+            .dashboard-page .ant-btn-primary span,
+            .dashboard-page button[type="submit"] span,
+            .dashboard-page button.ant-btn-primary *,
+            .dashboard-page .ant-btn-primary *,
+            .dashboard-page button[type="submit"] * {
+                color: #ffffff !important;
+                font-weight: 700 !important;
             }
         `}} />
         <div className="dashboard-page" style={{ maxWidth: 1400, margin: '0 auto', padding: '0 8px' }}>
             <div style={{ marginBottom: 32, textAlign: 'center' }}>
-                <Title level={1} style={{ margin: 0, fontWeight: 600, color: '#FFFFFF', letterSpacing: '0.2px' }}>
+                <Title level={1} style={{ margin: 0, fontWeight: 700, color: '#0f172a', letterSpacing: '0.2px' }}>
                     {t('checkin_desk', lang)}
                 </Title>
-                <Text style={{ color: '#3B82F6', fontWeight: 600, letterSpacing: '0.2px' }}>{lang === 'bn' ? 'প্রিমিয়াম গাড়ি গ্রহণ ও ডায়াগনস্টিক' : 'Premium vehicle reception & diagnostics'}</Text>
+                <Text style={{ color: '#003399', fontWeight: 600, letterSpacing: '0.2px' }}>{lang === 'bn' ? 'প্রিমিয়াম গাড়ি গ্রহণ ও ডায়াগনস্টিক' : 'Premium vehicle reception & diagnostics'}</Text>
             </div>
 
             {activeMechanics.length > 0 && (
                 <div className="glass-card" style={{ marginBottom: 24, padding: '15px' }}>
                     <div className="checkin-desk-grid">
                         {activeMechanics.map((m, idx) => (
-                            <div key={idx} style={{ borderLeft: '2px solid #3B82F6', paddingLeft: 12 }}>
-                                <div style={{ fontSize: 10, color: '#FFFFFF', fontWeight: 600 }}>{t('active_inspection', lang)}</div>
-                                <div style={{ color: '#FFFFFF', fontWeight: 500 }}>{m.name} // {m.vehicleNo}</div>
+                            <div key={idx} style={{ borderLeft: '2px solid #003399', paddingLeft: 12 }}>
+                                <div style={{ fontSize: 10, color: '#003399', fontWeight: 700 }}>{t('active_inspection', lang)}</div>
+                                <div style={{ color: '#1e293b', fontWeight: 600 }}>{m.name} // {m.vehicleNo}</div>
                             </div>
                         ))}
                     </div>
@@ -507,11 +557,11 @@ const JobIntakePage = () => {
 
             <div className="checkin-desk-grid">
                 <div className="glass-card" style={{ padding: '30px' }}>
-                    <Title level={4} style={{ color: '#3B82F6', fontWeight: 600, marginBottom: 24, borderBottom: '1px solid rgba(59,130,246,0.2)', paddingBottom: 10 }}>{t('new_registration', lang)}</Title>
+                    <Title level={4} style={{ color: '#003399', fontWeight: 700, marginBottom: 24, borderBottom: '1px solid #cbd5e1', paddingBottom: 10 }}>{t('new_registration', lang)}</Title>
                     <Form form={form} layout="vertical" onFinish={handleSubmitIntake}>
                         <Row gutter={24}>
                             <Col span={12}>
-                                <Form.Item name="vehicleNo" label={<Text style={{ color: '#3B82F6', fontWeight: 600, fontSize: 13, letterSpacing: '0.5px' }}>{t('vehicle_registration_number', lang)}</Text>}>
+                                <Form.Item name="vehicleNo" label={<Text style={{ color: '#003399', fontWeight: 700, fontSize: 13, letterSpacing: '0.5px' }}>{t('vehicle_registration_number', lang)}</Text>}>
                                     <AutoComplete 
                                         className="glass-input"
                                         options={customerVehiclesOptions.length > 0 ? customerVehiclesOptions : allVehiclesOptions}
@@ -526,7 +576,7 @@ const JobIntakePage = () => {
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
-                                <Form.Item name="customerName" label={<Text style={{ color: '#FFFFFF', fontWeight: 600, fontSize: 11 }}>{t('customer_company_name', lang)}</Text>}>
+                                <Form.Item name="customerName" label={<Text style={{ color: '#0f172a', fontWeight: 700, fontSize: 13 }}>{t('customer_company_name', lang)}</Text>}>
                                     <AutoComplete 
                                         className="glass-input"
                                         options={unifiedClientOptions}
@@ -552,7 +602,7 @@ const JobIntakePage = () => {
 
                         <Row gutter={24}>
                             <Col span={12}>
-                                <Form.Item name="phone" label={<Text style={{ color: '#FFFFFF', fontWeight: 600, fontSize: 11 }}>{t('contact_phone', lang)}</Text>}>
+                                <Form.Item name="phone" label={<Text style={{ color: '#0f172a', fontWeight: 700, fontSize: 13 }}>{t('contact_phone', lang)}</Text>}>
                                     <Input 
                                         placeholder="01777888999" 
                                         allowClear 
@@ -579,7 +629,7 @@ const JobIntakePage = () => {
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
-                                <Form.Item name="address" label={<Text style={{ color: '#FFFFFF', fontWeight: 600, fontSize: 11 }}>{lang === 'bn' ? 'ঠিকানা' : 'Address'}</Text>}>
+                                <Form.Item name="address" label={<Text style={{ color: '#0f172a', fontWeight: 700, fontSize: 13 }}>{lang === 'bn' ? 'ঠিকানা' : 'Address'}</Text>}>
                                     <Input placeholder={lang === 'bn' ? 'ঠিকানা লিখুন...' : 'Enter address...'} allowClear />
                                 </Form.Item>
                             </Col>
@@ -587,7 +637,7 @@ const JobIntakePage = () => {
 
                         <Row gutter={24}>
                             <Col span={24}>
-                                <Form.Item name="mechanicId" label={<Text style={{ color: '#FFFFFF', fontWeight: 600, fontSize: 11 }}>{t('assign_specialist', lang)}</Text>}>
+                                <Form.Item name="mechanicId" label={<Text style={{ color: '#0f172a', fontWeight: 700, fontSize: 13 }}>{t('assign_specialist', lang)}</Text>}>
                                     <Select 
                                         className="force-black-text"
                                         showSearch
@@ -611,7 +661,7 @@ const JobIntakePage = () => {
 
                         <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', marginBottom: '24px' }}>
                             <div style={{ flex: 1 }}>
-                                <Form.Item name="complaints" style={{ margin: 0 }} label={<Text style={{ color: '#FFFFFF', fontWeight: 600, fontSize: 11 }}>{t('customer_complaint', lang)}</Text>}>
+                                <Form.Item name="complaints" style={{ margin: 0 }} label={<Text style={{ color: '#0f172a', fontWeight: 700, fontSize: 13 }}>{t('customer_complaint', lang)}</Text>}>
                                     <SmartVoiceInput 
                                         isTextArea 
                                         rows={3} 
@@ -631,7 +681,7 @@ const JobIntakePage = () => {
                                              form.setFieldsValue({ complaints: refined });
                                          }
                                      }}
-                                    style={{ height: '45px !important', background: 'rgba(59, 130, 246, 0.1) !important', border: '1px solid rgba(59, 130, 246, 0.3) !important', color: '#3B82F6 !important', marginTop: '29px' }}
+                                    style={{ height: '45px', background: 'rgba(0, 51, 153, 0.05)', border: '1px solid rgba(0, 51, 153, 0.2)', color: '#003399', marginTop: '29px' }}
                                 />
                             </Tooltip>
                         </div>
@@ -642,7 +692,8 @@ const JobIntakePage = () => {
                             block
                             htmlType="submit"
                             loading={submitting}
-                            style={{ height: 55, fontSize: 14, fontWeight: 600, background: '#3B82F6', border: 'none', borderRadius: 0, marginTop: 20, letterSpacing: '0.2px' }}
+                            className="btn-commit-service"
+                            style={{ height: 55, fontSize: 14, fontWeight: 700, backgroundColor: '#003399', border: 'none', borderRadius: '8px', marginTop: 20, color: '#ffffff', letterSpacing: '0.2px' }}
                         >
                             {t('commit_to_service', lang)}
                         </Button>
@@ -650,40 +701,40 @@ const JobIntakePage = () => {
                 </div>
 
                 <div className="glass-card" style={{ padding: '30px' }}>
-                    <Title level={4} style={{ color: '#3B82F6', fontWeight: 600, marginBottom: 24, borderBottom: '1px solid rgba(59,130,246,0.2)', paddingBottom: 10 }}>{t('current_operations_queue', lang)}</Title>
+                    <Title level={4} style={{ color: '#003399', fontWeight: 700, marginBottom: 24, borderBottom: '1px solid #cbd5e1', paddingBottom: 10 }}>{t('current_operations_queue', lang)}</Title>
                     { (intakes || []).length === 0 ? (
-                        <Empty description={<Text style={{ color: '#FFFFFF' }}>{t('no_vehicles_in_queue', lang)}</Text>} />
+                        <Empty description={<Text style={{ color: '#64748b', fontWeight: 600 }}>{t('no_vehicles_in_queue', lang)}</Text>} />
                     ) : (
                         <div style={{ display: 'grid', gap: 16 }}>
                             {intakes.filter(Boolean).map(intake => (
-                                <div key={intake.id} className="glass-card" style={{ padding: '20px', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+                                <div key={intake.id} className="glass-card" style={{ padding: '20px', border: '1px solid #cbd5e1', position: 'relative' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 15 }}>
                                         <div>
-                                            <div style={{ fontSize: 18, fontWeight: 600, color: '#FFFFFF', letterSpacing: '0.2px' }}>{intake.vehicleNo}</div>
-                                            <div style={{ fontSize: 11, color: '#3B82F6', fontWeight: 600, marginTop: 4 }}>{intake.customerName || (lang === 'bn' ? 'নামহীন গ্রাহক' : 'Anonymous Client')}</div>
+                                            <div style={{ fontSize: 18, fontWeight: 700, color: '#003399', letterSpacing: '0.2px' }}>{intake.vehicleNo}</div>
+                                            <div style={{ fontSize: 11, color: '#0f172a', fontWeight: 700, marginTop: 4 }}>{intake.customerName || (lang === 'bn' ? 'নামহীন গ্রাহক' : 'Anonymous Client')}</div>
                                         </div>
-                                        <Tag style={{ background: intake.status === 'Ready' ? '#10b981' : '#3B82F6', color: '#FFFFFF', border: 'none', borderRadius: 0, fontWeight: 600, fontSize: 10 }}>{t(intake.status?.toLowerCase() || 'pending', lang)}</Tag>
+                                        <Tag style={{ background: intake.status === 'Ready' ? '#10b981' : '#003399', color: '#FFFFFF', border: 'none', borderRadius: '4px', fontWeight: 700, fontSize: 10 }}>{t(intake.status?.toLowerCase() || 'pending', lang)}</Tag>
                                     </div>
                                     <div style={{ display: 'flex', gap: 20, marginBottom: 15 }}>
                                         <div>
-                                            <div style={{ fontSize: 9, color: '#FFFFFF', fontWeight: 600, opacity: 0.8 }}>Specialist</div>
-                                            <div style={{ fontSize: 12, color: '#FFFFFF' }}>{mechanics.find(m => m.id === intake.mechanicId)?.name || 'Unassigned'}</div>
+                                            <div style={{ fontSize: 9, color: '#64748b', fontWeight: 700, opacity: 0.8 }}>Specialist</div>
+                                            <div style={{ fontSize: 12, color: '#0f172a', fontWeight: 600 }}>{mechanics.find(m => m.id === intake.mechanicId)?.name || 'Unassigned'}</div>
                                         </div>
                                         <div>
-                                            <div style={{ fontSize: 9, color: '#FFFFFF', fontWeight: 600, opacity: 0.8 }}>Diagnostics</div>
-                                            <div style={{ fontSize: 12, color: '#FFFFFF' }}>{(intake.items || []).length} Findings</div>
+                                            <div style={{ fontSize: 9, color: '#64748b', fontWeight: 700, opacity: 0.8 }}>Diagnostics</div>
+                                            <div style={{ fontSize: 12, color: '#0f172a', fontWeight: 600 }}>{(intake.items || []).length} Findings</div>
                                         </div>
                                     </div>
                                     <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                                        <Button size="small" type="ghost" onClick={() => handleEditIntake(intake)} style={{ backgroundColor: '#1890ff', color: '#ffffff', fontWeight: 600, borderRadius: 0, border: 'none', fontSize: 10, visibility: 'visible' }}>{t('analyze', lang)}</Button>
+                                        <Button size="small" type="primary" onClick={() => handleEditIntake(intake)} style={{ backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '8px', border: 'none', fontSize: 10, visibility: 'visible' }}>{t('analyze', lang)}</Button>
                                         
-                                        <Button size="small" type="primary" onClick={() => handleSendToJobCard(intake)} style={{ backgroundColor: '#1890ff', color: '#ffffff', fontWeight: 600, borderRadius: 0, border: 'none', fontSize: 10, visibility: 'visible' }}>{lang === 'bn' ? 'জব কার্ড তৈরি করুন' : 'Generate Job Card'}</Button>
+                                        <Button size="small" type="primary" onClick={() => handleSendToJobCard(intake)} style={{ backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '8px', border: 'none', fontSize: 10, visibility: 'visible' }}>{lang === 'bn' ? 'জব কার্ড তৈরি করুন' : 'Generate Job Card'}</Button>
 
                                         {intake.status === 'Ready' && (
-                                            <Button size="small" type="primary" onClick={() => handleSendToQuotation(intake)} style={{ backgroundColor: '#1890ff', color: '#ffffff', fontWeight: 600, borderRadius: 0, border: 'none', fontSize: 10, visibility: 'visible' }}>{t('proceed_to_quote', lang)}</Button>
+                                            <Button size="small" type="primary" onClick={() => handleSendToQuotation(intake)} style={{ backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '8px', border: 'none', fontSize: 10, visibility: 'visible' }}>{t('proceed_to_quote', lang)}</Button>
                                         )}
                                         {intake.status === 'Inspecting' && (
-                                            <Button size="small" onClick={() => handleMarkReady(intake.id)} style={{ backgroundColor: '#1890ff', color: '#ffffff', fontWeight: 600, borderRadius: 0, border: 'none', fontSize: 10, visibility: 'visible' }}>{t('complete_inspection', lang)}</Button>
+                                            <Button size="small" type="primary" onClick={() => handleMarkReady(intake.id)} style={{ backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '8px', border: 'none', fontSize: 10, visibility: 'visible' }}>{t('complete_inspection', lang)}</Button>
                                         )}
                                     </div>
                                 </div>
@@ -716,10 +767,10 @@ const JobIntakePage = () => {
                     </Row>
                     <Form.Item name="complaints" label="Findings"><TextArea rows={4} className="glass-input" /></Form.Item>
                     
-                    <Divider style={{ borderColor: 'rgba(255,255,255,0.1)' }}>Pre-estimation items</Divider>
+                    <Divider style={{ borderColor: '#cbd5e1' }}>Pre-estimation items</Divider>
                     <div style={{ marginBottom: 15 }}>
-                        <Button size="small" onClick={() => handleAddItem('Part')} style={{ marginRight: 10 }}>+ Part</Button>
-                        <Button size="small" onClick={() => handleAddItem('Service')}>+ Service</Button>
+                        <Button size="small" onClick={() => handleAddItem('Part')} style={{ marginRight: 10, backgroundColor: '#ffffff', border: '1px solid #cbd5e1', color: '#1e293b', fontWeight: 700, borderRadius: '8px' }}>+ Part</Button>
+                        <Button size="small" onClick={() => handleAddItem('Service')} style={{ backgroundColor: '#ffffff', border: '1px solid #cbd5e1', color: '#1e293b', fontWeight: 700, borderRadius: '8px' }}>+ Service</Button>
                     </div>
                     {items.map(item => (
                         <Row key={item.id} gutter={8} style={{ marginBottom: 10 }}>
@@ -735,12 +786,12 @@ const JobIntakePage = () => {
                                             const refined = await enhanceAutomotiveText(item.name);
                                             handleItemChange(item.id, 'name', refined);
                                         }}
-                                        style={{ height: '38px', width: '100%', background: 'rgba(59, 130, 246, 0.1)', border: '1px solid rgba(59, 130, 246, 0.3)', color: '#3B82F6' }}
+                                        style={{ height: '38px', width: '100%', background: 'rgba(0, 51, 153, 0.05)', border: '1px solid rgba(0, 51, 153, 0.2)', color: '#003399' }}
                                     />
                                 </Tooltip>
                             </Col>
                             <Col span={4}><Input type="number" value={item.quantity} onChange={e => handleItemChange(item.id, 'quantity', Number(e.target.value) || 1)} className="glass-input" /></Col>
-                            <Col span={6}><Button type="text" danger onClick={() => handleRemoveItem(item.id)} style={{ fontWeight: 600 }}>Remove</Button></Col>
+                            <Col span={6}><Button type="text" danger onClick={() => handleRemoveItem(item.id)} style={{ fontWeight: 700 }}>Remove</Button></Col>
                         </Row>
                     ))}
 
@@ -750,7 +801,7 @@ const JobIntakePage = () => {
                         block
                         htmlType="submit"
                         loading={submitting}
-                        style={{ height: 50, fontSize: 13, fontWeight: 600, background: '#3B82F6', border: 'none', color: '#FFFFFF', marginTop: 20 }}
+                        style={{ height: 50, fontSize: 13, fontWeight: 700, backgroundColor: '#003399', border: 'none', color: '#FFFFFF', borderRadius: '8px', marginTop: 20 }}
                     >
                         Commit updates
                     </Button>
