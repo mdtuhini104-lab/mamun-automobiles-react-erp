@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
+html, body, #root, .ant-layout, .billing-page-container {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+}
+
 /* ERP Visibility Hotfix - Specialist Dropdown, Operations Queue, and Global Inputs */
 .ant-card-extra, .ant-btn-primary, .ant-input-affix-wrapper { background-color: #1890ff !important; color: #ffffff !important; }
 input, select, textarea, .ant-input, .ant-select-selection-item, .ant-select-item-option-content, .ant-select-selector {
@@ -41,21 +47,20 @@ select option:checked, select option, .ant-select-selection-item {
 
 
 :root {
-  /* Deep Slate Premium Dark */
-  --bg-main: #0F172A;
-  --card-bg: #1E293B;
-  --bg-card: #1E293B;
-  --text-main: #FFFFFF;
-  --text-muted: #94A3B8;
-  --accent: #3B82F6;
-  --border-default: #334155;
-  --brand-secondary: #06B6D4;
-  --luxury-gold: #3B82F6;
-  --luxury-gold-glow: rgba(59, 130, 246, 0.4);
-  --slate-grey: #708090;
-  --glass-bg: rgba(30, 41, 59, 0.65);
-  --glass-border: #334155;
-  --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.5);
+  --bg-main: #ffffff !important;
+  --card-bg: #ffffff !important;
+  --bg-card: #ffffff !important;
+  --text-main: #1e293b !important;
+  --text-muted: #64748b !important;
+  --accent: #003399 !important;
+  --brand-secondary: #003399 !important;
+  --border-default: #cbd5e1 !important;
+  --luxury-gold: #003399 !important;
+  --luxury-gold-glow: rgba(0, 51, 153, 0.12) !important;
+  --slate-grey: #64748b !important;
+  --glass-bg: #ffffff !important;
+  --glass-border: #cbd5e1 !important;
+  --shadow-soft: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
   --card-radius: 12px;
 }
 
@@ -198,53 +203,22 @@ body .premium-blue-btn:hover {
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
 }
 
-/* Deep Slate Premium Dark Override */
-html.theme-premium-dark {
-  --bg-main: #0F172A;
-  --card-bg: #1E293B;
-  --bg-card: #1E293B;
-  --text-main: #FFFFFF;
-  --text-muted: #94A3B8;
-  --accent: #3B82F6;
-  --brand-secondary: #06B6D4;
-  --border-default: #334155;
-  --glass-bg: rgba(30, 41, 59, 0.85);
-  --glass-border: rgba(59, 130, 246, 0.3);
-  --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.5);
-}
-
-/* Light Minimal Theme Override */
-html.theme-light-minimal {
-  --bg-main: #F9FAFB;
-  --card-bg: #FFFFFF;
-  --bg-card: #FFFFFF;
-  --text-main: #000000 !important;
-  --text-muted: #1F2937 !important;
-  --accent: #2563EB;
-  --brand-secondary: #2563EB;
-  --border-default: #E5E7EB;
-  --glass-bg: rgba(255, 255, 255, 0.9);
-  --glass-border: rgba(59, 130, 246, 0.2);
-  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  /* Tooltip overrides for Light Mode */
+/* Premium Crisp White Theme Overrides */
+html, html.theme-premium-dark, html.theme-light-minimal, html.theme-midnight-purple {
+  --bg-main: #ffffff !important;
+  --card-bg: #ffffff !important;
+  --bg-card: #ffffff !important;
+  --text-main: #1e293b !important;
+  --text-muted: #64748b !important;
+  --accent: #003399 !important;
+  --brand-secondary: #003399 !important;
+  --border-default: #cbd5e1 !important;
+  --glass-bg: #ffffff !important;
+  --glass-border: #cbd5e1 !important;
+  --shadow-soft: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
   --tooltip-bg: rgba(243, 244, 246, 0.98);
   --tooltip-color: #000000;
-  --tooltip-border: #d1d5db;
-}
-
-/* Midnight Purple Theme Override */
-html.theme-midnight-purple {
-  --bg-main: #1A1033;
-  --card-bg: #2D1B4E;
-  --bg-card: #1A183C;
-  --text-main: #FFFFFF;
-  --text-muted: #A78BFA;
-  --accent: #A855F7;
-  --brand-secondary: #A855F7;
-  --border-default: rgba(168, 85, 247, 0.2);
-  --glass-bg: rgba(26, 24, 60, 0.85);
-  --glass-border: rgba(168, 85, 247, 0.4);
-  --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.6);
+  --tooltip-border: #cbd5e1;
 }
 
 .dynamic-text-main { color: var(--text-main) !important; }
@@ -495,11 +469,11 @@ html.theme-light-minimal .glass-sidebar .ant-menu-sub .ant-menu-item {
 }
 
 .glass-sidebar .ant-menu-item-selected {
-    background: #1e293b !important; /* Deeper background for active state */
-    color: #ffffff !important;
+    background: #f1f5f9 !important;
+    color: #003399 !important;
     font-weight: 900 !important;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4) !important;
-    border-left: 4px solid var(--brand-secondary) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    border-left: 4px solid #003399 !important;
 }
 
 html.theme-premium-dark .glass-sidebar .ant-menu-item-selected,

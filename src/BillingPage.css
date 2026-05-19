@@ -211,13 +211,13 @@
 /* Universal pure white form labels for maximized visibility over dark themes */
 .billing-card-wrapper .ant-form-item-label > label,
 .valuation-panel .ant-form-item-label > label {
-    color: #ffffff !important;
+    color: #0f172a !important;
     font-weight: 800 !important;
     font-size: 14px !important;
     letter-spacing: 0.3px;
 }
 
-/* Explicit input styles: bright internal text, gray baseline borders (#4B5563), Royal Blue focus glow */
+/* Explicit input styles: bright internal text, gray baseline borders (#cbd5e1), Royal Blue focus glow */
 .billing-card-wrapper .ant-input,
 .billing-card-wrapper .ant-input-number,
 .billing-card-wrapper .ant-input-number-input,
@@ -229,9 +229,9 @@
 .billing-card-wrapper .ant-select-selection-search-input,
 .billing-card-wrapper .ant-select-selection-item,
 .billing-card-wrapper .premium-glow-input {
-    color: #ffffff !important;
-    background-color: rgba(15, 23, 42, 0.6) !important;
-    border: 1px solid #4b5563 !important;
+    color: #000000 !important;
+    background-color: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
     border-radius: 8px !important;
     font-weight: 700 !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -239,9 +239,9 @@
 
 .search-parts-input.ant-input,
 .search-parts-input.ant-input[readonly] {
-    background-color: #1e293b !important;
-    color: #ffffff !important;
-    border: 1px solid #4b5563 !important; /* Subtle gray border initially */
+    background-color: #f8fafc !important;
+    color: #000000 !important;
+    border: 1px solid #cbd5e1 !important; /* Subtle gray border initially */
     border-radius: 6px !important;
     width: 140px !important;
     cursor: pointer !important;
@@ -255,16 +255,16 @@
     box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.4) !important;
 }
 .search-parts-input.ant-input::placeholder {
-    color: #9ca3af !important;
+    color: #64748b !important;
     opacity: 1 !important;
 }
 
 /* Radio button readability in dark mode */
 .billing-card-wrapper .ant-radio-button-wrapper,
 .valuation-panel .ant-radio-button-wrapper {
-    color: #e5e7eb !important;
-    background: rgba(30, 41, 59, 0.6) !important;
-    border-color: #4b5563 !important;
+    color: #1e293b !important;
+    background: #f8fafc !important;
+    border-color: #cbd5e1 !important;
     font-weight: 700 !important;
 }
 
@@ -273,7 +273,6 @@
     color: #ffffff !important;
     background: #003399 !important;
     border-color: #003399 !important;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 /* Highly optimized input focus highlighting with signature Royal Blue glow */
@@ -296,59 +295,60 @@
 .valuation-panel input::placeholder,
 .billing-card-wrapper .ant-input::placeholder,
 .billing-card-wrapper .ant-select-selection-placeholder {
-    color: #9ca3af !important;
+    color: #64748b !important;
     opacity: 1 !important;
     font-weight: 500 !important;
 }
 
 /* Spaced dropdown options for high readability */
 .ant-select-dropdown {
-    background-color: #1e293b !important;
-    border: 1px solid #4b5563 !important;
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
     border-radius: 8px !important;
     padding: 6px !important;
 }
 .ant-select-dropdown .ant-select-item {
-    color: #f9fafb !important;
+    color: #1e293b !important;
     font-weight: 600 !important;
     padding: 8px 12px !important;
     border-radius: 6px !important;
     transition: all 0.2s ease !important;
 }
 .ant-select-dropdown .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
-    background-color: #003399 !important;
-    color: #ffffff !important;
+    background-color: #f1f5f9 !important;
+    color: #003399 !important;
 }
 .ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-    background-color: #1e3a8a !important;
+    background-color: #003399 !important;
     color: #ffffff !important;
     font-weight: 700 !important;
 }
 
 /* Premium Table header visibility styling */
 .billing-card-wrapper .ant-table-thead > tr > th {
-    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%) !important;
-    color: #3B82F6 !important;
+    background: #f1f5f9 !important;
+    color: #003399 !important;
     font-weight: 900 !important;
     font-size: 13px !important;
     letter-spacing: 0.5px !important;
-    border-bottom: 2px solid #3B82F6 !important;
+    border-bottom: 2px solid #003399 !important;
     text-transform: uppercase;
 }
 
 /* Premium Table rows content visibility */
 .billing-card-wrapper .ant-table-tbody > tr > td {
-    color: #f9fafb !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    color: #1e293b !important;
+    border-bottom: 1px solid #e2e8f0 !important;
     background: transparent !important;
 }
 
 /* Internal Table Input elements overrides for clarity */
 .billing-card-wrapper .ant-table .ant-input,
 .billing-card-wrapper .ant-table .ant-input-number-input {
-    background-color: rgba(0,0,0,0.25) !important;
-    border-color: #4b5563 !important;
-    color: #ffffff !important;
+    background-color: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
 }
 
 @media print {

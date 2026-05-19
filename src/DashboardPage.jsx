@@ -178,30 +178,30 @@ const DashboardPage = () => {
         
         if (stage === 'ready_to_deliver' || status === 'completed') {
             return (
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)] tracking-wide">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse" />
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 border border-emerald-300 text-emerald-700 shadow-sm tracking-wide">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse" />
                     Ready
                 </span>
             );
         } else if (stage === 'work_in_progress' || stage === 'quality_check' || status === 'active') {
             if (stage === 'estimate') {
                 return (
-                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-950/40 border border-blue-500/30 text-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.15)] tracking-wide">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mr-1.5 animate-pulse" />
+                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 border border-blue-300 text-blue-700 shadow-sm tracking-wide">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-1.5 animate-pulse" />
                         Intake
                     </span>
                 );
             }
             return (
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-950/40 border border-amber-500/30 text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.15)] tracking-wide">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mr-1.5 animate-pulse" />
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 border border-amber-300 text-amber-700 shadow-sm tracking-wide">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-1.5 animate-pulse" />
                     In-Progress
                 </span>
             );
         } else {
             return (
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-950/40 border border-blue-500/30 text-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.15)] tracking-wide">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mr-1.5 animate-pulse" />
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 border border-blue-300 text-blue-700 shadow-sm tracking-wide">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-1.5 animate-pulse" />
                     Intake
                 </span>
             );
@@ -211,24 +211,20 @@ const DashboardPage = () => {
     return (
         <div className="relative min-h-screen transition-all duration-300" style={{ maxWidth: 1400, margin: '0 auto', padding: '30px 20px', background: 'var(--bg-main)' }}>
             
-            {/* Embedded styles for executive glass-morphic layout */}
+            {/* Embedded styles for executive pure white layout */}
             <style>{`
                 .executive-kpi-card {
-                    background: rgba(30, 41, 59, 0.6) !important;
-                    backdrop-filter: blur(12px) !important;
-                    -webkit-backdrop-filter: blur(12px) !important;
-                    border: 1px solid rgba(51, 65, 85, 0.6) !important;
-                    border-radius: 1rem !important;
-                    padding: 1.5rem !important;
-                    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
-                    position: relative !important;
-                    overflow: hidden !important;
-                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                    background: #ffffff !important;
+                    border: 1px solid #e2e8f0 !important;
+                    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+                    border-radius: 12px !important;
+                    padding: 24px !important;
+                    transition: all 0.3s ease !important;
                 }
                 .executive-kpi-card:hover {
-                    transform: translateY(-4px) !important;
-                    border-color: rgba(59, 130, 246, 0.4) !important;
-                    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15) !important;
+                    border-color: #003399 !important;
+                    box-shadow: 0 4px 25px rgba(0, 51, 153, 0.12) !important;
+                    transform: translateY(-2px) !important;
                 }
                 .quick-actions-container {
                     display: flex !important;
@@ -239,12 +235,12 @@ const DashboardPage = () => {
             `}</style>
 
             {/* Header Area */}
-            <div className="relative z-10 flex flex-col md:flex-row md:justify-between md:items-center gap-6 mb-10 pb-8 border-b border-[#334155]/40">
+            <div className="relative z-10 flex flex-col md:flex-row md:justify-between md:items-center gap-6 mb-10 pb-8 border-b border-[#cbd5e1]">
                 <div>
-                    <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white m-0 font-montserrat">
+                    <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-[#1e293b] m-0 font-montserrat">
                         Executive Dashboard
                     </h1>
-                    <p className="text-[#9ca3af] text-sm font-medium tracking-wide mt-1.5 opacity-90">
+                    <p className="text-[#64748b] text-sm font-medium tracking-wide mt-1.5 opacity-90">
                         Mamun Automobiles • Operational Intelligence & Strategic Controls
                     </p>
                 </div>
@@ -253,19 +249,19 @@ const DashboardPage = () => {
                 <div className="quick-actions-container">
                     <button
                         onClick={() => navigateTo('3')}
-                        className="px-5 py-2.5 bg-[#1E293B]/60 backdrop-blur-md border border-[#334155] rounded-xl text-xs uppercase tracking-wider font-extrabold text-[#9ca3af] hover:text-white hover:border-[#003399] transition-all duration-300 cursor-pointer shadow-lg"
+                        className="px-5 py-2.5 bg-white border border-[#003399] rounded-xl text-xs uppercase tracking-wider font-extrabold text-[#003399] hover:bg-[#003399] hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
                     >
                         New Invoice
                     </button>
                     <button
                         onClick={() => navigateTo('quotations')}
-                        className="px-5 py-2.5 bg-[#1E293B]/60 backdrop-blur-md border border-[#334155] rounded-xl text-xs uppercase tracking-wider font-extrabold text-[#9ca3af] hover:text-white hover:border-[#003399] transition-all duration-300 cursor-pointer shadow-lg"
+                        className="px-5 py-2.5 bg-white border border-[#003399] rounded-xl text-xs uppercase tracking-wider font-extrabold text-[#003399] hover:bg-[#003399] hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
                     >
                         Create Quotation
                     </button>
                     <button
                         onClick={() => navigateTo('2')}
-                        className="px-5 py-2.5 bg-[#1E293B]/60 backdrop-blur-md border border-[#334155] rounded-xl text-xs uppercase tracking-wider font-extrabold text-[#9ca3af] hover:text-white hover:border-[#003399] transition-all duration-300 cursor-pointer shadow-lg"
+                        className="px-5 py-2.5 bg-white border border-[#003399] rounded-xl text-xs uppercase tracking-wider font-extrabold text-[#003399] hover:bg-[#003399] hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
                     >
                         Open Job Card
                     </button>
@@ -274,26 +270,26 @@ const DashboardPage = () => {
 
             {/* Minimalist Search box */}
             <div className="relative z-10 mb-8 max-w-xl">
-                <div className="relative flex items-center bg-[#1E293B]/60 backdrop-blur-md border border-[#334155]/60 rounded-xl overflow-hidden shadow-lg h-12">
+                <div className="relative flex items-center bg-[#f8fafc] border border-[#cbd5e1] rounded-xl overflow-hidden shadow-sm h-12">
                     <input 
                         type="text"
                         placeholder="Search vehicle service history..."
                         value={searchVehicleNo}
                         onChange={(e) => setSearchVehicleNo(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleSearchVehicle(searchVehicleNo)}
-                        className="flex-1 bg-transparent border-none outline-none px-4 text-white text-sm font-medium placeholder-[#9ca3af]/60"
-                        style={{ color: '#ffffff !important' }}
+                        className="flex-1 bg-transparent border-none outline-none px-4 text-[#000000] text-sm font-medium placeholder-[#64748b]"
+                        style={{ color: '#000000 !important' }}
                     />
                     <button 
                         onClick={handleVoiceSearch}
-                        className="px-3 text-[#9ca3af] hover:text-[#3B82F6] transition-colors"
+                        className="px-3 text-[#64748b] hover:text-[#003399] transition-colors"
                         title="Voice Search"
                     >
                         {isListening ? <MicOff className="w-5 h-5 text-red-500 animate-pulse" /> : <Mic className="w-5 h-5" />}
                     </button>
                     <button 
                         onClick={() => handleSearchVehicle(searchVehicleNo)}
-                        className="h-full px-6 bg-[#3b82f6] hover:bg-[#2563eb] text-white font-extrabold text-xs uppercase tracking-widest transition-all duration-300 cursor-pointer"
+                        className="h-full px-6 bg-[#003399] hover:bg-[#002266] text-white font-extrabold text-xs uppercase tracking-widest transition-all duration-300 cursor-pointer"
                     >
                         Search
                     </button>
@@ -305,10 +301,10 @@ const DashboardPage = () => {
                 {/* 1. Today's Revenue */}
                 <div className="executive-kpi-card">
                     <div className="flex justify-between items-start mb-4">
-                        <span className="text-xs uppercase tracking-widest font-black text-[#9ca3af]">Today's Revenue</span>
-                        <DollarSign className="text-[#3B82F6] w-5 h-5 opacity-90" />
+                        <span className="text-xs uppercase tracking-widest font-black text-[#64748b]">Today's Revenue</span>
+                        <DollarSign className="text-[#003399] w-5 h-5 opacity-90" />
                     </div>
-                    <div className="text-3xl font-extrabold text-white tracking-tight font-montserrat" style={{ fontWeight: 800 }}>
+                    <div className="text-3xl font-extrabold text-[#1e293b] tracking-tight font-montserrat" style={{ fontWeight: 800 }}>
                         ৳ {formatCurrency(revenueToday)}
                     </div>
                 </div>
@@ -316,10 +312,10 @@ const DashboardPage = () => {
                 {/* 2. Active Job Cards */}
                 <div className="executive-kpi-card">
                     <div className="flex justify-between items-start mb-4">
-                        <span className="text-xs uppercase tracking-widest font-black text-[#9ca3af]">Active Job Cards</span>
-                        <Clipboard className="text-[#3B82F6] w-5 h-5 opacity-90" />
+                        <span className="text-xs uppercase tracking-widest font-black text-[#64748b]">Active Job Cards</span>
+                        <Clipboard className="text-[#003399] w-5 h-5 opacity-90" />
                     </div>
-                    <div className="text-3xl font-extrabold text-white tracking-tight font-montserrat" style={{ fontWeight: 800 }}>
+                    <div className="text-3xl font-extrabold text-[#1e293b] tracking-tight font-montserrat" style={{ fontWeight: 800 }}>
                         {activeJobs}
                     </div>
                 </div>
@@ -327,10 +323,10 @@ const DashboardPage = () => {
                 {/* 3. Cash Collected */}
                 <div className="executive-kpi-card">
                     <div className="flex justify-between items-start mb-4">
-                        <span className="text-xs uppercase tracking-widest font-black text-[#9ca3af]">Cash Collected</span>
-                        <TrendingUp className="text-[#3B82F6] w-5 h-5 opacity-90" />
+                        <span className="text-xs uppercase tracking-widest font-black text-[#64748b]">Cash Collected</span>
+                        <TrendingUp className="text-[#003399] w-5 h-5 opacity-90" />
                     </div>
-                    <div className="text-3xl font-extrabold text-white tracking-tight font-montserrat" style={{ fontWeight: 800 }}>
+                    <div className="text-3xl font-extrabold text-[#1e293b] tracking-tight font-montserrat" style={{ fontWeight: 800 }}>
                         ৳ {formatCurrency(cashCollectionToday)}
                     </div>
                 </div>
@@ -338,35 +334,35 @@ const DashboardPage = () => {
                 {/* 4. Low Stock Alert */}
                 <div className="executive-kpi-card">
                     <div className="flex justify-between items-start mb-4">
-                        <span className="text-xs uppercase tracking-widest font-black text-[#9ca3af]">Low Stock Alert</span>
+                        <span className="text-xs uppercase tracking-widest font-black text-[#64748b]">Low Stock Alert</span>
                         <AlertTriangle className="text-[#ef4444] w-5 h-5 opacity-90" />
                     </div>
-                    <div className="text-3xl font-extrabold text-white tracking-tight font-montserrat" style={{ fontWeight: 800 }}>
+                    <div className="text-3xl font-extrabold text-[#1e293b] tracking-tight font-montserrat" style={{ fontWeight: 800 }}>
                         {lowStockCount}
                     </div>
                 </div>
             </div>
 
             {/* AI Strategic Diagnostics & Insight Banner */}
-            <div className="relative z-10 mb-8 bg-gradient-to-r from-[#1e293b]/80 to-[#0f172a]/60 backdrop-blur-md border border-[#334155]/50 rounded-2xl p-5 shadow-xl flex items-center gap-4">
-                <div className="p-3 bg-[#3B82F6]/10 rounded-xl border border-[#3b82f6]/25">
-                    <Sparkles className="text-[#3B82F6] w-6 h-6 animate-pulse" />
+            <div className="relative z-10 mb-8 bg-white border border-[#e2e8f0] rounded-2xl p-5 shadow-sm flex items-center gap-4">
+                <div className="p-3 bg-[#003399]/10 rounded-xl border border-[#003399]/25">
+                    <Sparkles className="text-[#003399] w-6 h-6 animate-pulse" />
                 </div>
                 <div>
-                    <div className="text-xs font-extrabold uppercase tracking-wider text-[#3B82F6]">AI Strategic Diagnostics</div>
-                    <div className="text-[#9ca3af] text-xs font-semibold leading-relaxed mt-1">{businessTip}</div>
+                    <div className="text-xs font-extrabold uppercase tracking-wider text-[#003399]">AI Strategic Diagnostics</div>
+                    <div className="text-[#64748b] text-xs font-semibold leading-relaxed mt-1">{businessTip}</div>
                 </div>
             </div>
 
             {/* Premium Recent Active Job Cards Operations Grid */}
-            <div className="relative z-10 bg-[#1E293B]/50 backdrop-blur-md border border-[#334155]/60 rounded-2xl p-6 shadow-2xl">
+            <div className="relative z-10 bg-white border border-[#e2e8f0] rounded-2xl p-6 shadow-sm">
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-lg font-extrabold text-white uppercase tracking-wider font-montserrat flex items-center gap-2">
-                        <ShieldCheck className="text-[#3b82f6] w-5 h-5" /> Recent Workshop Operations
+                    <h2 className="text-lg font-extrabold text-[#1e293b] uppercase tracking-wider font-montserrat flex items-center gap-2">
+                        <ShieldCheck className="text-[#003399] w-5 h-5" /> Recent Workshop Operations
                     </h2>
                     <button 
                         onClick={() => navigateTo('2')}
-                        className="text-xs font-extrabold uppercase tracking-widest text-[#3b82f6] hover:text-[#2563eb] transition-colors flex items-center gap-1.5 cursor-pointer"
+                        className="text-xs font-extrabold uppercase tracking-widest text-[#003399] hover:text-[#002266] transition-colors flex items-center gap-1.5 cursor-pointer"
                     >
                         View All Operations <ArrowRight className="w-3.5 h-3.5" />
                     </button>
@@ -375,7 +371,7 @@ const DashboardPage = () => {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="border-b border-[#334155]/60 text-[10px] font-black uppercase tracking-widest text-[#9ca3af] select-none">
+                            <tr className="border-b border-[#cbd5e1] text-[10px] font-black uppercase tracking-widest text-[#64748b] select-none">
                                 <th className="pb-3 pl-4">Job ID</th>
                                 <th className="pb-3">Vehicle Details</th>
                                 <th className="pb-3">Client Details</th>
@@ -384,23 +380,23 @@ const DashboardPage = () => {
                                 <th className="pb-3 pr-4 text-center">Status stage</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-[#334155]/30">
+                        <tbody className="divide-y divide-[#e2e8f0]">
                             {myJobCards.slice(0, 5).map((job) => (
-                                <tr key={job.id} className="text-xs text-white hover:bg-[#334155]/20 transition-all duration-150">
-                                    <td className="py-4 pl-4 font-extrabold text-[#3B82F6]">
+                                <tr key={job.id} className="text-xs text-[#1e293b] hover:bg-[#f1f5f9] transition-all duration-150">
+                                    <td className="py-4 pl-4 font-extrabold text-[#003399]">
                                         #JC-{String(job.id).padStart(3, '0')}
                                     </td>
-                                    <td className="py-4 font-semibold text-white">
+                                    <td className="py-4 font-semibold text-[#1e293b]">
                                         {job.vehicleNo}
                                     </td>
                                     <td className="py-4">
-                                        <div className="font-semibold text-white">{job.customerName || 'N/A'}</div>
-                                        <div className="text-[10px] text-[#9ca3af]/80 font-medium">{job.phone || 'N/A'}</div>
+                                        <div className="font-semibold text-[#1e293b]">{job.customerName || 'N/A'}</div>
+                                        <div className="text-[10px] text-[#64748b] font-medium">{job.phone || 'N/A'}</div>
                                     </td>
-                                    <td className="py-4 text-[#9ca3af] font-medium">
+                                    <td className="py-4 text-[#64748b] font-medium">
                                         {dayjs(job.date).format('DD MMM YYYY')}
                                     </td>
-                                    <td className="py-4 text-white font-semibold">
+                                    <td className="py-4 text-[#1e293b] font-semibold">
                                         {job.assigned_staff_name || 'Unassigned'}
                                     </td>
                                     <td className="py-4 pr-4 text-center">
@@ -410,7 +406,7 @@ const DashboardPage = () => {
                             ))}
                             {myJobCards.length === 0 && (
                                 <tr>
-                                    <td colSpan="6" className="py-8 text-center text-[#9ca3af] font-semibold text-sm">
+                                    <td colSpan="6" className="py-8 text-center text-[#64748b] font-semibold text-sm">
                                         No active operations in progress.
                                     </td>
                                 </tr>
@@ -423,7 +419,7 @@ const DashboardPage = () => {
             {/* Vehicle History Results Modal */}
             <Modal
                 title={
-                    <span className="text-white font-extrabold uppercase tracking-wide font-montserrat" style={{ color: '#ffffff' }}>
+                    <span className="text-[#1e293b] font-extrabold uppercase tracking-wide font-montserrat">
                         Vehicle Service History: {searchVehicleNo}
                     </span>
                 }
@@ -433,7 +429,7 @@ const DashboardPage = () => {
                     <button 
                         key="close" 
                         onClick={() => setIsHistoryModalVisible(false)}
-                        className="px-5 py-2 bg-[#3B82F6] hover:bg-[#2563eb] text-white font-extrabold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
+                        className="px-5 py-2 bg-[#003399] hover:bg-[#002266] text-white font-extrabold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
                     >
                         Close
                     </button>
@@ -441,23 +437,23 @@ const DashboardPage = () => {
                 width={850}
                 className="luxury-modal"
                 styles={{ 
-                    body: { maxHeight: '75vh', overflowY: 'auto', padding: '24px', background: '#0F172A' },
+                    body: { maxHeight: '75vh', overflowY: 'auto', padding: '24px', background: '#ffffff' },
                     mask: { backdropFilter: 'blur(4px)' }
                 }}
             >
-                <div style={{ background: '#0F172A', color: '#ffffff' }}>
+                <div style={{ background: '#ffffff', color: '#1e293b' }}>
                     <div style={{ marginBottom: '24px' }}>
-                        <Title level={5} style={{ color: '#ffffff', fontWeight: 800, textTransform: 'uppercase', fontSize: 13, letterSpacing: '0.5px' }}>
+                        <Title level={5} style={{ color: '#1e293b', fontWeight: 800, textTransform: 'uppercase', fontSize: 13, letterSpacing: '0.5px' }}>
                             Job Cards Timeline
                         </Title>
                         <List
                             dataSource={historyResults.jobs}
                             renderItem={job => (
-                                <List.Item style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '12px 0' }}>
+                                <List.Item style={{ borderBottom: '1px solid #e2e8f0', padding: '12px 0' }}>
                                     <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <div>
-                                            <div style={{ fontWeight: 700, color: '#3B82F6', fontSize: 13 }}>#JC-{String(job.id).padStart(3, '0')}</div>
-                                            <div style={{ fontSize: 11, color: '#9ca3af', marginTop: 2 }}>{dayjs(job.date).format('DD MMM YYYY')} - {job.description || 'General Service'}</div>
+                                            <div style={{ fontWeight: 700, color: '#003399', fontSize: 13 }}>#JC-{String(job.id).padStart(3, '0')}</div>
+                                            <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>{dayjs(job.date).format('DD MMM YYYY')} - {job.description || 'General Service'}</div>
                                         </div>
                                         <div>
                                             {renderGlowingStatusTag(job)}
@@ -465,24 +461,24 @@ const DashboardPage = () => {
                                     </div>
                                 </List.Item>
                             )}
-                            locale={{ emptyText: <span style={{ color: '#9ca3af', fontSize: 12 }}>No job cards found.</span> }}
+                            locale={{ emptyText: <span style={{ color: '#64748b', fontSize: 12 }}>No job cards found.</span> }}
                         />
                     </div>
                     
-                    <Divider style={{ borderColor: 'rgba(255,255,255,0.08)' }} />
+                    <Divider style={{ borderColor: '#e2e8f0' }} />
                     
                     <div>
-                        <Title level={5} style={{ color: '#ffffff', fontWeight: 800, textTransform: 'uppercase', fontSize: 13, letterSpacing: '0.5px' }}>
+                        <Title level={5} style={{ color: '#1e293b', fontWeight: 800, textTransform: 'uppercase', fontSize: 13, letterSpacing: '0.5px' }}>
                             Invoices & Settlements
                         </Title>
                         <List
                             dataSource={historyResults.bills}
                             renderItem={bill => (
-                                <List.Item style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '12px 0' }}>
+                                <List.Item style={{ borderBottom: '1px solid #e2e8f0', padding: '12px 0' }}>
                                     <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <div>
-                                            <div style={{ fontWeight: 700, color: '#ffffff', fontSize: 13 }}>Invoice ID: {bill.id}</div>
-                                            <div style={{ fontSize: 11, color: '#9ca3af', marginTop: 2 }}>{dayjs(bill.date).format('DD MMM YYYY')}</div>
+                                            <div style={{ fontWeight: 700, color: '#1e293b', fontSize: 13 }}>Invoice ID: {bill.id}</div>
+                                            <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>{dayjs(bill.date).format('DD MMM YYYY')}</div>
                                         </div>
                                         <div style={{ textAlign: 'right' }}>
                                             <div style={{ fontWeight: 800, color: '#10b981', fontSize: 13 }}>৳ {formatCurrency(bill.netPayable || bill.amount || 0)}</div>
@@ -493,7 +489,7 @@ const DashboardPage = () => {
                                     </div>
                                 </List.Item>
                             )}
-                            locale={{ emptyText: <span style={{ color: '#9ca3af', fontSize: 12 }}>No payment history recorded.</span> }}
+                            locale={{ emptyText: <span style={{ color: '#64748b', fontSize: 12 }}>No payment history recorded.</span> }}
                         />
                     </div>
                 </div>
