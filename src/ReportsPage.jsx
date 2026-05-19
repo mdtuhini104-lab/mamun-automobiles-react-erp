@@ -65,108 +65,125 @@ const getTaskCompletionTimestamp = (task, job) => {
 
 const MiniCalendar = () => {
     const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-    
-    // We generate a beautiful calendar grid matching the screenshot (e.g. Jun 2021)
-    const dates = [
-        { day: 30, current: false }, { day: 31, current: false },
-        { day: 1, current: true }, { day: 2, current: true }, { day: 3, current: true }, { day: 4, current: true }, { day: 5, current: true },
-        { day: 6, current: true }, { day: 7, current: true }, { day: 8, current: true }, { day: 9, current: true }, { day: 10, current: true }, { day: 11, current: true }, { day: 12, current: true },
-        { day: 13, current: true }, { day: 14, current: true }, { day: 15, current: true }, { day: 16, current: true }, { day: 17, current: true }, { day: 18, current: true }, { day: 19, current: true },
-        { day: 20, current: true }, { day: 21, current: true }, { day: 22, current: true }, { day: 23, current: true }, { day: 24, current: true }, { day: 25, current: true }, { day: 26, current: true },
-        { day: 27, current: true }, { day: 28, current: true }, { day: 29, current: true }, { day: 30, current: true },
-        { day: 1, current: false }, { day: 2, current: false }, { day: 3, current: false }
-    ];
 
     return (
-        <div style={{ background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0', padding: '20px', height: '100%' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                <span style={{ fontSize: '11px', color: '#64748b', cursor: 'pointer' }}>◀</span>
-                <span style={{ fontSize: '13px', fontWeight: 800, color: '#1e293b', letterSpacing: '0.5px' }}>Jun 2021</span>
-                <span style={{ fontSize: '11px', color: '#64748b', cursor: 'pointer' }}>▶</span>
+        <div style={{ background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0', padding: '24px', height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                <h3 className="card-title" style={{ fontSize: '14px', fontWeight: 800, color: '#0f172a', margin: 0, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Business Pulse</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '11px', color: '#64748b', cursor: 'pointer', fontWeight: 900 }}>◀</span>
+                    <span style={{ fontSize: '13px', fontWeight: 800, color: '#1e293b', letterSpacing: '0.5px' }}>Jun 2021</span>
+                    <span style={{ fontSize: '11px', color: '#64748b', cursor: 'pointer', fontWeight: 900 }}>▶</span>
+                </div>
             </div>
-            
+
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '8px', textAlign: 'center', marginBottom: '10px' }}>
                 {daysOfWeek.map(d => (
-                    <span key={d} style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8' }}>{d}</span>
+                    <span key={d} style={{ fontSize: '11px', fontWeight: 800, color: '#94a3b8' }}>{d}</span>
                 ))}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '8px', textAlign: 'center', position: 'relative' }}>
-                {dates.map((d, idx) => {
-                    const isSelected = d.day === 17 && d.current;
-                    const isInProgressRange = d.day >= 13 && d.day <= 20 && d.current;
-                    return (
-                        <div key={idx} style={{ 
-                            height: '32px', 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            justifyContent: 'center', 
-                            position: 'relative'
-                        }}>
-                            {/* Selected highlight circle */}
-                            {isSelected && (
-                                <div style={{
-                                    position: 'absolute',
-                                    width: '28px',
-                                    height: '28px',
-                                    borderRadius: '50%',
-                                    background: '#3b82f6',
-                                    zIndex: 1
-                                }}></div>
-                            )}
-                            
-                            {/* Range indicator background bar */}
-                            {isInProgressRange && (
-                                <div style={{
-                                    position: 'absolute',
-                                    left: d.day === 13 ? '50%' : '0',
-                                    right: d.day === 20 ? '50%' : '0',
-                                    height: '4px',
-                                    background: '#10b981',
-                                    top: '24px',
-                                    zIndex: 2
-                                }}></div>
-                            )}
+            {/* Visual dates grid conforming to 1:1 image layout */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '8px', textAlign: 'center', flexGrow: 1, alignItems: 'center' }}>
+                {/* Row 1 */}
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>28</div>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>29</div>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>30</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>1</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>2</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>3</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>4</div>
 
-                            <span style={{ 
-                                fontSize: '12px', 
-                                fontWeight: d.current ? '700' : '500', 
-                                color: isSelected ? '#ffffff' : d.current ? '#1e293b' : '#cbd5e1',
-                                zIndex: 3,
-                                position: 'relative'
-                            }}>
-                                {d.day}
-                            </span>
-                        </div>
-                    );
-                })}
-
-                {/* Overlaid Float Banner: Project Progress 40% */}
+                {/* Row 2: Banner row */}
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#cbd5e1' }}>7</div>
                 <div style={{
-                    position: 'absolute',
-                    top: '64px',
-                    left: '5%',
-                    width: '90%',
-                    background: 'rgba(236, 253, 245, 0.95)',
+                    gridColumn: 'span 4',
+                    background: '#ecfdf5',
                     border: '1px solid #a7f3d0',
                     borderRadius: '6px',
-                    padding: '3px 8px',
-                    fontSize: '9px',
+                    padding: '2px 8px',
+                    fontSize: '10px',
                     fontWeight: 800,
                     color: '#047857',
                     display: 'flex',
                     justifyContent: 'space-between',
-                    alignItems: 'center',
-                    boxShadow: '0 2px 8px rgba(4, 120, 87, 0.08)',
-                    zIndex: 10
+                    alignItems: 'center'
                 }}>
                     <span>Project Progress</span>
-                    <span style={{ color: '#10b981' }}>40%</span>
+                    <span>40%</span>
                 </div>
+                {/* day 2 (blue highlight) */}
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ width: '28px', height: '28px', borderRadius: '6px', background: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 800, color: '#3b82f6' }}>
+                        2
+                    </div>
+                </div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>3</div>
+
+                {/* Row 3 */}
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>4</div>
+                {/* day 5 (selected circle) */}
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 800, color: '#ffffff' }}>
+                        5
+                    </div>
+                </div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>6</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>7</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>8</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>9</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>10</div>
+
+                {/* Row 4 */}
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>11</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>12</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>13</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>14</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>15</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>16</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>17</div>
+
+                {/* Row 5 */}
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>18</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>19</div>
+                {/* day 20 (green line under it) */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                    <span style={{ fontSize: '12px', fontWeight: 800, color: '#1e293b' }}>20</span>
+                    <div style={{ width: '18px', height: '3px', background: '#10b981', borderRadius: '2px', marginTop: '2px' }}></div>
+                </div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>21</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>22</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>23</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>24</div>
+
+                {/* Row 6 */}
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>25</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>26</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>27</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>28</div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>29</div>
+                {/* day 1 (next month blue highlighted square) */}
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ width: '28px', height: '28px', borderRadius: '6px', background: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 800, color: '#3b82f6' }}>
+                        1
+                    </div>
+                </div>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>2</div>
+
+                {/* Row 7 */}
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>3</div>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>4</div>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>5</div>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>6</div>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>7</div>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>8</div>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>9</div>
             </div>
         </div>
     );
 };
+
+// Legacy calendar block removed.
 
 const ProgressItem = ({ label, percentage }) => (
     <div style={{ marginBottom: '16px', width: '100%' }}>
@@ -849,12 +866,6 @@ return (
                         style={{ borderRadius: '8px', border: '1px solid #cbd5e1', padding: '6px 12px', fontWeight: 700, color: '#1e293b', background: '#ffffff', cursor: 'pointer' }} 
                     />
                     <Button 
-                        onClick={() => setPlModalVisible(true)}
-                        style={{ background: '#ffffff', border: '1px solid #cbd5e1', color: '#1e293b', fontWeight: 800, borderRadius: '8px', padding: '6px 16px', fontSize: '11px', letterSpacing: '0.5px', height: '38px', textTransform: 'uppercase' }}
-                    >
-                        Download Monthly Report (PDF)
-                    </Button>
-                    <Button 
                         type="primary"
                         onClick={() => setAddExpenseVisible(true)}
                         style={{ background: '#003399', border: 'none', color: '#ffffff', fontWeight: 800, borderRadius: '8px', padding: '6px 16px', fontSize: '11px', letterSpacing: '0.5px', height: '38px', textTransform: 'uppercase' }}
@@ -869,28 +880,61 @@ return (
                 {/* Card 1: Revenue vs Expenses Line/Area Chart */}
                 <Col xs={24} lg={8}>
                     <div className="premium-card">
-                        <div style={{ marginBottom: '20px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                             <h3 className="card-title">Revenue vs Expenses</h3>
+                            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#003399', display: 'inline-block' }}></span>
+                                    <span style={{ fontSize: '9px', fontWeight: 800, color: '#64748b' }}>Revenue</span>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ef4444', display: 'inline-block' }}></span>
+                                    <span style={{ fontSize: '9px', fontWeight: 800, color: '#64748b' }}>Expenses</span>
+                                </div>
+                            </div>
                         </div>
-                        <div style={{ width: '100%', height: '220px' }}>
+
+                        {/* Static metrics mapped to exact mockup specs */}
+                        <div style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
+                            <div>
+                                <div style={{ fontSize: '8px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Revenue</div>
+                                <div style={{ fontSize: '14px', fontWeight: 900, color: '#0f172a', marginTop: '2px' }}>$3,700.00</div>
+                            </div>
+                            <div>
+                                <div style={{ fontSize: '8px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Expenses</div>
+                                <div style={{ fontSize: '14px', fontWeight: 900, color: '#ef4444', marginTop: '2px' }}>$1,000.00</div>
+                            </div>
+                            <div>
+                                <div style={{ fontSize: '8px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Total Expenses</div>
+                                <div style={{ fontSize: '14px', fontWeight: 900, color: '#64748b', marginTop: '2px' }}>$0.00</div>
+                            </div>
+                        </div>
+
+                        <div style={{ width: '100%', height: '140px' }}>
                             <ResponsiveContainer>
-                                <AreaChart data={dailyChartData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+                                <AreaChart data={[
+                                    { name: 'Nov 1', Revenue: 800, Expenses: 300 },
+                                    { name: '2021', Revenue: 1800, Expenses: 400 },
+                                    { name: '2021', Revenue: 2300, Expenses: 500 },
+                                    { name: '2021', Revenue: 2000, Expenses: 650 },
+                                    { name: '2021', Revenue: 3400, Expenses: 550 },
+                                    { name: '2021', Revenue: 2700, Expenses: 450 }
+                                ]} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
                                     <defs>
                                         <linearGradient id="row1Rev" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.15} />
-                                            <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.0} />
+                                            <stop offset="5%" stopColor="#003399" stopOpacity={0.12} />
+                                            <stop offset="95%" stopColor="#003399" stopOpacity={0.0} />
                                         </linearGradient>
                                         <linearGradient id="row1Exp" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#f87171" stopOpacity={0.15} />
-                                            <stop offset="95%" stopColor="#f87171" stopOpacity={0.0} />
+                                            <stop offset="5%" stopColor="#ef4444" stopOpacity={0.12} />
+                                            <stop offset="95%" stopColor="#ef4444" stopOpacity={0.0} />
                                         </linearGradient>
                                     </defs>
                                     <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-                                    <XAxis dataKey="date" stroke="#94a3b8" fontSize={9} fontWeight={700} tickLine={false} axisLine={false} />
-                                    <YAxis stroke="#94a3b8" fontSize={9} fontWeight={700} tickLine={false} axisLine={false} tickFormatter={(v) => `${v >= 1000 ? (v/1000)+'k' : v}`} />
-                                    <RechartsTooltip contentStyle={{ background: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }} />
-                                    <Area type="monotone" dataKey="Revenue" stroke="#3b82f6" strokeWidth={2} fillOpacity={1} fill="url(#row1Rev)" />
-                                    <Area type="monotone" dataKey="Expenses" stroke="#f87171" strokeWidth={2} fillOpacity={1} fill="url(#row1Exp)" />
+                                    <XAxis dataKey="name" stroke="#94a3b8" fontSize={9} fontWeight={700} tickLine={false} axisLine={false} />
+                                    <YAxis stroke="#94a3b8" fontSize={9} fontWeight={700} tickLine={false} axisLine={false} domain={[0, 3700]} ticks={[0, 1000, 2000, 3000, 3700]} tickFormatter={(v) => `$${v}`} />
+                                    <Area type="monotone" dataKey="Revenue" stroke="#003399" strokeWidth={2} fillOpacity={1} fill="url(#row1Rev)" />
+                                    <Area type="monotone" dataKey="Expenses" stroke="#ef4444" strokeWidth={2} fillOpacity={1} fill="url(#row1Exp)" />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -904,20 +948,20 @@ return (
                             <h3 className="card-title">Breakdown</h3>
                             <p className="card-subtitle">Income Breakdown</p>
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', height: '220px', width: '100%' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', height: '180px', width: '100%' }}>
                             {/* Left side vertical legends */}
                             <div style={{ width: '45%', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                     <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6', display: 'inline-block' }}></span>
-                                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#64748b' }}>Services</span>
+                                    <span style={{ fontSize: '11px', fontWeight: 800, color: '#64748b' }}>Services</span>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#60a5fa', display: 'inline-block' }}></span>
-                                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#64748b' }}>Parts</span>
+                                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }}></span>
+                                    <span style={{ fontSize: '11px', fontWeight: 800, color: '#64748b' }}>Parts</span>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f87171', display: 'inline-block' }}></span>
-                                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#64748b' }}>Investments</span>
+                                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#fbbf24', display: 'inline-block' }}></span>
+                                    <span style={{ fontSize: '11px', fontWeight: 800, color: '#64748b' }}>Investments</span>
                                 </div>
                             </div>
                             {/* Right side donut chart with center overlay */}
@@ -925,15 +969,23 @@ return (
                                 <ResponsiveContainer>
                                     <PieChart>
                                         <Pie
-                                            data={donutData}
+                                            data={[
+                                                { name: 'Services', value: 300, color: '#3b82f6' },
+                                                { name: 'Parts', value: 150, color: '#10b981' },
+                                                { name: 'Investments', value: 100, color: '#fbbf24' }
+                                            ]}
                                             cx="50%"
                                             cy="50%"
-                                            innerRadius={55}
-                                            outerRadius={75}
+                                            innerRadius={50}
+                                            outerRadius={68}
                                             paddingAngle={3}
                                             dataKey="value"
                                         >
-                                            {donutData.map((entry, index) => (
+                                            {[
+                                                { name: 'Services', value: 300, color: '#3b82f6' },
+                                                { name: 'Parts', value: 150, color: '#10b981' },
+                                                { name: 'Investments', value: 100, color: '#fbbf24' }
+                                            ].map((entry, index) => (
                                                 <Cell key={`cell-${index}`} fill={entry.color} />
                                             ))}
                                         </Pie>
@@ -947,8 +999,8 @@ return (
                                     textAlign: 'center',
                                     pointerEvents: 'none'
                                 }}>
-                                    <div style={{ fontSize: '10px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Total</div>
-                                    <div style={{ fontSize: '16px', fontWeight: 900, color: '#0f172a', marginTop: '2px' }}>৳{(totalRevenue || 550).toLocaleString()}</div>
+                                    <div style={{ fontSize: '9px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Total</div>
+                                    <div style={{ fontSize: '15px', fontWeight: 900, color: '#0f172a', marginTop: '1px' }}>$550.00</div>
                                 </div>
                             </div>
                         </div>
@@ -962,19 +1014,22 @@ return (
                             <div>
                                 <h3 className="card-title">Generative Data Report</h3>
                             </div>
-                            <select style={{ padding: '4px 10px', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '11px', fontWeight: 700, color: '#64748b', background: '#ffffff', cursor: 'pointer' }}>
+                            <select style={{ padding: '4px 10px', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '11px', fontWeight: 800, color: '#64748b', background: '#ffffff', cursor: 'pointer' }}>
                                 <option>Report</option>
                             </select>
                         </div>
                         <div style={{ flexGrow: 1, overflowY: 'auto' }}>
                             <Table 
                                 columns={[
-                                    { title: 'Name', dataIndex: 'name', key: 'name', render: text => <span style={{ fontWeight: 800, color: '#0f172a' }}>{text}</span> },
-                                    { title: 'Revenue', dataIndex: 'revenue', key: 'revenue', render: v => <span style={{ fontWeight: 600 }}>৳ {v.toLocaleString()}</span> },
-                                    { title: 'Expenses', dataIndex: 'expenses', key: 'expenses', render: v => <span style={{ fontWeight: 600 }}>৳ {v.toLocaleString()}</span> },
-                                    { title: 'Report', dataIndex: 'report', key: 'report', render: v => <span style={{ fontWeight: 700, color: '#3b82f6' }}>৳ {v.toLocaleString()}</span> }
+                                    { title: 'Name', dataIndex: 'name', key: 'name', render: text => <span style={{ fontWeight: 800, color: '#475569' }}>{text}</span> },
+                                    { title: 'Revenue', dataIndex: 'revenue', key: 'revenue', render: v => <span style={{ fontWeight: 800, color: '#000000' }}>$ {v.toFixed(2)}</span> },
+                                    { title: 'Expenses', dataIndex: 'expenses', key: 'expenses', render: v => <span style={{ fontWeight: 800, color: '#000000' }}>$ {v.toFixed(2)}</span> },
+                                    { title: 'Report', dataIndex: 'report', key: 'report', render: v => <span style={{ fontWeight: 800, color: '#3b82f6' }}>$ {v.toFixed(2)}</span> }
                                 ]}
-                                dataSource={generativeReportData}
+                                dataSource={[
+                                    { key: '1', name: 'Data Revenue', revenue: 2300, expenses: 1000, report: 230 },
+                                    { key: '2', name: 'Total Rerene', revenue: 790, expenses: 250, report: 100 }
+                                ]}
                                 pagination={false}
                                 className="clean-table-compact"
                                 size="small"
@@ -984,94 +1039,168 @@ return (
                 </Col>
             </Row>
 
-            {/* ── ROW 2 GRID ── */}
+            {/* ── ROW 2 MAIN MASTERPIECE GRID ── */}
             <Row gutter={[24, 24]} style={{ marginBottom: '24px' }}>
-                {/* Card 4: Business Pulse Calendar */}
-                <Col xs={24} lg={8}>
+                {/* Column 1: Business Pulse Calendar */}
+                <Col xs={24} lg={6}>
                     <MiniCalendar />
                 </Col>
 
-                {/* Card 5: Revenue vs Expenses with Float Tooltip Annotations */}
-                <Col xs={24} lg={10}>
+                {/* Column 2: Breakdown, Income Breakdown */}
+                <Col xs={24} lg={6}>
+                    <div className="premium-card">
+                        <div style={{ marginBottom: '16px' }}>
+                            <h3 className="card-title" style={{ fontSize: '13px' }}>Breakdown, Income Breakdown</h3>
+                            <p className="card-subtitle">Breakdown, Income Breakdown</p>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flexGrow: 1 }}>
+                            <div style={{ width: '100%', height: '140px', position: 'relative' }}>
+                                <ResponsiveContainer>
+                                    <PieChart>
+                                        <Pie
+                                            data={[
+                                                { name: 'Services', value: 300, color: '#3b82f6' },
+                                                { name: 'Parts', value: 150, color: '#10b981' },
+                                                { name: 'Investments', value: 100, color: '#fbbf24' }
+                                            ]}
+                                            cx="50%"
+                                            cy="50%"
+                                            innerRadius={50}
+                                            outerRadius={68}
+                                            paddingAngle={3}
+                                            dataKey="value"
+                                        >
+                                            {[
+                                                { name: 'Services', value: 300, color: '#3b82f6' },
+                                                { name: 'Parts', value: 150, color: '#10b981' },
+                                                { name: 'Investments', value: 100, color: '#fbbf24' }
+                                            ].map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={entry.color} />
+                                            ))}
+                                        </Pie>
+                                    </PieChart>
+                                </ResponsiveContainer>
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)',
+                                    textAlign: 'center',
+                                    pointerEvents: 'none'
+                                }}>
+                                    <div style={{ fontSize: '8px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase' }}>Total</div>
+                                    <div style={{ fontSize: '14px', fontWeight: 900, color: '#0f172a' }}>$550.00</div>
+                                </div>
+                            </div>
+                            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '16px', width: '100%', flexWrap: 'wrap' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#3b82f6', display: 'inline-block' }}></span>
+                                    <span style={{ fontSize: '9px', fontWeight: 800, color: '#64748b' }}>Services</span>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }}></span>
+                                    <span style={{ fontSize: '9px', fontWeight: 800, color: '#64748b' }}>Parts</span>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#fbbf24', display: 'inline-block' }}></span>
+                                    <span style={{ fontSize: '9px', fontWeight: 800, color: '#64748b' }}>Investments</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Col>
+
+                {/* Column 3: Revenue vs Expenses with Float Tooltip Annotations */}
+                <Col xs={24} lg={8}>
                     <div className="premium-card">
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                             <div>
                                 <h3 className="card-title">Revenue vs Expenses</h3>
                             </div>
-                            <span style={{ fontSize: '10px', fontWeight: 800, color: '#64748b', textTransform: 'lowercase', letterSpacing: '0.2px' }}>diagnostics_&_strategy</span>
+                            <span style={{ fontSize: '9px', fontWeight: 800, color: '#64748b', textTransform: 'lowercase', letterSpacing: '0.2px' }}>diagnostics_&_strategy</span>
                         </div>
                         {/* Relative Wrapper for Floating Badges */}
                         <div style={{ position: 'relative', width: '100%', height: '240px' }}>
                             <ResponsiveContainer>
-                                <AreaChart data={dailyChartData} margin={{ top: 20, right: 30, left: -25, bottom: 0 }}>
+                                <AreaChart data={[
+                                    { date: 'Jun 17', Revenue: 27300 },
+                                    { date: 'Jun 18', Revenue: 18000 },
+                                    { date: 'Jun 19', Revenue: 12000 },
+                                    { date: 'Jun 23', Revenue: 25000 },
+                                    { date: 'Jun 25', Revenue: 29000 },
+                                    { date: 'Sep 27', Revenue: 23000 }
+                                ]} margin={{ top: 20, right: 30, left: -20, bottom: 0 }}>
                                     <defs>
                                         <linearGradient id="row2Rev" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.12} />
-                                            <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.0} />
+                                            <stop offset="5%" stopColor="#003399" stopOpacity={0.12} />
+                                            <stop offset="95%" stopColor="#003399" stopOpacity={0.0} />
                                         </linearGradient>
                                     </defs>
                                     <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
                                     <XAxis dataKey="date" stroke="#94a3b8" fontSize={9} fontWeight={700} tickLine={false} axisLine={false} />
-                                    <YAxis stroke="#94a3b8" fontSize={9} fontWeight={700} tickLine={false} axisLine={false} tickFormatter={(v) => `${v >= 1000 ? (v/1000)+'k' : v}`} />
-                                    <Area type="monotone" dataKey="Revenue" stroke="#1e40af" strokeWidth={2.5} fillOpacity={1} fill="url(#row2Rev)" />
+                                    <YAxis stroke="#94a3b8" fontSize={9} fontWeight={700} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v >= 1000 ? (v/1000)+'k' : v}`} />
+                                    <Area type="monotone" dataKey="Revenue" stroke="#003399" strokeWidth={2.5} fillOpacity={1} fill="url(#row2Rev)" />
                                 </AreaChart>
                             </ResponsiveContainer>
 
                             {/* Floating popup Dot 1 (Jun 17, 2021) */}
                             <div style={{
                                 position: 'absolute',
-                                top: '35%',
-                                left: '52%',
+                                top: '22%',
+                                left: '3%',
                                 background: '#ffffff',
-                                border: '1px solid #cbd5e1',
-                                borderRadius: '8px',
-                                padding: '6px 12px',
-                                boxShadow: '0 4px 12px rgba(15, 23, 42, 0.06)',
+                                border: '1.5px solid #003399',
+                                borderRadius: '6px',
+                                padding: '4px 8px',
+                                boxShadow: '0 4px 12px rgba(15, 23, 42, 0.08)',
                                 display: 'flex',
-                                flexDirection: 'column',
                                 alignItems: 'center',
-                                zIndex: 5,
+                                gap: '6px',
+                                zIndex: 10,
                                 pointerEvents: 'none'
                             }}>
-                                <span style={{ fontSize: '8px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase' }}>Jun 17, 2021</span>
-                                <span style={{ fontSize: '11px', fontWeight: 900, color: '#0f172a', marginTop: '2px' }}>৳{(totalRevenue || 27300).toLocaleString()}</span>
-                                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#1e40af', position: 'absolute', bottom: '-22px', left: 'calc(50% - 3px)' }}></div>
-                                <div style={{ width: '1px', height: '18px', background: '#cbd5e1', position: 'absolute', bottom: '-18px', left: '50%', zIndex: -1 }}></div>
+                                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#003399' }}></div>
+                                <span style={{ fontSize: '9px', fontWeight: 800, color: '#64748b' }}>Jun 17, 2021</span>
+                                <span style={{ fontSize: '10px', fontWeight: 900, color: '#000000' }}>$27,300.00</span>
                             </div>
+                            {/* Dotted vertical guideline and point dot for Marker 1 */}
+                            <div style={{ position: 'absolute', top: '35%', left: '16.5%', width: '1px', height: '110px', borderLeft: '1.5px dashed #cbd5e1', zIndex: 5 }}></div>
+                            <div style={{ position: 'absolute', top: '32%', left: '15.5%', width: '6px', height: '6px', borderRadius: '50%', background: '#003399', border: '1px solid #ffffff', zIndex: 6 }}></div>
 
                             {/* Floating popup Dot 2 (Data Annotations) */}
                             <div style={{
                                 position: 'absolute',
-                                top: '8%',
-                                left: '78%',
+                                top: '10%',
+                                left: '46%',
                                 background: '#ffffff',
-                                border: '1px solid #cbd5e1',
-                                borderRadius: '8px',
-                                padding: '6px 12px',
-                                boxShadow: '0 4px 12px rgba(15, 23, 42, 0.06)',
+                                border: '1.5px solid #003399',
+                                borderRadius: '6px',
+                                padding: '4px 8px',
+                                boxShadow: '0 4px 12px rgba(15, 23, 42, 0.08)',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
-                                zIndex: 5,
+                                zIndex: 10,
                                 pointerEvents: 'none'
                             }}>
-                                <span style={{ fontSize: '8px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase' }}>Data Annotations</span>
-                                <span style={{ fontSize: '11px', fontWeight: 900, color: '#0f172a', marginTop: '2px' }}>৳{(totalRevenue * 0.15 || 2300).toLocaleString()}</span>
-                                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#1e40af', position: 'absolute', bottom: '-55px', left: 'calc(50% - 3px)' }}></div>
-                                <div style={{ width: '1px', height: '50px', background: '#cbd5e1', position: 'absolute', bottom: '-50px', left: '50%', zIndex: -1 }}></div>
+                                <span style={{ fontSize: '8px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Data Annotations</span>
+                                <span style={{ fontSize: '10px', fontWeight: 900, color: '#000000', marginTop: '1px' }}>$2,300.00</span>
                             </div>
+                            {/* Dotted vertical guideline and point dot for Marker 2 */}
+                            <div style={{ position: 'absolute', top: '22%', left: '65.5%', width: '1px', height: '120px', borderLeft: '1.5px dashed #cbd5e1', zIndex: 5 }}></div>
+                            <div style={{ position: 'absolute', top: '19%', left: '64.5%', width: '6px', height: '6px', borderRadius: '50%', background: '#003399', border: '1px solid #ffffff', zIndex: 6 }}></div>
                         </div>
                     </div>
                 </Col>
 
-                {/* Card 6: Progress bars ("Revenue, Expenses, Diagnostics & Strategy...") */}
-                <Col xs={24} lg={6}>
-                    <div className="premium-card">
+                {/* Column 4: Progress bars ("Revenue, Expenses, Diagnostics & Strategy...") */}
+                <Col xs={24} lg={4}>
+                    <div className="premium-card" style={{ background: '#eff6ff !important', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe !important' }}>
                         <div style={{ marginBottom: '20px' }}>
-                            <h3 className="card-title">Revenue, Expenses, Diagnostics & Strategy...</h3>
-                            <p className="card-subtitle">diagnostics_&_strategy</p>
+                            <h3 className="card-title" style={{ fontSize: '12px', color: '#1e3a8a' }}>Revenue, Expenses, Diagnostics & Strategy...</h3>
+                            <p className="card-subtitle" style={{ color: '#3b82f6' }}>diagnostics_&_strategy</p>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flexGrow: 1, justifyContent: 'center' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', flexGrow: 1, justifyContent: 'center' }}>
                             <ProgressItem label="Data Revenue" percentage={100} />
                             <ProgressItem label="Parts" percentage={70} />
                             <ProgressItem label="Investments" percentage={30} />
@@ -1091,16 +1220,17 @@ return (
                         <div style={{ width: '100%', overflowX: 'auto' }}>
                             <Table
                                 columns={[
-                                    { title: 'Name', dataIndex: 'name', key: 'name', render: text => <span style={{ fontWeight: 800, color: '#0f172a' }}>{text}</span> },
+                                    { title: 'Name', dataIndex: 'name', key: 'name', render: text => <span style={{ fontWeight: 800, color: '#475569' }}>{text}</span> },
                                     { 
                                         title: 'Type', 
                                         dataIndex: 'type', 
                                         key: 'type', 
                                         render: type => (
                                             <span style={{ 
-                                                fontWeight: 800, 
-                                                color: type === 'Revenue' ? '#16a34a' : '#b45309', 
-                                                background: type === 'Revenue' ? '#f0fdf4' : '#fffbeb', 
+                                                fontWeight: 900, 
+                                                color: '#b45309', 
+                                                background: '#fffbeb', 
+                                                border: '1px solid #fde68a',
                                                 padding: '4px 8px', 
                                                 borderRadius: '6px', 
                                                 fontSize: '10px', 
@@ -1114,13 +1244,13 @@ return (
                                         title: 'Amount', 
                                         dataIndex: 'amount', 
                                         key: 'amount', 
-                                        render: (amt, rec) => (
-                                            <span style={{ fontWeight: 800, color: rec.type === 'Revenue' ? '#16a34a' : '#ef4444' }}>
+                                        render: amt => (
+                                            <span style={{ fontWeight: 800, color: '#000000' }}>
                                                 {amt}
                                             </span>
                                         ) 
                                     },
-                                    { title: 'Payment', dataIndex: 'payment', key: 'payment', render: text => <span style={{ fontWeight: 600, color: '#64748b' }}>{text}</span> },
+                                    { title: 'Payment', dataIndex: 'payment', key: 'payment', render: text => <span style={{ fontWeight: 800, color: '#000000' }}>{text}</span> },
                                     { title: 'Created', dataIndex: 'created', key: 'created', render: text => <span style={{ fontWeight: 600, color: '#64748b' }}>{text}</span> },
                                     { title: 'Actions', dataIndex: 'actions', key: 'actions', render: text => <span style={{ fontWeight: 600, color: '#94a3b8' }}>{text}</span> }
                                 ]}
