@@ -465,12 +465,23 @@ const JobIntakePage = () => {
                 transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
             }
 
+            /* Remove any pseudo-element duplicate stroke layers */
+            .dashboard-page .ant-input-affix-wrapper::before,
+            .dashboard-page .ant-input-affix-wrapper::after,
+            .dashboard-page .ant-select-selector::before,
+            .dashboard-page .ant-select-selector::after {
+                display: none !important;
+                content: none !important;
+                border: none !important;
+            }
+
             /* Active focus border coloring */
             .dashboard-page input:focus,
             .dashboard-page textarea:focus,
             .dashboard-page .ant-input-focused,
             .dashboard-page .ant-select-focused .ant-select-selector,
-            .dashboard-page .ant-picker-focused {
+            .dashboard-page .ant-picker-focused,
+            .dashboard-page .ant-input-affix-wrapper-focused {
                 border-color: #003399 !important;
                 box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.1) !important;
                 background-color: #ffffff !important;
