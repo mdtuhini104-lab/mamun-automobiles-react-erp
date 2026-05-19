@@ -1758,14 +1758,25 @@ input, select, button, .ant-select, .ant-picker, .ant-btn, [role="button"] {
 }
 
 /* Wiping out thick/heavy borders and applying clean minimalist executive aesthetics system-wide */
-input, textarea, .ant-input, .ant-select-selector {
-    border: 1px solid #cbd5e1 !important; /* Elegant subtle slate border */
+input, textarea, .ant-input, .ant-select-selector, .ant-input-affix-wrapper {
+    border: 1px solid #cbd5e1 !important; /* Forces ONLY ONE single elegant line */
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: #f8fafc !important;
     border-radius: 8px !important;
-    background-color: #f8fafc !important; /* Soft premium off-white */
     color: #000000 !important; /* Crisp, readable text */
     font-weight: 600 !important;
-    box-shadow: none !important;
     transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Remove AntD's internal duplicate borders and glow rings */
+.ant-input-affix-wrapper::before, 
+.ant-input-affix-wrapper::after,
+.ant-select-selector::before,
+.ant-select-selector::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
 }
 
 /* Ant-Design Select specific padding correction to prevent label cutoffs */
@@ -1775,8 +1786,10 @@ input, textarea, .ant-input, .ant-select-selector {
     align-items: center !important;
 }
 
-input:focus, textarea:focus, .ant-input-focused, .ant-select-focused .ant-select-selector {
-    border-color: #003399 !important; /* Corporate Royal Blue Focus */
+.ant-select-focused .ant-select-selector, 
+input:focus, 
+.ant-input-affix-wrapper-focused {
+    border-color: #003399 !important; /* Premium Royal Blue Focus */
     box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.1) !important;
     background-color: #ffffff !important;
 }
@@ -1785,26 +1798,27 @@ input:focus, textarea:focus, .ant-input-focused, .ant-select-focused .ant-select
    LUXURY DROPDOWNS & INNER AUTOCOMPLETE OPTION PANELS OVERHAUL
    ────────────────────────────────────────────────────────── */
 
-.ant-select-dropdown, .ant-select-item, .ant-select-item-option-content {
-    border: none !important;
-    outline: none !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important; /* Premium Executive Drop Shadow */
+.ant-select-dropdown {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06) !important;
+    border-radius: 10px !important;
+    padding: 6px !important;
 }
 
 .ant-select-item-option {
-    background-color: #ffffff !important;
-    border: 1px solid #f1f5f9 !important; /* Single sleek divider line */
-    border-radius: 6px !important; /* Rounded elegant borders */
-    margin: 4px 8px !important;
+    border-radius: 6px !important;
+    margin: 3px 0 !important;
     padding: 8px 12px !important;
-    transition: all 0.2s ease !important;
+    color: #1e293b !important;
+    font-weight: 600 !important;
+    transition: all 0.15s ease !important;
+    background-color: #ffffff !important;
 }
 
-/* Premium Royal Blue Hover / Active State */
 .ant-select-item-option-active, .ant-select-item-option-selected {
-    background-color: #e6f0ff !important; /* Soft Luxury Blue background */
+    background-color: #e6f0ff !important; /* Elegant light blue wash */
+    color: #003399 !important; /* Crisp Royal Blue text */
     border-color: #003399 !important;
-    color: #003399 !important; /* Bold Royal Blue text */
-    font-weight: 700 !important;
 }
 
