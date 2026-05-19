@@ -185,14 +185,14 @@ const MiniCalendar = () => {
 
 // Legacy calendar block removed.
 
-const ProgressItem = ({ label, percentage }) => (
-    <div style={{ marginBottom: '16px', width: '100%' }}>
+const ProgressItem = ({ label, percentage, color = '#1e293b' }) => (
+    <div style={{ marginBottom: '18px', width: '100%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-            <span style={{ fontSize: '11px', fontWeight: 800, color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.2px' }}>{label}</span>
-            <span style={{ fontSize: '11px', fontWeight: 800, color: '#64748b' }}>{percentage}%</span>
+            <span style={{ fontSize: '10px', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{label}</span>
+            <span style={{ fontSize: '11px', fontWeight: 900, color: '#000000' }}>{percentage}%</span>
         </div>
-        <div style={{ width: '100%', height: '6px', background: '#f1f5f9', borderRadius: '4px', overflow: 'hidden' }}>
-            <div style={{ width: `${percentage}%`, height: '100%', background: '#003399', borderRadius: '4px' }}></div>
+        <div style={{ width: '100%', height: '6px', background: '#e2e8f0', borderRadius: '4px', overflow: 'hidden' }}>
+            <div style={{ width: `${percentage}%`, height: '100%', background: color, borderRadius: '4px' }}></div>
         </div>
     </div>
 );
@@ -846,6 +846,18 @@ return (
                     font-weight: 800 !important;
                     color: #1e293b !important;
                 }
+                .reports-analytical-grid {
+                    display: grid !important;
+                    grid-template-columns: 1.2fr 1.2fr 2fr 1.2fr !important;
+                    gap: 20px !important;
+                    align-items: stretch !important;
+                    width: 100% !important;
+                }
+                @media (max-width: 1024px) {
+                    .reports-analytical-grid {
+                        grid-template-columns: 1fr !important;
+                    }
+                }
             `}} />
 
             {/* ── Header Area ── */}
@@ -858,7 +870,7 @@ return (
                         Generate & view reports
                     </p>
                 </div>
-                <Space size={12}>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'nowrap' }}>
                     <DatePicker 
                         value={dayjs()} 
                         format="MMM DD, YYYY" 
@@ -866,13 +878,19 @@ return (
                         style={{ borderRadius: '8px', border: '1px solid #cbd5e1', padding: '6px 12px', fontWeight: 700, color: '#1e293b', background: '#ffffff', cursor: 'pointer' }} 
                     />
                     <Button 
+                        onClick={() => setPlModalVisible(true)}
+                        style={{ background: '#ffffff', border: '1px solid #cbd5e1', color: '#1e293b', fontWeight: 800, borderRadius: '8px', padding: '6px 16px', fontSize: '11px', letterSpacing: '0.5px', height: '38px', textTransform: 'uppercase' }}
+                    >
+                        Download Monthly Report (PDF)
+                    </Button>
+                    <Button 
                         type="primary"
                         onClick={() => setAddExpenseVisible(true)}
                         style={{ background: '#003399', border: 'none', color: '#ffffff', fontWeight: 800, borderRadius: '8px', padding: '6px 16px', fontSize: '11px', letterSpacing: '0.5px', height: '38px', textTransform: 'uppercase' }}
                     >
                         + Add Expense
                     </Button>
-                </Space>
+                </div>
             </div>
 
             {/* ── ROW 1 GRID ── */}
@@ -1040,40 +1058,40 @@ return (
             </Row>
 
             {/* ── ROW 2 MAIN MASTERPIECE GRID ── */}
-            <Row gutter={[24, 24]} style={{ marginBottom: '24px' }}>
+            <div className="reports-analytical-grid" style={{ marginBottom: '24px' }}>
                 {/* Column 1: Business Pulse Calendar */}
-                <Col xs={24} lg={6}>
+                <div>
                     <MiniCalendar />
-                </Col>
+                </div>
 
                 {/* Column 2: Breakdown, Income Breakdown */}
-                <Col xs={24} lg={6}>
+                <div>
                     <div className="premium-card">
                         <div style={{ marginBottom: '16px' }}>
                             <h3 className="card-title" style={{ fontSize: '13px' }}>Breakdown, Income Breakdown</h3>
                             <p className="card-subtitle">Breakdown, Income Breakdown</p>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flexGrow: 1 }}>
-                            <div style={{ width: '100%', height: '140px', position: 'relative' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexGrow: 1, gap: '12px' }}>
+                            <div style={{ width: '60%', height: '140px', position: 'relative' }}>
                                 <ResponsiveContainer>
                                     <PieChart>
                                         <Pie
                                             data={[
-                                                { name: 'Services', value: 300, color: '#3b82f6' },
+                                                { name: 'Services', value: 300, color: '#003399' },
                                                 { name: 'Parts', value: 150, color: '#10b981' },
-                                                { name: 'Investments', value: 100, color: '#fbbf24' }
+                                                { name: 'Investments', value: 100, color: '#fb7185' }
                                             ]}
                                             cx="50%"
                                             cy="50%"
-                                            innerRadius={50}
-                                            outerRadius={68}
+                                            innerRadius={45}
+                                            outerRadius={62}
                                             paddingAngle={3}
                                             dataKey="value"
                                         >
                                             {[
-                                                { name: 'Services', value: 300, color: '#3b82f6' },
+                                                { name: 'Services', value: 300, color: '#003399' },
                                                 { name: 'Parts', value: 150, color: '#10b981' },
-                                                { name: 'Investments', value: 100, color: '#fbbf24' }
+                                                { name: 'Investments', value: 100, color: '#fb7185' }
                                             ].map((entry, index) => (
                                                 <Cell key={`cell-${index}`} fill={entry.color} />
                                             ))}
@@ -1089,29 +1107,29 @@ return (
                                     pointerEvents: 'none'
                                 }}>
                                     <div style={{ fontSize: '8px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase' }}>Total</div>
-                                    <div style={{ fontSize: '14px', fontWeight: 900, color: '#0f172a' }}>$550.00</div>
+                                    <div style={{ fontSize: '14px', fontWeight: 900, color: '#000000' }}>$550.00</div>
                                 </div>
                             </div>
-                            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '16px', width: '100%', flexWrap: 'wrap' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#3b82f6', display: 'inline-block' }}></span>
-                                    <span style={{ fontSize: '9px', fontWeight: 800, color: '#64748b' }}>Services</span>
+                            <div style={{ width: '40%', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#003399', display: 'inline-block' }}></span>
+                                    <span style={{ fontSize: '10px', fontWeight: 800, color: '#475569' }}>Services</span>
                                 </div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }}></span>
-                                    <span style={{ fontSize: '9px', fontWeight: 800, color: '#64748b' }}>Parts</span>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }}></span>
+                                    <span style={{ fontSize: '10px', fontWeight: 800, color: '#475569' }}>Parts</span>
                                 </div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#fbbf24', display: 'inline-block' }}></span>
-                                    <span style={{ fontSize: '9px', fontWeight: 800, color: '#64748b' }}>Investments</span>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#fb7185', display: 'inline-block' }}></span>
+                                    <span style={{ fontSize: '10px', fontWeight: 800, color: '#475569' }}>Investments</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </Col>
+                </div>
 
                 {/* Column 3: Revenue vs Expenses with Float Tooltip Annotations */}
-                <Col xs={24} lg={8}>
+                <div>
                     <div className="premium-card">
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                             <div>
@@ -1120,8 +1138,8 @@ return (
                             <span style={{ fontSize: '9px', fontWeight: 800, color: '#64748b', textTransform: 'lowercase', letterSpacing: '0.2px' }}>diagnostics_&_strategy</span>
                         </div>
                         {/* Relative Wrapper for Floating Badges */}
-                        <div style={{ position: 'relative', width: '100%', height: '240px' }}>
-                            <ResponsiveContainer>
+                        <div style={{ position: 'relative', width: '100%', height: '340px' }}>
+                            <ResponsiveContainer width="100%" height={320}>
                                 <AreaChart data={[
                                     { date: 'Jun 17', Revenue: 27300 },
                                     { date: 'Jun 18', Revenue: 18000 },
@@ -1137,7 +1155,7 @@ return (
                                         </linearGradient>
                                     </defs>
                                     <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-                                    <XAxis dataKey="date" stroke="#94a3b8" fontSize={9} fontWeight={700} tickLine={false} axisLine={false} />
+                                    <XAxis dataKey="date" interval={0} tick={{ fontSize: 11, fill: '#64748b' }} dx={-5} tickLine={false} axisLine={false} />
                                     <YAxis stroke="#94a3b8" fontSize={9} fontWeight={700} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v >= 1000 ? (v/1000)+'k' : v}`} />
                                     <Area type="monotone" dataKey="Revenue" stroke="#003399" strokeWidth={2.5} fillOpacity={1} fill="url(#row2Rev)" />
                                 </AreaChart>
@@ -1164,7 +1182,7 @@ return (
                                 <span style={{ fontSize: '10px', fontWeight: 900, color: '#000000' }}>$27,300.00</span>
                             </div>
                             {/* Dotted vertical guideline and point dot for Marker 1 */}
-                            <div style={{ position: 'absolute', top: '35%', left: '16.5%', width: '1px', height: '110px', borderLeft: '1.5px dashed #cbd5e1', zIndex: 5 }}></div>
+                            <div style={{ position: 'absolute', top: '35%', left: '16.5%', width: '1px', height: '180px', borderLeft: '1.5px dashed #cbd5e1', zIndex: 5 }}></div>
                             <div style={{ position: 'absolute', top: '32%', left: '15.5%', width: '6px', height: '6px', borderRadius: '50%', background: '#003399', border: '1px solid #ffffff', zIndex: 6 }}></div>
 
                             {/* Floating popup Dot 2 (Data Annotations) */}
@@ -1187,28 +1205,28 @@ return (
                                 <span style={{ fontSize: '10px', fontWeight: 900, color: '#000000', marginTop: '1px' }}>$2,300.00</span>
                             </div>
                             {/* Dotted vertical guideline and point dot for Marker 2 */}
-                            <div style={{ position: 'absolute', top: '22%', left: '65.5%', width: '1px', height: '120px', borderLeft: '1.5px dashed #cbd5e1', zIndex: 5 }}></div>
+                            <div style={{ position: 'absolute', top: '22%', left: '65.5%', width: '1px', height: '180px', borderLeft: '1.5px dashed #cbd5e1', zIndex: 5 }}></div>
                             <div style={{ position: 'absolute', top: '19%', left: '64.5%', width: '6px', height: '6px', borderRadius: '50%', background: '#003399', border: '1px solid #ffffff', zIndex: 6 }}></div>
                         </div>
                     </div>
-                </Col>
+                </div>
 
                 {/* Column 4: Progress bars ("Revenue, Expenses, Diagnostics & Strategy...") */}
-                <Col xs={24} lg={4}>
+                <div>
                     <div className="premium-card" style={{ background: '#eff6ff !important', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe !important' }}>
                         <div style={{ marginBottom: '20px' }}>
                             <h3 className="card-title" style={{ fontSize: '12px', color: '#1e3a8a' }}>Revenue, Expenses, Diagnostics & Strategy...</h3>
                             <p className="card-subtitle" style={{ color: '#3b82f6' }}>diagnostics_&_strategy</p>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', flexGrow: 1, justifyContent: 'center' }}>
-                            <ProgressItem label="Data Revenue" percentage={100} />
-                            <ProgressItem label="Parts" percentage={70} />
-                            <ProgressItem label="Investments" percentage={30} />
-                            <ProgressItem label="Project Progress" percentage={57} />
+                        <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, justifyContent: 'center' }}>
+                            <ProgressItem label="Data Revenue" percentage={100} color="#003399" />
+                            <ProgressItem label="Parts" percentage={70} color="#10b981" />
+                            <ProgressItem label="Investments" percentage={30} color="#fb7185" />
+                            <ProgressItem label="Project Progress" percentage={57} color="#6366f1" />
                         </div>
                     </div>
-                </Col>
-            </Row>
+                </div>
+            </div>
 
             {/* ── ROW 3 GRID ── */}
             <Row gutter={[24, 24]}>
