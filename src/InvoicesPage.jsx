@@ -13,7 +13,6 @@ import ErrorBoundary from './ErrorBoundary';
 import './BillingPage.css';
 import BrandedDocumentHeader from './components/BrandedDocumentHeader';
 import LuxuryCarWatermarkSVG from './components/LuxuryCarWatermarkSVG';
-import downloadElementAsPdf from './utils/domPdf';
 import { buildShareableDocumentLink, createBillingWhatsAppMessage, openWhatsAppShare } from './utils/whatsAppShare';
 import { getAppOrigin } from './utils/appConfig';
 import { t } from './utils/translations';
