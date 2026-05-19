@@ -1744,3 +1744,39 @@ body.light-theme .bottom-actions-row {
         height: 0 !important;
     }
 }
+
+/* ──────────────────────────────────────────────────────────
+   GLOBAL CLICK UNFREEZE & MODERN EXECUTIVE INPUTS OVERHAUL
+   ────────────────────────────────────────────────────────── */
+
+/* Restoring clickability to all critical interaction elements globally */
+input, select, button, .ant-select, .ant-picker, .ant-btn, [role="button"] {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Wiping out thick/heavy borders and applying clean minimalist executive aesthetics system-wide */
+input, textarea, .ant-input, .ant-select-selector {
+    border: 1px solid #cbd5e1 !important; /* Elegant subtle slate border */
+    border-radius: 8px !important;
+    background-color: #f8fafc !important; /* Soft premium off-white */
+    color: #000000 !important; /* Crisp, readable text */
+    font-weight: 600 !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Ant-Design Select specific padding correction to prevent label cutoffs */
+.ant-select-selector {
+    padding: 0 12px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+input:focus, textarea:focus, .ant-input-focused, .ant-select-focused .ant-select-selector {
+    border-color: #003399 !important; /* Corporate Royal Blue Focus */
+    box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.1) !important;
+    background-color: #ffffff !important;
+}
