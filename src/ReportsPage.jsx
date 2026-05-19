@@ -858,16 +858,23 @@ return (
                     gap: 20px !important;
                     align-items: stretch !important;
                     width: 100% !important;
+                    position: relative !important;
+                    z-index: 10 !important;
                 }
                 @media (max-width: 1024px) {
                     .reports-analytical-grid {
                         grid-template-columns: 1fr !important;
                     }
                 }
+                .reports-header-actions, .ant-select, .ant-picker, button, .ant-btn {
+                    position: relative !important;
+                    z-index: 50 !important;
+                    pointer-events: auto !important;
+                }
             `}} />
-
+ 
             {/* ── Header Area ── */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px', borderBottom: '1px solid #f1f5f9', paddingBottom: '20px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px', borderBottom: '1px solid #f1f5f9', paddingBottom: '20px', position: 'relative', zIndex: 60 }}>
                 <div>
                     <h1 style={{ margin: 0, color: '#0f172a', fontWeight: 900, fontSize: '28px', letterSpacing: '-0.5px' }}>
                         Reports
@@ -876,11 +883,11 @@ return (
                         Generate & view reports
                     </p>
                 </div>
-                <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'nowrap' }}>
-                    <DatePicker 
-                        value={dayjs()} 
+                <div className="reports-header-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'nowrap' }}>
+                    <RangePicker 
+                        value={dateRange} 
+                        onChange={(dates) => setDateRange(dates || [null, null])}
                         format="MMM DD, YYYY" 
-                        allowClear={false} 
                         style={{ borderRadius: '8px', border: '1px solid #cbd5e1', padding: '6px 12px', fontWeight: 700, color: '#1e293b', background: '#ffffff', cursor: 'pointer' }} 
                     />
                     <Button 
