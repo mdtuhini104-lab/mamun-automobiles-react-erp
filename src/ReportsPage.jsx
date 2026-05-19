@@ -63,7 +63,7 @@ const getTaskCompletionTimestamp = (task, job) => {
 
 // Global Anti-Gravity Print Engine active system-wide
 
-const MiniCalendar = () => {
+const MiniCalendar = ({ onSelectDate }) => {
     const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
     return (
@@ -89,79 +89,209 @@ const MiniCalendar = () => {
                 <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>28</div>
                 <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>29</div>
                 <div style={{ fontSize: '12px', fontWeight: 600, color: '#cbd5e1' }}>30</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>1</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>2</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>3</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>4</div>
+                
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-01')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >1</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-02')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >2</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-03')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >3</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-04')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >4</div>
 
                 {/* Row 2: Banner row */}
                 <div style={{ fontSize: '12px', fontWeight: 700, color: '#cbd5e1' }}>7</div>
-                <div style={{
-                    gridColumn: 'span 4',
-                    background: '#ecfdf5',
-                    border: '1px solid #a7f3d0',
-                    borderRadius: '6px',
-                    padding: '2px 8px',
-                    fontSize: '10px',
-                    fontWeight: 800,
-                    color: '#047857',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center'
-                }}>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-07')}
+                    style={{
+                        gridColumn: 'span 4',
+                        background: '#ecfdf5',
+                        border: '1px solid #a7f3d0',
+                        borderRadius: '6px',
+                        padding: '2px 8px',
+                        fontSize: '10px',
+                        fontWeight: 800,
+                        color: '#047857',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        cursor: 'pointer'
+                    }}
+                >
                     <span>Project Progress</span>
                     <span>40%</span>
                 </div>
                 {/* day 2 (blue highlight) */}
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-02')}
+                    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}
+                >
                     <div style={{ width: '28px', height: '28px', borderRadius: '6px', background: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 800, color: '#3b82f6' }}>
                         2
                     </div>
                 </div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>3</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-03')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >3</div>
 
                 {/* Row 3 */}
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>4</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-04')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >4</div>
                 {/* day 5 (selected circle) */}
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-05')}
+                    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}
+                >
                     <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 800, color: '#ffffff' }}>
                         5
                     </div>
                 </div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>6</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>7</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>8</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>9</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>10</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-06')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >6</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-07')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >7</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-08')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >8</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-09')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >9</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-10')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >10</div>
 
                 {/* Row 4 */}
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>11</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>12</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>13</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>14</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>15</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>16</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>17</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-11')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >11</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-12')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >12</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-13')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >13</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-14')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >14</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-15')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >15</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-16')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >16</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-17')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >17</div>
 
                 {/* Row 5 */}
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>18</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>19</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-18')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >18</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-19')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >19</div>
                 {/* day 20 (green line under it) */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-20')}
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative', cursor: 'pointer' }}
+                >
                     <span style={{ fontSize: '12px', fontWeight: 800, color: '#1e293b' }}>20</span>
                     <div style={{ width: '18px', height: '3px', background: '#10b981', borderRadius: '2px', marginTop: '2px' }}></div>
                 </div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>21</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>22</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>23</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>24</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-21')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >21</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-22')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >22</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-23')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >23</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-24')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >24</div>
 
                 {/* Row 6 */}
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>25</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>26</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>27</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>28</div>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>29</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-25')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >25</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-26')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >26</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-27')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >27</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-28')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >28</div>
+                <div 
+                    onClick={() => onSelectDate && onSelectDate('2021-06-29')}
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', cursor: 'pointer' }}
+                    className="calendar-hover-date"
+                >29</div>
                 {/* day 1 (next month blue highlighted square) */}
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <div style={{ width: '28px', height: '28px', borderRadius: '6px', background: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 800, color: '#3b82f6' }}>
@@ -351,12 +481,41 @@ const ReportsPage = () => {
     // ─── Calendar: get transactions for a given date ──────────
     const getBillsForDate = (date) => {
         const d = dayjs(date).format('YYYY-MM-DD');
-        return (savedBills || []).filter(b => b.date && dayjs(b.date).format('YYYY-MM-DD') === d);
+        const real = (savedBills || []).filter(b => b.date && dayjs(b.date).format('YYYY-MM-DD') === d);
+        if (real.length > 0) return real;
+        
+        // Mock data for June 2021 demo dates
+        if (d === '2021-06-05') {
+            return [
+                { id: 'BILL-1002', billNo: 'INV-2021-009', customerName: 'Alex Mercer', amount: 550, paid: 550, due: 0 },
+                { id: 'BILL-1003', billNo: 'INV-2021-010', customerName: 'Sarah Connor', amount: 1200, paid: 800, due: 400 }
+            ];
+        }
+        if (d === '2021-06-20') {
+            return [
+                { id: 'BILL-1004', billNo: 'INV-2021-012', customerName: 'Tony Stark', amount: 2300, paid: 2300, due: 0 }
+            ];
+        }
+        return [];
     };
 
     const getExpensesForDate = (date) => {
         const d = dayjs(date).format('YYYY-MM-DD');
-        return (expenses || []).filter(e => e.date && dayjs(e.date).format('YYYY-MM-DD') === d);
+        const real = (expenses || []).filter(e => e.date && dayjs(e.date).format('YYYY-MM-DD') === d);
+        if (real.length > 0) return real;
+
+        // Mock data for June 2021 demo dates
+        if (d === '2021-06-05') {
+            return [
+                { description: 'Shop AC Service Tools', category: 'Tools & Equipments', amount: 150 }
+            ];
+        }
+        if (d === '2021-06-20') {
+            return [
+                { description: 'Workshop Refreshments', category: 'Refreshments', amount: 75 }
+            ];
+        }
+        return [];
     };
 
     const handleDateCellClick = (value) => {
@@ -871,6 +1030,14 @@ return (
                     z-index: 50 !important;
                     pointer-events: auto !important;
                 }
+                .calendar-hover-date {
+                    transition: all 0.2s ease-in-out !important;
+                }
+                .calendar-hover-date:hover {
+                    background: #f1f5f9 !important;
+                    color: #3b82f6 !important;
+                    border-radius: 6px !important;
+                }
             `}} />
  
             {/* ── Header Area ── */}
@@ -1074,7 +1241,10 @@ return (
             <div className="reports-analytical-grid" style={{ marginBottom: '24px' }}>
                 {/* Column 1: Business Pulse Calendar */}
                 <div>
-                    <MiniCalendar />
+                    <MiniCalendar onSelectDate={(dateStr) => {
+                        setSelectedDate(dateStr);
+                        setDayModalVisible(true);
+                    }} />
                 </div>
 
                 {/* Column 2: Breakdown, Income Breakdown */}
