@@ -705,18 +705,18 @@ const ReportsPage = () => {
                 key: '1',
                 name: 'Data Revenue',
                 revenue: totalRevenue || 2300,
-                expenses: totalExpensesAmt || 1000,
+                expenses: plData.totalExpensesAmt || 1000,
                 report: totalDues || 230
             },
             {
                 key: '2',
                 name: 'Total Rerene', // exact typo matching screenshot
                 revenue: totalCollected || 790,
-                expenses: totalSalaryAmt || 250,
-                report: totalVat || 100
+                expenses: plData.totalSalaryAmt || 250,
+                report: plData.totalVat || 100
             }
         ];
-    }, [totalRevenue, totalExpensesAmt, totalDues, totalCollected, totalSalaryAmt, totalVat]);
+    }, [totalRevenue, plData, totalDues, totalCollected]);
 
     const recentOperations = React.useMemo(() => {
         const list = [];
