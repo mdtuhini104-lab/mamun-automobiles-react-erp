@@ -1780,3 +1780,31 @@ input:focus, textarea:focus, .ant-input-focused, .ant-select-focused .ant-select
     box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.1) !important;
     background-color: #ffffff !important;
 }
+
+/* ──────────────────────────────────────────────────────────
+   LUXURY DROPDOWNS & INNER AUTOCOMPLETE OPTION PANELS OVERHAUL
+   ────────────────────────────────────────────────────────── */
+
+.ant-select-dropdown, .ant-select-item, .ant-select-item-option-content {
+    border: none !important;
+    outline: none !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important; /* Premium Executive Drop Shadow */
+}
+
+.ant-select-item-option {
+    background-color: #ffffff !important;
+    border: 1px solid #f1f5f9 !important; /* Single sleek divider line */
+    border-radius: 6px !important; /* Rounded elegant borders */
+    margin: 4px 8px !important;
+    padding: 8px 12px !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Premium Royal Blue Hover / Active State */
+.ant-select-item-option-active, .ant-select-item-option-selected {
+    background-color: #e6f0ff !important; /* Soft Luxury Blue background */
+    border-color: #003399 !important;
+    color: #003399 !important; /* Bold Royal Blue text */
+    font-weight: 700 !important;
+}
+
