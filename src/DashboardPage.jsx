@@ -10,7 +10,6 @@ import { useTheme } from './contexts/ThemeContext';
 import { formatCurrency } from './utils/helpers';
 import { generateBusinessTip } from './services/aiServiceV2';
 import { t } from './utils/translations';
-import LuxuryCarWatermarkSVG from './components/LuxuryCarWatermarkSVG';
 
 dayjs.extend(relativeTime);
 dayjs.extend(isBetween);
@@ -212,8 +211,32 @@ const DashboardPage = () => {
     return (
         <div className="relative min-h-screen transition-all duration-300" style={{ maxWidth: 1400, margin: '0 auto', padding: '30px 20px', background: 'var(--bg-main)' }}>
             
-            {/* Background Watermark SVG Underlay */}
-            <LuxuryCarWatermarkSVG opacity={0.06} />
+            {/* Embedded styles for executive glass-morphic layout */}
+            <style>{`
+                .executive-kpi-card {
+                    background: rgba(30, 41, 59, 0.6) !important;
+                    backdrop-filter: blur(12px) !important;
+                    -webkit-backdrop-filter: blur(12px) !important;
+                    border: 1px solid rgba(51, 65, 85, 0.6) !important;
+                    border-radius: 1rem !important;
+                    padding: 1.5rem !important;
+                    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+                    position: relative !important;
+                    overflow: hidden !important;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                }
+                .executive-kpi-card:hover {
+                    transform: translateY(-4px) !important;
+                    border-color: rgba(59, 130, 246, 0.4) !important;
+                    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15) !important;
+                }
+                .quick-actions-container {
+                    display: flex !important;
+                    gap: 12px !important;
+                    align-items: center !important;
+                    flex-wrap: nowrap !important;
+                }
+            `}</style>
 
             {/* Header Area */}
             <div className="relative z-10 flex flex-col md:flex-row md:justify-between md:items-center gap-6 mb-10 pb-8 border-b border-[#334155]/40">
@@ -227,7 +250,7 @@ const DashboardPage = () => {
                 </div>
                 
                 {/* Minimalist Horizontal Quick Action Hub */}
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="quick-actions-container">
                     <button
                         onClick={() => navigateTo('3')}
                         className="px-5 py-2.5 bg-[#1E293B]/60 backdrop-blur-md border border-[#334155] rounded-xl text-xs uppercase tracking-wider font-extrabold text-[#9ca3af] hover:text-white hover:border-[#003399] transition-all duration-300 cursor-pointer shadow-lg"
@@ -280,7 +303,7 @@ const DashboardPage = () => {
             {/* 4 Clean Premium Glass-morphic KPI Cards */}
             <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 {/* 1. Today's Revenue */}
-                <div className="bg-[#1E293B]/60 backdrop-blur-lg border border-[#334155]/60 rounded-2xl p-6 shadow-2xl relative overflow-hidden transition-all duration-300 hover:translate-y-[-4px] hover:border-[#3B82F6]/40 hover:shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+                <div className="executive-kpi-card">
                     <div className="flex justify-between items-start mb-4">
                         <span className="text-xs uppercase tracking-widest font-black text-[#9ca3af]">Today's Revenue</span>
                         <DollarSign className="text-[#3B82F6] w-5 h-5 opacity-90" />
@@ -291,7 +314,7 @@ const DashboardPage = () => {
                 </div>
 
                 {/* 2. Active Job Cards */}
-                <div className="bg-[#1E293B]/60 backdrop-blur-lg border border-[#334155]/60 rounded-2xl p-6 shadow-2xl relative overflow-hidden transition-all duration-300 hover:translate-y-[-4px] hover:border-[#3B82F6]/40 hover:shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+                <div className="executive-kpi-card">
                     <div className="flex justify-between items-start mb-4">
                         <span className="text-xs uppercase tracking-widest font-black text-[#9ca3af]">Active Job Cards</span>
                         <Clipboard className="text-[#3B82F6] w-5 h-5 opacity-90" />
@@ -302,7 +325,7 @@ const DashboardPage = () => {
                 </div>
 
                 {/* 3. Cash Collected */}
-                <div className="bg-[#1E293B]/60 backdrop-blur-lg border border-[#334155]/60 rounded-2xl p-6 shadow-2xl relative overflow-hidden transition-all duration-300 hover:translate-y-[-4px] hover:border-[#3B82F6]/40 hover:shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+                <div className="executive-kpi-card">
                     <div className="flex justify-between items-start mb-4">
                         <span className="text-xs uppercase tracking-widest font-black text-[#9ca3af]">Cash Collected</span>
                         <TrendingUp className="text-[#3B82F6] w-5 h-5 opacity-90" />
@@ -313,7 +336,7 @@ const DashboardPage = () => {
                 </div>
 
                 {/* 4. Low Stock Alert */}
-                <div className="bg-[#1E293B]/60 backdrop-blur-lg border border-[#334155]/60 rounded-2xl p-6 shadow-2xl relative overflow-hidden transition-all duration-300 hover:translate-y-[-4px] hover:border-[#3B82F6]/40 hover:shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+                <div className="executive-kpi-card">
                     <div className="flex justify-between items-start mb-4">
                         <span className="text-xs uppercase tracking-widest font-black text-[#9ca3af]">Low Stock Alert</span>
                         <AlertTriangle className="text-[#ef4444] w-5 h-5 opacity-90" />
