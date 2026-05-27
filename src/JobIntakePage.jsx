@@ -584,7 +584,7 @@ const JobIntakePage = () => {
                     <Title level={4} style={{ color: '#003399', fontWeight: 700, marginBottom: 24, paddingBottom: 10 }}>{t('new_registration', lang)}</Title>
                     <Form form={form} layout="vertical" onFinish={handleSubmitIntake}>
                         
-                        <Divider orientation="left" style={{ borderColor: '#e2e8f0', color: '#64748b', fontSize: 12, fontWeight: 700, marginTop: 0 }}>I. CUSTOMER INTEL</Divider>
+                        <Divider orientation="left" style={{ borderColor: '#e2e8f0', color: '#64748b', fontSize: 12, fontWeight: 700, marginTop: 0 }}>I. Customer Information</Divider>
                         
                         <Row gutter={24}>
                             <Col span={12}>
@@ -663,7 +663,7 @@ const JobIntakePage = () => {
                             </Col>
                         </Row>
 
-                        <Divider orientation="left" style={{ borderColor: '#e2e8f0', color: '#64748b', fontSize: 12, fontWeight: 700, marginTop: 10 }}>II. VEHICLE DIAGNOSTICS</Divider>
+                        <Divider orientation="left" style={{ borderColor: '#e2e8f0', color: '#64748b', fontSize: 12, fontWeight: 700, marginTop: 10 }}>II. Vehicle Diagnostics</Divider>
 
                         <Row gutter={24}>
                             <Col span={24}>

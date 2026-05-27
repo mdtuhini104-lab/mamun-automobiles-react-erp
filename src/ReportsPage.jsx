@@ -886,7 +886,7 @@ const ReportsPage = () => {
             },
             {
                 key: '2',
-                name: 'Total Rerene', // exact typo matching screenshot
+                name: 'Total Revenue', // exact typo matching screenshot
                 revenue: totalCollected || 790,
                 expenses: plData.totalSalaryAmt || 250,
                 report: plData.totalVat || 100
@@ -1188,7 +1188,7 @@ return (
                                         <td style={{ textAlign: 'right', padding: '8px 4px', fontSize: '11px', fontWeight: 800, color: '#003399' }}>$230.00</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ padding: '8px 4px', fontSize: '11px', fontWeight: 800, color: '#334155' }}>Total Rerene</td>
+                                        <td style={{ padding: '8px 4px', fontSize: '11px', fontWeight: 800, color: '#334155' }}>Total Revenue</td>
                                         <td style={{ textAlign: 'right', padding: '8px 4px', fontSize: '11px', fontWeight: 800, color: '#334155' }}>$790.00</td>
                                         <td style={{ textAlign: 'right', padding: '8px 4px', fontSize: '11px', fontWeight: 800, color: '#334155' }}>$250.00</td>
                                         <td style={{ textAlign: 'right', padding: '8px 4px', fontSize: '11px', fontWeight: 800, color: '#003399' }}>$100.00</td>
