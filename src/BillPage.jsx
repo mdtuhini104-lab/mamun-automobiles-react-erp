@@ -264,11 +264,11 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
     const [partForm] = Form.useForm();
 
     const safeLineItems = lineItems || [];
-    const subtotal = React.useMemo(() => safeLineItems.reduce((acc, item) => acc + ((item.quantity || 0) * (item.unitPrice || 0)), 0), [safeLineItems]);
-    const grandTotal = Math.max(0, subtotal - (discount || 0));
+    const subtotal = React.useMemo(() => safeLineItems.reduce((acc, item) => acc + ((parseFloat(item.quantity) || 0) * (parseFloat(item.unitPrice) || 0)), 0), [safeLineItems]);
+    const grandTotal = Math.max(0, subtotal - (parseFloat(discount) || 0));
     const vatAmount = Math.round(grandTotal * VAT_RATE);
     const netPayable = grandTotal + vatAmount;
-    const dueAmount = Math.max(0, netPayable - (paidAmount || 0));
+    const dueAmount = Math.max(0, netPayable - (parseFloat(paidAmount) || 0));
 
     const set = (field, value) => {
         const updates = { ...draft, [field]: value };
@@ -555,7 +555,7 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
             title: t('qty', language), dataIndex: 'quantity', width: 80,
             render: (val, record) => (
                 <InputNumber min={1} size="small" value={val}
-                    onChange={v => setItems(safeLineItems.map(l => l.id === record.id ? { ...l, quantity: v || 1 } : l))}
+                    onChange={v => setItems(safeLineItems.map(l => l.id === record.id ? { ...l, quantity: v === null || v === '' ? '' : v } : l))}
                 />
             )
         },
@@ -563,13 +563,13 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
             title: t('price', language), dataIndex: 'unitPrice', width: 120,
             render: (val, record) => (
                 <InputNumber min={0} size="small" value={val} style={{ width: '100%' }}
-                    onChange={v => setItems(safeLineItems.map(l => l.id === record.id ? { ...l, unitPrice: v || 0 } : l))}
+                    onChange={v => setItems(safeLineItems.map(l => l.id === record.id ? { ...l, unitPrice: v === null || v === '' ? '' : v } : l))}
                 />
             )
         },
         {
             title: t('total', language), width: 100,
-            render: (_, record) => <Text strong>৳ {formatCurrency((record.quantity || 0) * (record.unitPrice || 0))}</Text>
+            render: (_, record) => <Text strong>৳ {formatCurrency((parseFloat(record.quantity) || 0) * (parseFloat(record.unitPrice) || 0))}</Text>
         },
         {
             title: '', width: 40,
@@ -700,7 +700,7 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <Text strong style={{ color: '#FFFFFF', fontWeight: 900, fontSize: '13px' }}>DISCOUNT</Text>
-                                <InputNumber min={0} value={discount} onChange={v => set('discount', v || 0)} className="premium-glow-input" style={{ width: '130px' }} />
+                                <InputNumber min={0} value={discount} onChange={v => set('discount', v === null || v === '' ? '' : v)} className="premium-glow-input" style={{ width: '130px' }} />
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Text strong style={{ color: '#FFFFFF', fontWeight: 900, fontSize: '13px' }}>VAT (5%)</Text>
@@ -722,7 +722,7 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
                             </Radio.Group>
                         </Form.Item>
                         <Form.Item label={<span style={{ color: '#FFFFFF', fontWeight: 900, fontSize: '14px' }}>Paid Amount</span>}>
-                            <InputNumber min={0} value={paidAmount} onChange={v => set('paidAmount', v || 0)} style={{ width: '100%' }} className="premium-glow-input" />
+                            <InputNumber min={0} value={paidAmount} onChange={v => set('paidAmount', v === null || v === '' ? '' : v)} style={{ width: '100%' }} className="premium-glow-input" />
                         </Form.Item>
                         <Button 
                             type="primary" 
