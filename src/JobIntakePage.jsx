@@ -426,6 +426,19 @@ const JobIntakePage = () => {
                 background: #ffffff !important;
                 color: #1e293b !important;
             }
+            .job-intake-workspace {
+                display: grid !important;
+                grid-template-columns: 1.2fr 1fr !important;
+                gap: 28px !important;
+                align-items: start !important;
+                width: 100% !important;
+                margin-top: 20px !important;
+            }
+            @media (max-width: 992px) {
+                .job-intake-workspace {
+                    grid-template-columns: 1fr !important;
+                }
+            }
             .dashboard-page h1,
             .dashboard-page h2,
             .dashboard-page h3,
@@ -566,10 +579,13 @@ const JobIntakePage = () => {
                 </div>
             )}
 
-            <div className="checkin-desk-grid">
-                <div className="glass-card" style={{ padding: '30px' }}>
-                    <Title level={4} style={{ color: '#003399', fontWeight: 700, marginBottom: 24, borderBottom: '1px solid #cbd5e1', paddingBottom: 10 }}>{t('new_registration', lang)}</Title>
+            <div className="job-intake-workspace">
+                <Card style={{ background: '#ffffff', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }} bodyStyle={{ padding: 0 }} bordered={false}>
+                    <Title level={4} style={{ color: '#003399', fontWeight: 700, marginBottom: 24, paddingBottom: 10 }}>{t('new_registration', lang)}</Title>
                     <Form form={form} layout="vertical" onFinish={handleSubmitIntake}>
+                        
+                        <Divider orientation="left" style={{ borderColor: '#e2e8f0', color: '#64748b', fontSize: 12, fontWeight: 700, marginTop: 0 }}>I. CUSTOMER INTEL</Divider>
+                        
                         <Row gutter={24}>
                             <Col span={12}>
                                 <Form.Item name="vehicleNo" label={<Text style={{ color: '#003399', fontWeight: 700, fontSize: 13, letterSpacing: '0.5px' }}>{t('vehicle_registration_number', lang)}</Text>}>
@@ -615,6 +631,7 @@ const JobIntakePage = () => {
                             <Col span={12}>
                                 <Form.Item name="phone" label={<Text style={{ color: '#0f172a', fontWeight: 700, fontSize: 13 }}>{t('contact_phone', lang)}</Text>}>
                                     <Input 
+                                        className="glass-input"
                                         placeholder="01777888999" 
                                         allowClear 
                                         onBlur={async (e) => {
@@ -641,16 +658,18 @@ const JobIntakePage = () => {
                             </Col>
                             <Col span={12}>
                                 <Form.Item name="address" label={<Text style={{ color: '#0f172a', fontWeight: 700, fontSize: 13 }}>{lang === 'bn' ? 'ঠিকানা' : 'Address'}</Text>}>
-                                    <Input placeholder={lang === 'bn' ? 'ঠিকানা লিখুন...' : 'Enter address...'} allowClear />
+                                    <Input className="glass-input" placeholder={lang === 'bn' ? 'ঠিকানা লিখুন...' : 'Enter address...'} allowClear />
                                 </Form.Item>
                             </Col>
                         </Row>
+
+                        <Divider orientation="left" style={{ borderColor: '#e2e8f0', color: '#64748b', fontSize: 12, fontWeight: 700, marginTop: 10 }}>II. VEHICLE DIAGNOSTICS</Divider>
 
                         <Row gutter={24}>
                             <Col span={24}>
                                 <Form.Item name="mechanicId" label={<Text style={{ color: '#0f172a', fontWeight: 700, fontSize: 13 }}>{t('assign_specialist', lang)}</Text>}>
                                     <Select 
-                                        className="force-black-text"
+                                        className="glass-input force-black-text"
                                         showSearch
                                         optionFilterProp="children"
                                         placeholder={lang === 'bn' ? 'বিশেষজ্ঞ নির্বাচন করুন...' : "Select luxury car specialist..."} 
@@ -674,6 +693,7 @@ const JobIntakePage = () => {
                             <div style={{ flex: 1 }}>
                                 <Form.Item name="complaints" style={{ margin: 0 }} label={<Text style={{ color: '#0f172a', fontWeight: 700, fontSize: 13 }}>{t('customer_complaint', lang)}</Text>}>
                                     <SmartVoiceInput 
+                                        className="glass-input"
                                         isTextArea 
                                         rows={3} 
                                         autoRefine 
@@ -709,50 +729,52 @@ const JobIntakePage = () => {
                             {t('commit_to_service', lang)}
                         </Button>
                     </Form>
-                </div>
+                </Card>
 
-                <div className="glass-card" style={{ padding: '30px' }}>
-                    <Title level={4} style={{ color: '#003399', fontWeight: 700, marginBottom: 24, borderBottom: '1px solid #cbd5e1', paddingBottom: 10 }}>{t('current_operations_queue', lang)}</Title>
+                <Card style={{ background: '#f8fafc', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }} bodyStyle={{ padding: 0 }} bordered={false}>
+                    <Title level={4} style={{ color: '#003399', fontWeight: 700, marginBottom: 24, paddingBottom: 10 }}>{t('current_operations_queue', lang)}</Title>
                     { (intakes || []).length === 0 ? (
                         <Empty description={<Text style={{ color: '#64748b', fontWeight: 600 }}>{t('no_vehicles_in_queue', lang)}</Text>} />
                     ) : (
                         <div style={{ display: 'grid', gap: 16 }}>
                             {intakes.filter(Boolean).map(intake => (
-                                <div key={intake.id} className="glass-card" style={{ padding: '20px', border: '1px solid #cbd5e1', position: 'relative' }}>
+                                <div key={intake.id} style={{ background: '#ffffff', padding: '20px', borderRadius: '12px', border: '1px solid #e2e8f0', position: 'relative', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 15 }}>
                                         <div>
                                             <div style={{ fontSize: 18, fontWeight: 700, color: '#003399', letterSpacing: '0.2px' }}>{intake.vehicleNo}</div>
                                             <div style={{ fontSize: 11, color: '#0f172a', fontWeight: 700, marginTop: 4 }}>{intake.customerName || (lang === 'bn' ? 'নামহীন গ্রাহক' : 'Anonymous Client')}</div>
                                         </div>
-                                        <Tag style={{ background: intake.status === 'Ready' ? '#10b981' : '#003399', color: '#FFFFFF', border: 'none', borderRadius: '4px', fontWeight: 700, fontSize: 10 }}>{t(intake.status?.toLowerCase() || 'pending', lang)}</Tag>
+                                        <Tag style={{ background: intake.status === 'Ready' ? '#e0f2fe' : '#eff6ff', color: intake.status === 'Ready' ? '#0369a1' : '#1e40af', border: intake.status === 'Ready' ? '1px solid #bae6fd' : '1px solid #bfdbfe', borderRadius: '6px', fontWeight: 700, fontSize: 11, padding: '2px 8px' }}>
+                                            {t(intake.status?.toLowerCase() || 'pending', lang)}
+                                        </Tag>
                                     </div>
                                     <div style={{ display: 'flex', gap: 20, marginBottom: 15 }}>
                                         <div>
-                                            <div style={{ fontSize: 9, color: '#64748b', fontWeight: 700, opacity: 0.8 }}>Specialist</div>
+                                            <div style={{ fontSize: 9, color: '#64748b', fontWeight: 700, opacity: 0.8, textTransform: 'uppercase' }}>Specialist</div>
                                             <div style={{ fontSize: 12, color: '#0f172a', fontWeight: 600 }}>{mechanics.find(m => m.id === intake.mechanicId)?.name || 'Unassigned'}</div>
                                         </div>
                                         <div>
-                                            <div style={{ fontSize: 9, color: '#64748b', fontWeight: 700, opacity: 0.8 }}>Diagnostics</div>
+                                            <div style={{ fontSize: 9, color: '#64748b', fontWeight: 700, opacity: 0.8, textTransform: 'uppercase' }}>Diagnostics</div>
                                             <div style={{ fontSize: 12, color: '#0f172a', fontWeight: 600 }}>{(intake.items || []).length} Findings</div>
                                         </div>
                                     </div>
-                                    <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                                        <Button size="small" type="primary" onClick={() => handleEditIntake(intake)} style={{ backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '8px', border: 'none', fontSize: 10, visibility: 'visible' }}>{t('analyze', lang)}</Button>
+                                    <div style={{ display: 'flex', gap: 10, flexWrap: 'nowrap', alignItems: 'center' }}>
+                                        <Button size="small" type="primary" onClick={() => handleEditIntake(intake)} style={{ flex: 1, backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '6px', border: 'none', fontSize: 11, height: '32px' }}>{t('analyze', lang)}</Button>
                                         
-                                        <Button size="small" type="primary" onClick={() => handleSendToJobCard(intake)} style={{ backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '8px', border: 'none', fontSize: 10, visibility: 'visible' }}>{lang === 'bn' ? 'জব কার্ড তৈরি করুন' : 'Generate Job Card'}</Button>
+                                        <Button size="small" type="primary" onClick={() => handleSendToJobCard(intake)} style={{ flex: 1, backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '6px', border: 'none', fontSize: 11, height: '32px' }}>{lang === 'bn' ? 'জব কার্ড তৈরি করুন' : 'Generate Job Card'}</Button>
 
                                         {intake.status === 'Ready' && (
-                                            <Button size="small" type="primary" onClick={() => handleSendToQuotation(intake)} style={{ backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '8px', border: 'none', fontSize: 10, visibility: 'visible' }}>{t('proceed_to_quote', lang)}</Button>
+                                            <Button size="small" type="primary" onClick={() => handleSendToQuotation(intake)} style={{ flex: 1, backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '6px', border: 'none', fontSize: 11, height: '32px' }}>{t('proceed_to_quote', lang)}</Button>
                                         )}
                                         {intake.status === 'Inspecting' && (
-                                            <Button size="small" type="primary" onClick={() => handleMarkReady(intake.id)} style={{ backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '8px', border: 'none', fontSize: 10, visibility: 'visible' }}>{t('complete_inspection', lang)}</Button>
+                                            <Button size="small" type="primary" onClick={() => handleMarkReady(intake.id)} style={{ flex: 1, backgroundColor: '#003399', color: '#ffffff', fontWeight: 700, borderRadius: '6px', border: 'none', fontSize: 11, height: '32px' }}>{t('complete_inspection', lang)}</Button>
                                         )}
                                     </div>
                                 </div>
                             ))}
                         </div>
                     )}
-                </div>
+                </Card>
             </div>
 
             <Modal
