@@ -321,7 +321,7 @@ const DashboardPage = () => {
                         Executive Dashboard
                     </h1>
                     <p className="text-[#64748b] text-sm font-medium tracking-wide mt-1.5 opacity-90">
-                        Mamun Automobiles • Operational Intelligence & Strategic Controls
+                        Mamun Automobiles • Operational Intelligence & Strategic Analytics
                     </p>
                 </div>
                 
@@ -329,19 +329,19 @@ const DashboardPage = () => {
                 <div className="quick-actions-container">
                     <button
                         onClick={() => navigateTo('3')}
-                        className="px-5 py-2.5 bg-white border border-[#003399] rounded-xl text-xs uppercase tracking-wider font-extrabold text-[#003399] hover:bg-[#003399] hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
+                        className="px-5 py-2.5 bg-white border border-[#003399] rounded-xl text-sm tracking-wide font-semibold text-[#003399] hover:bg-[#003399] hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
                     >
                         New Invoice
                     </button>
                     <button
                         onClick={() => navigateTo('quotations')}
-                        className="px-5 py-2.5 bg-white border border-[#003399] rounded-xl text-xs uppercase tracking-wider font-extrabold text-[#003399] hover:bg-[#003399] hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
+                        className="px-5 py-2.5 bg-white border border-[#003399] rounded-xl text-sm tracking-wide font-semibold text-[#003399] hover:bg-[#003399] hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
                     >
                         Create Quotation
                     </button>
                     <button
                         onClick={() => navigateTo('2')}
-                        className="px-5 py-2.5 bg-white border border-[#003399] rounded-xl text-xs uppercase tracking-wider font-extrabold text-[#003399] hover:bg-[#003399] hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
+                        className="px-5 py-2.5 bg-white border border-[#003399] rounded-xl text-sm tracking-wide font-semibold text-[#003399] hover:bg-[#003399] hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
                     >
                         Open Job Card
                     </button>
@@ -582,7 +582,7 @@ const DashboardPage = () => {
             {/* Premium Recent Active Job Cards Operations Grid */}
             <div className="relative z-10 bg-white border border-[#e2e8f0] rounded-2xl p-6 shadow-sm">
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-lg font-extrabold text-[#1e293b] uppercase tracking-wider font-montserrat flex items-center gap-2">
+                    <h2 className="text-lg font-bold text-[#1e293b] tracking-wide font-montserrat flex items-center gap-2">
                         <ShieldCheck className="text-[#003399] w-5 h-5" /> Recent Workshop Operations
                     </h2>
                     <button 
