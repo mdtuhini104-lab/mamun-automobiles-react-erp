@@ -13,7 +13,7 @@ import ErrorBoundary from './ErrorBoundary';
 import './BillingPage.css';
 import BrandedDocumentHeader from './components/BrandedDocumentHeader';
 import LuxuryCarWatermarkSVG from './components/LuxuryCarWatermarkSVG';
-import { buildShareableDocumentLink, createBillingWhatsAppMessage, openWhatsAppShare } from './utils/whatsAppShare';
+
 import { getAppOrigin } from './utils/appConfig';
 import { t } from './utils/translations';
 import { processUserInput } from './services/aiServiceV2';
@@ -529,7 +529,7 @@ const BillDraftForm = ({ draft, onUpdate, savedBills, inventory, services, setSe
         }
 
         message.success(`✅ Invoice ${newInvoiceId} generated!`);
-        handleSendBillToWhatsApp(finalBill);
+
         if (onPrintReady) onPrintReady(finalBill, true);
         onUpdate(createDraft(draft.draftId));
     };
