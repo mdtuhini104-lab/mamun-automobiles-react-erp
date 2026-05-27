@@ -560,8 +560,8 @@ const JobIntakePage = () => {
         `}} />
         <div className="dashboard-page" style={{ maxWidth: 1400, margin: '0 auto', padding: '0 8px' }}>
             <div style={{ marginBottom: 32, textAlign: 'center' }}>
-                <Title level={1} style={{ margin: 0, fontWeight: 700, color: '#0f172a', letterSpacing: '0.2px' }}>
-                    {t('checkin_desk', lang)}
+                <Title level={1} style={{ margin: 0, fontWeight: 700, color: '#0f172a', letterSpacing: '-0.025em', textTransform: 'none' }}>
+                    Vehicle Reception & Check-in Desk
                 </Title>
                 <Text style={{ color: '#003399', fontWeight: 600, letterSpacing: '0.2px' }}>{lang === 'bn' ? 'প্রিমিয়াম গাড়ি গ্রহণ ও ডায়াগনস্টিক' : 'Premium vehicle reception & diagnostics'}</Text>
             </div>

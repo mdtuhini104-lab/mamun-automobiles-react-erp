@@ -317,7 +317,7 @@ const DashboardPage = () => {
             {/* Header Area */}
             <div className="relative z-10 flex flex-col md:flex-row md:justify-between md:items-center gap-6 mb-10 pb-8 border-b border-[#cbd5e1]">
                 <div>
-                    <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-[#1e293b] m-0 font-montserrat">
+                    <h1 className="text-3xl md:text-4xl font-black tracking-tight text-[#1e293b] m-0 font-montserrat" style={{ textTransform: 'none', letterSpacing: '-0.025em' }}>
                         Executive Dashboard
                     </h1>
                     <p className="text-[#64748b] text-sm font-medium tracking-wide mt-1.5 opacity-90">

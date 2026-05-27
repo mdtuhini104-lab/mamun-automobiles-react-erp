@@ -1054,8 +1054,8 @@ return (
             {/* ── Header Area ── */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px', borderBottom: '1px solid #f1f5f9', paddingBottom: '20px', position: 'relative', zIndex: 60 }}>
                 <div>
-                    <h1 style={{ margin: 0, color: '#0f172a', fontWeight: 900, fontSize: '28px', letterSpacing: '-0.5px' }}>
-                        Reports
+                    <h1 style={{ margin: 0, color: '#0f172a', fontWeight: 700, fontSize: '28px', letterSpacing: '-0.025em', textTransform: 'none' }}>
+                        Reports & Business Analytics
                     </h1>
                     <p style={{ color: '#64748b', fontSize: '13px', fontWeight: 500, margin: '2px 0 0 0' }}>
                         Generate & view reports
