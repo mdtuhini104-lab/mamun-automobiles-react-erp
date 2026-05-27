@@ -1,20 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-* {
-    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+*, html, body, button, input, select, textarea, th, td, .ant-btn, .ant-card-head-title, .ant-select {
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
 }
 
-h1, h2, h3, h4, th, .ant-card-head-title, strong {
+/* Fix uppercase titles like "EXECUTIVE DASHBOARD", buttons, and metric numbers */
+h1, h2, h3, .ant-card-head-title {
     font-weight: 700 !important;
-    letter-spacing: -0.02em !important;
-    color: #0f172a !important; /* Deep Slate Black */
+    letter-spacing: -0.025em !important; /* Elegant tight styling for headings */
+    color: #0f172a !important;
 }
-input, select, textarea, td, .ant-select-item {
-    font-weight: 500 !important;
-    color: #1e293b !important;
+
+/* Fix tracking on secondary labels and metric numbers like '৳ 0' */
+.ant-card-body, td, span, div {
+    letter-spacing: -0.01em !important;
+}
+
+/* Make action buttons look pristine */
+button, .ant-btn {
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important; /* Premium wide look for CTA buttons */
 }
 
 html, body, #root, .ant-layout, .billing-page-container {
